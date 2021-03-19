@@ -25,3 +25,7 @@ jobs:
 
       - name: Test PDF compiles
         run: inv compile
+
+      - name: Test spellcheck
+        run: inv spellcheck
+
