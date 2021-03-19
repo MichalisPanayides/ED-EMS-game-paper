@@ -22,10 +22,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install latexmk
+          sudo apt-get install aspell
 
       - name: Test PDF compiles
         run: inv compile
 
       - name: Test spellcheck
         run: inv spellcheck
-
