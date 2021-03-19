@@ -4,6 +4,9 @@ on: [push, pull_request]
 
 jobs:
   build:
+    defaults:
+      run:
+        shell: bash -l {0}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
