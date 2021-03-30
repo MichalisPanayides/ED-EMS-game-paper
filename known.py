@@ -3,4 +3,6 @@
 words = {
     "Michalis",
     "Panayides",
+    "queueing",
+    "abbrv",
 }
