@@ -41,7 +41,7 @@ the mean waiting is more than the target time, and completely ignore the
 percentage goal.
 
 \begin{equation}
-    \max_{T_i} \quad P(W_i < \textit{Target})
+    \arg \max_{T_i} \quad P(W_i < \textit{Target})
 \end{equation}
 
 Perhaps a more sophisticated objective function would be to get the proportion 
@@ -49,8 +49,8 @@ of individuals as close to the percentage aim.
 In other words, to find the threshold that minimises the difference between the 
 probability and the percentage goal (or maximise its negation).
 
-\begin{equation}
-    \max_{T_i} \quad -\left( \hat{P} - P(W_i < \textit{Target}) \right)^2
+\begin{equation}\label{eq:obj-queueing-systems}
+    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < \textit{Target}) \right)^2
 \end{equation}
 
 
@@ -68,10 +68,10 @@ Thus, its objective is to minimise the blocked time of the individuals
 that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
 decision of the distribution service is the proportion of lost individuals.
-Equation \ref{eq:obj-distribution-service} can be used to capture a mixture 
+Equation \ref{eq:obj-distributor} can be used to capture a mixture 
 between the two objectives.
 
-\begin{equation}\label{eq:obj-distribution-service}
+\begin{equation}\label{eq:obj-distributor}
     \alpha P(L_A) + (1 - \alpha) B_A = 
     \alpha P(L_B) + (1 - \alpha) B_B
 \end{equation}
@@ -83,61 +83,89 @@ individuals and smaller \(\alpha\) a higher weight on the time blocked.
 
 % PAR: COMBINED FORMULATION (Figure of 3-player game)
 % Intro
-% Payoff matrices??
+Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj-distributor}, an
+imperfect information extensive form game may arise. 
+An imperfect information game is defined as an extensive form game where some 
+of the information about the game state is hidden for at least one of the 
+players \cite{Berwanger2008}. In this study the state of the problem that is
+hidden is the threshold that each player chooses to play.
+In other words, each queueing system chooses to play a strategy without the 
+knowing the other system's strategy.
+The distributor then, fully aware of the chosen strategies are, distributes 
+individuals among the two systems in order to minimise the time that its 
+individuals will be blocked. 
 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[-, node distance = 3cm, scale=0.8]
-        \node[anchor=north](H1){\(H_1\)};
-        \node[anchor=north](H1_d1) at (3, 2){.};
-        \node[anchor=north](H1_d2) at (3, -2){.};
+        \node[anchor=north](HA){\(H_A\)};
+        \node[anchor=north](HA_d1) at (3, 2){.};
+        \node[anchor=north](HA_d2) at (3, -2){.};
     
-        \path[->] (H1) edge node {}(H1_d1);
-        \path[->] (H1) edge node {}(H1_d2);
-        \path (H1_d1) edge [bend left] node {}(H1_d2);
-        \path (H1_d1) [dashed] edge node {}(H1_d2);
+        \path[->] (HA) edge node {}(HA_d1);
+        \path[->] (HA) edge node {}(HA_d2);
+        \path (HA_d1) edge [bend left] node {}(HA_d2);
+        \path (HA_d1) [dashed] edge node {}(HA_d2);
     
-        \node[anchor=north](H2) at (4.1, 0){\(H_2\)};
-        \node[anchor=north](H2_d1) at (6.9, 2){.};
-        \node[anchor=north](H2_d2) at (6.9, -2){.};
+        \node[anchor=north](HB) at (4.1, 0){\(H_B\)};
+        \node[anchor=north](HB_d1) at (6.9, 2){.};
+        \node[anchor=north](HB_d2) at (6.9, -2){.};
     
-        \path[->] (H2) edge node {}(H2_d1);
-        \path[->] (H2) edge node {}(H2_d2);
-        \path(H2_d1) edge [bend left] node {}(H2_d2);
+        \path[->] (HB) edge node {}(HB_d1);
+        \path[->] (HB) edge node {}(HB_d2);
+        \path(HB_d1) edge [bend left] node {}(HB_d2);
     
-        \node[anchor=north](A) at (7.8, 0){\(A\)};
-        \node[anchor=north](A_d1) at (10.8, 2){.};
-        \node[anchor=north](A_d2) at (10.8, -2){.};
+        \node[anchor=north](D) at (7.8, 0){\(D\)};
+        \node[anchor=north](D_d1) at (10.8, 2){.};
+        \node[anchor=north](D_d2) at (10.8, -2){.};
         
-        \path[->] (A) edge node {}(A_d1);
-        \path[->] (A) edge node {}(A_d2);
-        \path(A_d1) edge [bend left] node {}(A_d2);
+        \path[->] (D) edge node {}(D_d1);
+        \path[->] (D) edge node {}(D_d2);
+        \path(D_d1) edge [bend left] node {}(D_d2);
     \end{tikzpicture}
-    \caption{}
+    \caption{Imperfect information Extensive Form Game between the distributor 
+    and the 2 queueing systems}
+    \label{fig:imperfect-info-game}
 \end{figure}
 
+Figure \ref{fig:imperfect-info-game} illustrates such a game works. The first 
+queueing system \(H_A\) decides on a threshold, then the second system \(H_B\)
+chooses its own threshold, without knowing the strategy of \(H_A\), and finally
+the distributor makes its choice. Note here that the dotted line represents the
+fact that \(H_B\) is unaware of the state of the game when making its own 
+decisions. The game can thus be partitioned into a normal form game between the
+two queueing systems and finding the distributor's best choice. 
 
-\begin{table}[ht]
-    \centering
+In order to define the normal form game the two payoff matrices of the players 
+are required. From equation \ref{eq:obj-queueing-systems} the utilities of the
+players can be formulated as:
+
+\begin{equation}
+    U_{T_1, T_2}^i = \quad -\left( 
+        \hat{P} - P(W_i < \textit{Target}) 
+    \right)^2
+\end{equation}
+
+Consequently, the payoff matrices of the game can be populated by these 
+utilities:
+
+\begin{equation} \label{eq:payoff-matrices}
     A = 
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-    \( U_{1,1}^A \) & \( U_{1,2}^A \) & \dots & \( U_{1,N_B}^A \) \\ \hline
-    \( U_{2,1}^A \) & \( U_{2,2}^A \) & \dots & \( U_{2,N_B}^A \) \\ \hline
-    \vdots & \vdots & \( \ddots \) & \vdots \\ \hline
-    \( U_{N_A,1}^A \) & \( U_{N_A,2}^A \) & \dots & \( U_{N_A,N_B}^A \) \\ \hline
-    \end{tabular}
-\end{table}  
-
-\begin{table}[ht]
-    \centering
+    \begin{pmatrix}
+        U_{1,1}^A & U_{1,2}^A & \dots & U_{1,N_B}^A \\
+        U_{2,1}^A & U_{2,2}^A & \dots & U_{2,N_B}^A \\
+        \vdots & \vdots & \ddots & \vdots \\
+        U_{N_A,1}^A & U_{N_A,2}^A & \dots & U_{N_A,N_B}^A \\
+    \end{pmatrix},
     B = 
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-    \( U_{1,1}^B \) & \( U_{1,2}^B \) & \dots & \( U_{1,N_B}^B \) \\ \hline
-    \( U_{2,1}^B \) & \( U_{2,2}^B \) & \dots & \( U_{2,N_B}^B \) \\ \hline
-    \vdots & \vdots & \( \ddots \) & \vdots \\ \hline
-    \( U_{N_A,1}^B \) & \( U_{N_A,2}^B \) & \dots & \( U_{N_A,N_B}^B \) \\ \hline
-    \end{tabular}
-\end{table}  
+    \begin{pmatrix}
+        U_{1,1}^B & U_{1,2}^B & \dots & U_{1,N_B}^B \\
+        U_{2,1}^B & U_{2,2}^B & \dots & U_{2,N_B}^B \\
+        \vdots & \vdots & \ddots & \vdots \\
+        U_{N_A,1}^B & U_{N_A,2}^B & \dots & U_{N_A,N_B}^B \\
+    \end{pmatrix}
+\end{equation}
 
+Based on the choice of strategy of these two players the distributor will then 
+make its own choice of proportion of individuals to send to each system.
+ 
