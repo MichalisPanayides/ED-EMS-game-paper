@@ -1,27 +1,20 @@
 \section{Overview of game theoretic model}
 
-% PAR: GENERAL
-% Intro
 The problem studied is a 3-player game theoretic scenario between two queueing 
 systems and a service that distributes individuals to them. 
-% General objectives of players
 Each player in this game has its own objectives and cares about meeting its own 
 targets.
-% Specific objectives
 More specifically, the queueing systems' objective is captured by an upper bound
 of the time that a fixed proportion of individuals need to spend in the system, 
-while the distribution service aims to minimise the time that its individuals 
+while the distributor aims to minimise the time that its individuals 
 are blocked.  
 
-% PAR: OBJECTIVES OF QUEUEING SYSTEMS
-% Intro
 The queueing systems are designed in such a way where they can accept two types
 of individuals. 
-These are the individuals that the distribution service allocates to them and 
+These are the individuals that the distributor allocates to them and 
 other individuals from other sources. 
-% Specific Formulation
 Each queueing system may then choose to block the individuals that arrive from 
-the service distribution when the system reaches a certain capacity. 
+the distributor when the system reaches a certain capacity. 
 Thus, the set of strategies that they may choose to play in the game are defined 
 as the set of possible choices that the two queueing systems have. 
 In other words, each queueing system is given \( N_A \) and \( N_B \) number of 
@@ -30,7 +23,6 @@ queueing systems.
 The \textit{threshold} parameter is thus used to capture the chosen 
 strategy for each hospital where \( T_A \in \left[1, N_A \right] \) and 
 \( T_B \in \left[1, N_B \right] \)
-% Specific Objectives
 Their choice of strategy will then rely solely on satisfying their own 
 objective, which is to make sure that the waiting time of a proportion of 
 individuals will be below the predefined target time.
@@ -62,27 +54,22 @@ probability and the percentage goal (or maximise its negation).
 \end{equation}
 
 
-% PAR: OBJECTIVES OF DISTRIBUTION SERVICE
-% Intro
-On the other side of the spectrum, the service distribution has its own choices 
+On the other side of the spectrum, the distributor has its own choices 
 to make and its own goals to satisfy.
-% Specific Formulation
 The set of strategies it has can be defined as the different ways that it can 
 distribute individuals to the two queueing system.
-Therefore, unlike the queueing systems, the distribution service has a 
+Therefore, unlike the queueing systems, the distributor has a 
 continuous set of strategies that goes from \( 0\% - 100\% \). 
 For example, it may choose to send \(35\%\) of its individuals to the first 
 queueing system and \(65\%\) to the second one.
-% Specific Objectives
-In addition, the distribution services aims to minimise any potential blockages
-that may occur give the pair of thresholds chosen by the two queueing systems.
+In addition, the distributor aims to minimise any potential blockages
+that may occur, given the pair of thresholds chosen by the two queueing systems.
 Thus, its objective is to minimise the blocked time of the individuals 
 that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
 decision of the distribution service is the proportion of lost individuals.
 Equation \ref{eq:obj-distribution-service} can be used to capture a mixture 
 between the two objectives.
-systems.
 
 \begin{equation}\label{eq:obj-distribution-service}
     \alpha P(L_A) + (1 - \alpha) B_A = 
