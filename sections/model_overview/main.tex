@@ -1,22 +1,22 @@
 \section{Overview of game theoretic model}
 
-The problem studied is a 3-player normal form game.
-
- The players are:
+The problem studied is a 3-player normal form game. The players are:
   
- \begin{itemize}
- 
-      \item The decision makers of two queueing 
-systems;
-      \item a service that distributes individuals to these two queueing systems.
- \end{itemize}
- 
-Each player in this game has its own objectives and cares about meeting its own 
-targets.
+\begin{itemize}
+    \item The decision makers of two queueing systems;
+    \item a service that distributes individuals to these two queueing systems.
+\end{itemize}
+
+his is a standard Normal form game~\cite{},  
+% TODO: Cite a Game Theory text book (Maschler et al. would do)
+in that each player in this game has their own objectives which they aim to 
+optimise.
 More specifically, the queueing systems' objective is captured by an upper bound
-of the time that a fixed proportion of individuals  spend in the system, 
+of the time that a fixed proportion of individuals spend in the system, 
 while the distributor aims to minimise the time that its individuals 
-are blocked.   % TODO Depending on how this is described earlier, we might need a little more here (as to what we mean by "blocked")
+are blocked.   
+% TODO: Depending on how this is described earlier, we might need a little more 
+% here (as to what we mean by "blocked")
 
 The queueing systems are designed in such a way where they can accept two types
 of individuals. 
@@ -24,33 +24,37 @@ These are the individuals that the distributor allocates to them and
 other individuals from other sources. 
 Each queueing system may then choose to block the individuals that arrive from 
 the distributor when the system reaches a certain capacity. 
-Thus, the set of strategies that they may choose to play in the game are defined 
-as the set of possible choices that the two queueing systems have. 
-In other words, each queueing system is given \( N_A \) and \( N_B \) number of 
-strategies where \( N_A \) and \( N_B \) are the total capacities of the two 
-queueing systems.
-The \textit{threshold} parameter is thus used to capture the chosen 
-strategy for each hospital where \( T_A \in \left[1, N_A \right] \) and 
-\( T_B \in \left[1, N_B \right] \)
+The strategy sets for each queueing system is the set 
+\( \{T \in \mathbb{N} \;|\; 1 \leq T \leq N\} \) where \(N \in\{N_A, N_B\}\) are 
+the total capacities of the two queueing systems. We denote the chosen actions 
+from the strategy set as \(T_A, T_B\) and call these \textit{threshold}s.
 Their choice of strategy will then rely solely on satisfying their own 
 objective, which is to make sure that the waiting time of a proportion of 
 individuals will be below the predefined target time.
 
+This is shown diagrammatically in Figure %~ref{fig:diagram_of_queueing_system}.
+% TODO: Draw diagram of queueing system
+% This should include the parameters
+% and clearly show the decision variable.
+% Note: only do this for a single queueing system.
+
+
 \begin{equation}
-    P(W < \textit{ Target}) \geq \hat{P}
+    P(W < R) \geq \hat{P}
 \end{equation}
 
-where \(W\) is the waiting time of all individuals, \textit{Target} is the time 
+where \(W\) is the mean waiting time of all individuals, \(R\) is the time 
 target and \(\hat{P}\) is the percentage of individuals need to be within that 
 target. 
 There are numerous objective functions that can be used to capture this 
 behaviour. 
-For example one approach is to use the threshold that maximises the probability that 
+For example one approach is to use the threshold that maximises the probability 
+that 
 the mean waiting is more than the target time, and completely ignore the 
 percentage goal.
 
 \begin{equation}
-    \arg \max_{T_i} \quad P(W_i < \textit{Target})
+    \arg \max_{T_i} \quad P(W_i < R)
 \end{equation}
 
 A more sophisticated objective function would be to get the proportion 
@@ -59,24 +63,23 @@ In other words, to find the threshold that minimises the difference between the
 probability and the percentage goal (or maximise its negation).
 
 \begin{equation}\label{eq:obj-queueing-systems}
-    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < \textit{Target}) \right)^2
+    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < R) \right)^2
 \end{equation}
 
 
-On the other side of the spectrum, the distributor has its own choices 
-to make and its own goals to satisfy.
-The set of strategies it has can be defined as the different ways that it can 
-distribute individuals to the two queueing system.
-Therefore, unlike the queueing systems, the distributor has a 
-continuous set of strategies that goes from \( 0\% - 100\% \). 
-For example, it may choose to send \(35\%\) of its individuals to the first 
-queueing system and \(65\%\) to the second one.
+The third player, the distributor has their own choices to make and their own 
+goals to satisfy.
+The strategy set of the third player is the proportion \(0 \leq p \leq 1\) of 
+individuals it sends to the first queueing system (the proportion \(1 - q\) is 
+sent to the second queueing system).
 In addition, the distributor aims to minimise any potential blockages
 that may occur, given the pair of thresholds chosen by the two queueing systems.
 Thus, its objective is to minimise the blocked time of the individuals 
 that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
-decision of the distribution service is the proportion of lost individuals.
+decision of the distributor is the proportion of lost individuals.
+% TODO: Clarify above (somewhere near the diagram of the queueing system) that 
+% individuals can be lost at all.
 Equation \ref{eq:obj-distributor} can be used to capture a mixture 
 between the two objectives.
 
@@ -90,11 +93,11 @@ where high \(\alpha\) indicates a higher weight on the proportion of lost
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
 
-Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj-distributor}, an
-imperfect information extensive form game may arise. 
+Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj-distributor} gives
+an imperfect information extensive form game. 
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
-players \cite{Berwanger2008}. In this study the state of the problem that is
+players~\cite{Berwanger2008}. In this study the state of the problem that is
 hidden is the threshold that each of the first two players chooses to play.
 In other words, each queueing system chooses to play a strategy without the 
 knowing the other system's strategy.
@@ -149,7 +152,7 @@ players can be formulated as:
 
 \begin{equation}
     U_{T_1, T_2}^i = \quad -\left( 
-        \hat{P} - P(W_i < \textit{Target}) 
+        \hat{P} - P(W_i < R) 
     \right)^2
 \end{equation}
 
