@@ -1,13 +1,22 @@
 \section{Overview of game theoretic model}
 
-The problem studied is a 3-player game theoretic scenario between two queueing 
-systems and a service that distributes individuals to them. 
+The problem studied is a 3-player normal form game.
+
+ The players are:
+  
+ \begin{itemize}
+ 
+      \item The decision makers of two queueing 
+systems;
+      \item a service that distributes individuals to these two queueing systems.
+ \end{itemize}
+ 
 Each player in this game has its own objectives and cares about meeting its own 
 targets.
 More specifically, the queueing systems' objective is captured by an upper bound
-of the time that a fixed proportion of individuals need to spend in the system, 
+of the time that a fixed proportion of individuals  spend in the system, 
 while the distributor aims to minimise the time that its individuals 
-are blocked.  
+are blocked.   % TODO Depending on how this is described earlier, we might need a little more here (as to what we mean by "blocked")
 
 The queueing systems are designed in such a way where they can accept two types
 of individuals. 
@@ -36,7 +45,7 @@ target and \(\hat{P}\) is the percentage of individuals need to be within that
 target. 
 There are numerous objective functions that can be used to capture this 
 behaviour. 
-The first one would be to use the threshold that maximises the probability that 
+For example one approach is to use the threshold that maximises the probability that 
 the mean waiting is more than the target time, and completely ignore the 
 percentage goal.
 
@@ -44,7 +53,7 @@ percentage goal.
     \arg \max_{T_i} \quad P(W_i < \textit{Target})
 \end{equation}
 
-Perhaps a more sophisticated objective function would be to get the proportion 
+A more sophisticated objective function would be to get the proportion 
 of individuals as close to the percentage aim. 
 In other words, to find the threshold that minimises the difference between the 
 probability and the percentage goal (or maximise its negation).
@@ -76,7 +85,7 @@ between the two objectives.
     \alpha P(L_B) + (1 - \alpha) B_B
 \end{equation}
 
-Here, the purpose of \(\alpha\) is to tune the ``importance'' of each objective,
+Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
@@ -86,12 +95,12 @@ imperfect information extensive form game may arise.
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players \cite{Berwanger2008}. In this study the state of the problem that is
-hidden is the threshold that each player chooses to play.
+hidden is the threshold that each of the first two players chooses to play.
 In other words, each queueing system chooses to play a strategy without the 
 knowing the other system's strategy.
-The distributor then, fully aware of the chosen strategies are, distributes 
+The distributor then, fully aware of the chosen threshold strategies, distributes 
 individuals among the two systems in order to minimise the time that its 
-individuals will be blocked. 
+individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates this. 
 
 \begin{figure}[h]
     \centering
@@ -126,7 +135,7 @@ individuals will be blocked.
     \label{fig:imperfect-info-game}
 \end{figure}
 
-Figure \ref{fig:imperfect-info-game} illustrates such a game works. The first 
+The first 
 queueing system \(H_A\) decides on a threshold, then the second system \(H_B\)
 chooses its own threshold, without knowing the strategy of \(H_A\), and finally
 the distributor makes its choice. Note here that the dotted line represents the
@@ -165,4 +174,4 @@ utilities:
 \end{equation}
 
 Based on the choice of strategy of these two players the distributor will then 
-make its own choice of the proportion of individuals to send to each system.
+make their own choice of the proportion of individuals to send to each system.
