@@ -61,8 +61,14 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
         \foreach \i in {1,...,4, 5.7}
         \draw (7cm-\i*10pt,1.25) -- +(0,-1.5cm);
         % The two vertical lines at the very start of Queue 2 
-        \draw (7cm-55pt,1.1) -- +(0,-1.2cm);
-        \draw (7cm-53pt,1) -- +(0,-1cm);
+        \draw (7cm-54pt,1.2) -- +(0,-0.5cm);
+        \draw (7cm-54pt,0.3) -- +(0,-0.5cm);        
+        \draw (7cm-51pt,1.1) -- +(0,-0.4cm);
+        \draw (7cm-51pt,0.3) -- +(0,-0.4cm);
+
+        % The label between the lines for T
+        \node[anchor=north] at (5.15, 0.77 cm) {\small{\( T \)}};
+
         % The label above Queue 2 -> N
         \node[anchor=north] at (6.6cm, 2.2cm) {\( 
             \overbrace{\qquad \qquad \qquad \qquad}^{N} 
