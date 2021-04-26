@@ -1,5 +1,102 @@
 \section{A queueing models with 2 consecutive buffer centres}
 
+% TODO: If this is to be one paper maybe the first two paragraphs do not need to
+% include so much details or even better omit some of the details in the game
+% overview section.
+In this section, a more in-depth explanation of the queueing model shown in 
+figure \ref{fig:diagram_of_queueing_system} will be given.
+This is a queuing model that consists of two waiting spaces, one for each type
+of patient.
+
+The model consists of two types of individuals; class 1 and class 2.
+Class 1 individuals arrive instantly at waiting zone 1 and proceed to wait to
+receive their service. 
+Class 2 individuals arrive at waiting zone 2 and wait there until they are 
+allowed to move to waiting zone 1. 
+They are allowed to proceed to the next waiting zone only when the number of 
+individuals in the next system (in waiting zone 1 and in service) is less than a 
+pre-determined threshold \(T\).
+When the threshold is reached, all class 2 individuals that arrive will remain 
+\textit{``blocked''} in the buffer centre until the number of people in the 
+system is reduced below \(T\). 
+
+% TODO: Possibly worth including the diagram of the queueing model here
+
+In order to model such queueing system a Markov chain model was used.
+Markov chains are a special kind of memoryless stochastic systems where the 
+outcome of the next iteration depends only on the current state
+~\cite{kemeny1976markov}. 
+The way such models are formulated is through a directed graph where each vertex
+is consider a state of the system and each edge represents the transition rate
+between its two linking vertices.
+The states of the Markov chain are denoted by \((u,v)\) where:
+
+\begin{itemize}
+    \item \(u\) = number of individuals blocked
+    \item \(v\) = number of individuals either in waiting zone 1 or in the
+    service centre
+\end{itemize}
+
+
+The state space of the Markov chain \(S\) is defined as the union between
+\(S_1\) and \(S_2\), where \(S_1\) represents the set of states where the total 
+number of individuals is less than \(T\) and \(S_2\) the set of states where the
+total number of individuals is greater than \(T\). 
+
+\begin{align}
+    S(T) =& S_1(T) \cup S_2(T) \text{ where:} \nonumber \\
+    S_1(T) =& \left\{(0, v)\in\mathbb{N}_0^2 \; | \; v < T \right\} 
+    \label{eq:state_space} \\
+    S_2(T) =& \{(u, v)\in\mathbb{N}_0^2 \; | \; v \geq T \} \nonumber
+\end{align}
+
+The transition matrix \(Q\) of the Markov chain consists of the transition rates
+between the numerous states of the model. Every entry \( q_{i,j} = 
+q_{(u_i, v_i),(u_j, v_j)} \) represents the transition rate from state 
+\( i = (u_i, v_i) \) to state \( j = (u_j , v_j) \) for all 
+\( (u_i, v_i), (u_j, v_j) \in S \).
+The entries of \(Q\) can be calculated using the state-mapping function 
+described in \ref{eq:markov_transition_rate}: 
+
+\begin{equation} \label{eq:markov_transition_rate}
+    q_{i, j} = 
+    \begin{cases}
+        \Lambda, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (0,-1) \textbf{ and } 
+        v_i < \text{t} \\
+        \lambda_1, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (0,-1) \textbf{ and } 
+        v_i \geq \text{t} \\
+        \lambda_2, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (-1,0) \\
+        v_i \mu, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (0,1) \textbf{ and } 
+        v_i \leq C \textbf{ or} \\ & \hspace{0.37cm}(u_i, v_i) - (u_j, v_j) = (1,0) 
+        \textbf{ and } v_i = T \leq C \\
+        C \mu, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (0,1) \textbf{ and } v_i > C 
+        \textbf{ or} \\ & \hspace{0.37cm}(u_i, v_i) - (u_j, v_j) = (1,0) \textbf{ and } 
+        v_i = T > C\\
+        -\sum_{j=1}^{|Q|}{q_{i,j}} & \textbf{if } i = j \\
+        0, & \textbf{otherwise}
+    \end{cases}
+\end{equation}
+
+
+% \input{sections/queueing_model/general-markov-model/main.tex}
+
+
+In order to acquire an exact solution of the problem a slight adjustment needs to 
+be considered. 
+The problem defined above assumes no upper boundary to the number of individuals 
+that can wait for service or for the ones that are blocked in the buffer centre. 
+Therefore, a different state space \( \tilde S \) needs to be constructed where 
+\( \tilde S \subseteq S \) and there is a maximum allowed number of people \(N\) 
+that can be in the system and a maximum allowed number of people \(M\) that can
+be blocked in the buffer centre:
+
+\begin{equation}
+    \tilde S = \left\{ (u, v) \in S\;| u \leq M, v\leq N \right\}
+\end{equation}
+
+
+
+
 \subsection{Performance Measures}
 
 \subsection{Example}
