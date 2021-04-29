@@ -94,7 +94,11 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
         % Arrow line to Queue 2
         \draw[->] (4.2, 0.525) -- (4.8, 0.525);  
     \end{tikzpicture}
-    \caption{Queueing Model}
+    \caption{A diagrammatic representation of the queueing model. 
+    The threshold \(T\) only applies to arrivals from the first buffer. 
+    If the second buffer is at that threshold only individuals of the first type 
+    are accepted (at a rate \(\lambda_1\)) and individuals of the second type 
+    (arriving at a rate \(\lambda_2\)) are held blocked in the first buffer.}
     \label{fig:diagram_of_queueing_system}
 \end{figure}
 
