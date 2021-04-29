@@ -3,6 +3,7 @@
 words = {
     "automata",
     "calc",
+    "dt",
     "HB",
     "ieeetr",
     "math",
