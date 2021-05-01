@@ -6,6 +6,8 @@ words = {
     "dt",
     "HB",
     "ieeetr",
+    "ij",
+    "Markovian",
     "math",
     "memoryless",
     "Michalis",
