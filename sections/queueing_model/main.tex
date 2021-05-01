@@ -29,13 +29,8 @@ The parameters of the described queueing model are:
     \item \(T\): The threshold at which individuals of the second type are blocked
 \end{itemize}
 
-In order to model such queueing system a Markov chain model was used.
-Markov chains are a special kind of memoryless stochastic systems where the 
-outcome of the next iteration depends only on the current state
-~\cite{kemeny1976markov}. 
-The way such models are formulated is through a directed graph where each vertex
-is consider a state of the system and each edge represents the transition rate
-between its two linking vertices.
+Under the assumption that all rates (arrival and service) are Markovian the
+queuing system corresponds to a Markov chain~\cite{kemeny1976markov}.
 The states of the Markov chain are denoted by \((u,v)\) where:
 
 \begin{itemize}
@@ -44,29 +39,26 @@ The states of the Markov chain are denoted by \((u,v)\) where:
     service centre
 \end{itemize}
 
-
-The state space of the Markov chain \(S\) is defined as the union between
-\(S_1\) and \(S_2\), where \(S_1\) represents the set of states where the total 
-number of individuals is less than \(T\) and \(S_2\) the set of states where the
-total number of individuals is greater than \(T\). 
+We denote the state space of the Markov chain as  \(S=S(T)\) which can be 
+written as the disjoint union~\ref{eq:definition_of_S_as_disjoint_union}.
 
 \begin{align}
     S(T) =& S_1(T) \cup S_2(T) \text{ where:} \nonumber \\
     S_1(T) =& \left\{(0, v)\in\mathbb{N}_0^2 \; | \; v < T \right\} 
-    \label{eq:state_space} \\
+    \label{eq:definition_of_S_as_disjoint_union} \\
     S_2(T) =& \{(u, v)\in\mathbb{N}_0^2 \; | \; v \geq T \} \nonumber
 \end{align}
 
 The transition matrix \(Q\) of the Markov chain consists of the transition rates
-between the numerous states of the model. Every entry \( q_{i,j} = 
-q_{(u_i, v_i),(u_j, v_j)} \) represents the transition rate from state 
+between the numerous states of the model. Every entry \( Q_{ij} = 
+Q_{(u_i, v_i),(u_j, v_j)} \) represents the transition rate from state 
 \( i = (u_i, v_i) \) to state \( j = (u_j , v_j) \) for all 
 \( (u_i, v_i), (u_j, v_j) \in S \).
 The entries of \(Q\) can be calculated using the state-mapping function 
 described in \ref{eq:markov_transition_rate}: 
 
 \begin{equation} \label{eq:markov_transition_rate}
-    q_{i, j} = 
+    Q_{ij} = 
     \begin{cases}
         \Lambda, & \textbf{if } (u_i, v_i) - (u_j, v_j) = (0,-1) \textbf{ and } 
         v_i < \text{t} \\
@@ -80,7 +72,7 @@ described in \ref{eq:markov_transition_rate}:
         v_i > C 
         \textbf{ or} \\ & \hspace{0.37cm}(u_i, v_i) - (u_j, v_j) = (1,0) 
         \textbf{ and } v_i = T > C\\
-        -\sum_{j=1}^{|Q|}{q_{i,j}} & \textbf{if } i = j \\
+        -\sum_{j=1}^{|Q|}{Q_{ij}} & \textbf{if } i = j \\
         0, & \textbf{otherwise}
     \end{cases}
 \end{equation}
@@ -94,8 +86,8 @@ can be seen in the general Markov chain model shown in figure
 \input{sections/queueing_model/general_markov_model/main.tex}
 
 
-In order to acquire an exact solution of the problem a slight adjustment needs to 
-be considered. 
+In order to acquire an exact solution of the problem a slight adjustment needs 
+to be considered. 
 The problem defined above assumes no upper boundary to the number of individuals 
 that can wait for service or for the ones that are blocked in the buffer centre. 
 Therefore, a different state space \( \tilde S \) needs to be constructed where 
