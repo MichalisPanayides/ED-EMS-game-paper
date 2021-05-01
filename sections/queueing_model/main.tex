@@ -13,22 +13,20 @@ Class 1 individuals arrive instantly at waiting zone 1 and proceed to wait to
 receive their service. 
 Class 2 individuals arrive at waiting zone 2 and wait there until they are 
 allowed to move to waiting zone 1. 
-They are allowed to proceed to the next waiting zone only when the number of 
-individuals in the next system (in waiting zone 1 and in service) is less than a 
+They are allowed to proceed only when the number of 
+individuals in waiting zone 1 \textbf{and} in service is less than a 
 pre-determined threshold \(T\).
-When the threshold is reached, all class 2 individuals that arrive will remain 
-\textit{``blocked''} in the buffer centre until the number of people in the 
+When the number of individuals is equal to or exceeds this threshold, all second type individuals that arrive will remain 
+\textit{``blocked''} in waiting zone 1 until the number of people in the 
 system is reduced below \(T\). 
 This is shown diagrammatically in figure \ref{fig:diagram_of_queueing_system}.
 The parameters of the described queueing model are:
 
 \begin{itemize}
-    \item \(\lambda_1\): The arrival rate of class 1 individuals
-    \item \(\lambda_2\): The arrival rate of class 2 individuals
-    \item \(\mu\): The service rate for individuals receiving service in waiting 
-    zone 1
+    \item \(\lambda_i\): The arrival rate of individuals of type \(i\in\{1, 2\}\)
+    \item \(\mu\): The service rate for individuals receiving service
     \item \(C\): The number of servers
-    \item \(T\): The threshold where class 2 individuals will start being blocked 
+    \item \(T\): The threshold at which individuals of the second type are blocked
 \end{itemize}
 
 In order to model such queueing system a Markov chain model was used.
@@ -41,8 +39,8 @@ between its two linking vertices.
 The states of the Markov chain are denoted by \((u,v)\) where:
 
 \begin{itemize}
-    \item \(u\) = number of individuals blocked
-    \item \(v\) = number of individuals either in waiting zone 1 or in the
+    \item \(u\) is the number of individuals blocked
+    \item \(v\) is the number of individuals either in waiting zone 1 or in the
     service centre
 \end{itemize}
 
