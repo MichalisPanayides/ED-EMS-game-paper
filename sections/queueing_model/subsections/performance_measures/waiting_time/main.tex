@@ -1,5 +1,4 @@
-\subsubsection{Waiting time}
-% TODO: Include recursive formula as well?? 
+\subsubsection{Waiting time} \label{sec:waiting-time}
 
 Waiting time is the amount of time that individuals from either class wait in 
 waiting zone 1 so that they can receive their service. 
@@ -37,13 +36,13 @@ Otherwise, the set of accepting state is identical to
 \ref{eq:accepting-states-class-1}. Thus, the expressions for the waiting times 
 for class 1 and class 2 individuals are given by:
 
-\begin{equation} \label{eq:closed_form_waiting_others}
+\begin{equation} \label{eq:closed-form-waiting-class-1}
     W^{(1)} = \frac{\sum_{\substack{(u,v) \, \in S_A^{(1)} \\ v \geq C}} 
     \frac{1}{C \mu} \times (v-C+1) \times \pi(u,v)}{\sum_{(u,v) \, 
     \in S_A^{(1)}} \pi(u,v)}
 \end{equation}
     
-\begin{equation}\label{eq:closed_form_waiting_ambulance}
+\begin{equation}\label{eq:closed-form-waiting-class-2}
     W^{(2)} = \frac{\sum_{\substack{(u,v) \, \in S_A^{(2)} \\ min(v,T) \geq C}} 
     \frac{1}{C \mu} \times (\min(v+1,T)-C) \times \pi(u,v)}{\sum_{(u,v) \, 
     \in S_A^{(2)}} \pi(u,v)}
@@ -54,7 +53,7 @@ of \(W_1\) and \(W_2\).
 Thus, the overall waiting time can calculated by the following equation where 
 \(c_1\) and \(c_2\) are the coefficients of the terms:
 
-\begin{equation}\label{eq:overall_waiting_time_coeff}
+\begin{equation}\label{eq:overall-waiting-time-coeff}
     W = c_1 W^{(1)} + c_2 W^{(2)}
 \end{equation}
 
@@ -74,10 +73,10 @@ is not lost in the system is given by:
 \end{equation*}
  
 Thus, by using these values as the coefficient of equation 
-\ref{eq:overall_waiting_time_coeff} the resultant equation can be used to get 
+\ref{eq:overall-waiting-time-coeff} the resultant equation can be used to get 
 the overall waiting time. 
 
-\begin{equation}\label{overall_waiting_time}
+\begin{equation}\label{overall-waiting-time}
     W = \frac{\lambda_1 P(L'_1)}{\lambda_2 P(L'_2) + \lambda_1 P(L'_1)} W^{(1)} + 
     \frac{\lambda_2 P(L'_2)}{\lambda_2 P(L'_2) + \lambda_1 P(L'_1)} W^{(2)}
 \end{equation}
