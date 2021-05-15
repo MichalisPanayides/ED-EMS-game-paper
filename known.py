@@ -14,4 +14,5 @@ words = {
     "Panayides",
     "pre",
     "queueing",
+    "Zx",
 }
