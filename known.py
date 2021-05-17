@@ -3,11 +3,15 @@
 words = {
     "automata",
     "calc",
+    "CDF",
+    "CDFs",
     "dt",
+    "erlang",
     "HB",
     "hypoexponential",
     "ieeetr",
     "ij",
+    "LHS",
     "Markovian",
     "math",
     "memoryless",
@@ -15,5 +19,7 @@ words = {
     "Panayides",
     "pre",
     "queueing",
+    "RHS",
+    "th"
     "Zx",
 }
