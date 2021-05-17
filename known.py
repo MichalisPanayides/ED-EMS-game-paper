@@ -20,6 +20,6 @@ words = {
     "pre",
     "queueing",
     "RHS",
-    "th"
-    "Zx",
+    "th",
+    "Zx"
 }
