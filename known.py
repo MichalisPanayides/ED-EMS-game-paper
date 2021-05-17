@@ -5,6 +5,7 @@ words = {
     "calc",
     "dt",
     "HB",
+    "hypoexponential",
     "ieeetr",
     "ij",
     "Markovian",
