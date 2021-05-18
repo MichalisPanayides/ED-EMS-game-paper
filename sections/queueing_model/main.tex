@@ -6,7 +6,7 @@
 In this section, a more in-depth explanation of the queueing model shown in 
 figure \ref{fig:diagram_of_queueing_system} will be given.
 This is a queuing model that consists of two waiting spaces, one for each type
-of patient.
+of individual.
 
 The model consists of two types of individuals; class 1 and class 2.
 Class 1 individuals arrive instantly at waiting zone 1 and proceed to wait to
@@ -86,13 +86,13 @@ can be seen in the general Markov chain model shown in figure
 \input{imgs/general_markov_model/main.tex}
 
 
-In order to acquire an exact solution of the problem a slight adjustment needs 
-to be considered. 
+In order to consider this model numerically an adjustment needs 
+to be made. 
 The problem defined above assumes no upper boundary to the number of individuals 
 that can wait for service or for the ones that are blocked in the buffer centre. 
 Therefore, a different state space \( \tilde S \) needs to be constructed where 
-\( \tilde S \subseteq S \) and there is a maximum allowed number of people \(N\) 
-that can be in the system and a maximum allowed number of people \(M\) that can
+\( \tilde S \subseteq S \) and there is a maximum allowed number of individuals \(N\) 
+that can be in the system and a maximum allowed number of individuals \(M\) that can
 be blocked in the buffer centre:
 
 \begin{equation}
