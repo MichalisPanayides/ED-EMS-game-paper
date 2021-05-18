@@ -18,7 +18,7 @@ The set of states where individuals can be blocked is defined as:
 In order to not consider individuals that will be lost to the system, the set of 
 accepting states needs to be taken into consideration. 
 As defined in section \ref{sec:waiting_time}, the set of accepting states is 
-given by (\ref{eq:accepting_states_class_2}):
+given by (\ref{eq:accepting_states_type_2}):
 
 \begin{equation*}
     S_A^{(2)}=
@@ -49,7 +49,7 @@ Thus, the mean time that a type 2 individual spends at each state is given by:
 \end{equation}
  
 In equation (\ref{eq:time_in_state_blocking_time}), both service completions and 
-class 1 arrivals are considered. 
+type 1 arrivals are considered. 
 Thus, from a blocked individual's perspective whenever the system moves from one 
 state \((u,v)\)
 to another state it can either:
@@ -57,7 +57,7 @@ to another state it can either:
 \begin{itemize}
     \item be because of a service being completed: we will denote the probability 
     of this happening by \(p_s(u,v)\). 
-    \item be because of an arrival of an individual of class 1: denoting such 
+    \item be because of an arrival of an individual of type 1: denoting such 
     probability by \(p_o(u,v)\).
 \end{itemize}
 The probabilities are given by:

@@ -1,27 +1,27 @@
 \subsubsection{Waiting time} \label{sec:waiting_time}
 
-Waiting time is the amount of time that individuals from either class wait in 
+Waiting time is the amount of time that individuals from either type wait in 
 waiting zone 1 so that they can receive their service. 
 For a given set of parameters there are three different performance measures 
 around the mean waiting time that can be calculated; the mean waiting time of
-class 1 individuals, the mean waiting time of class 2 individuals and the 
+type 1 individuals, the mean waiting time of type 2 individuals and the 
 overall mean waiting time. 
 
 Since some of the individuals can be lost to the model, a new set of states 
 needs to be defined; the set of \textit{accepting states}. 
 That is the set of states that the model is able to accept a certain type of
 individual. 
-The set of accepting states for class 1 individuals is defined as:
+The set of accepting states for type 1 individuals is defined as:
 
-\begin{equation}\label{eq:accepting_states_class_1}
+\begin{equation}\label{eq:accepting_states_type_1}
     S_A^{(1)} = \{(u, v) \in S \; | \; v < N \}
 \end{equation}
 
-In essence, for class 1 individuals, this is the set of states that are not on 
+In essence, for type 1 individuals, this is the set of states that are not on 
 the last column of states in the Markov chain.
-Equivalently, the set of accepting states for class 2 individuals is defined as:
+Equivalently, the set of accepting states for type 2 individuals is defined as:
 
-\begin{equation}\label{eq:accepting_states_class_2}
+\begin{equation}\label{eq:accepting_states_type_2}
     S_A^{(2)}=
     \begin{cases}
         \{(u, v) \in S \; | \; u < M \}, & \textbf{if } T \leq N\\
@@ -33,16 +33,16 @@ Note here that if the threshold is less than or equal the total capacity of the
 system the set includes all states that are not on the last column of the 
 Markov chain.
 Otherwise, the set of accepting state is identical to 
-(\ref{eq:accepting_states_class_1}). Thus, the expressions for the waiting times 
-for class 1 and class 2 individuals are given by:
+(\ref{eq:accepting_states_type_1}). Thus, the expressions for the waiting times 
+for type 1 and type 2 individuals are given by:
 
-\begin{equation} \label{eq:closed_form_waiting_class_1}
+\begin{equation} \label{eq:closed_form_waiting_type_1}
     W^{(1)} = \frac{\sum_{\substack{(u,v) \, \in S_A^{(1)} \\ v \geq C}} 
     \frac{1}{C \mu} \times (v-C+1) \times \pi(u,v)}{\sum_{(u,v) \, 
     \in S_A^{(1)}} \pi(u,v)}
 \end{equation}
     
-\begin{equation}\label{eq:closed_form_waiting_class_2}
+\begin{equation}\label{eq:closed_form_waiting_type_2}
     W^{(2)} = \frac{\sum_{\substack{(u,v) \, \in S_A^{(2)} \\ min(v,T) \geq C}} 
     \frac{1}{C \mu} \times (\min(v+1,T)-C) \times \pi(u,v)}{\sum_{(u,v) \, 
     \in S_A^{(2)}} \pi(u,v)}
@@ -63,9 +63,9 @@ Thus, one should account for the probability that an individual is lost to the
 system. 
 This probability can be easily calculated by using the two sets of accepting 
 states \(S_A^{(2)}\) and \(S_A^{(1)}\) defined in equations 
-(\ref{eq:accepting_states_class_1}) and (\ref{eq:accepting_states_class_2}). 
-Using these equations the probability, for either class type, that an individual 
-is not lost in the system is given by:
+(\ref{eq:accepting_states_type_1}) and (\ref{eq:accepting_states_type_2}). 
+Using these equations the probability, for either individual type, that an 
+individual is not lost in the system is given by:
 
 \begin{equation*}
     P(L'_1) = \sum_{(u,v) \, \in S_A^{(1)}} \pi(u,v) \hspace{2cm}
