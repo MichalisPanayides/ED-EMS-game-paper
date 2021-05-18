@@ -18,7 +18,7 @@ The set of states where individuals can be blocked is defined as:
 In order to not consider individuals that will be lost to the system, the set of 
 accepting states needs to be taken into consideration. 
 As defined in section \ref{sec:waiting_time}, the set of accepting states is 
-given by \ref{eq:accepting_states_class_2}:
+given by (\ref{eq:accepting_states_class_2}):
 
 \begin{equation*}
     S_A^{(2)}=
@@ -48,7 +48,7 @@ Thus, the mean time that a type 2 individual spends at each state is given by:
     \end{cases}
 \end{equation}
  
-In equation \ref{eq:time_in_state_blocking_time}, both service completions and 
+In equation (\ref{eq:time_in_state_blocking_time}), both service completions and 
 class 1 arrivals are considered. 
 Thus, from a blocked individual's perspective whenever the system moves from one 
 state \((u,v)\)
@@ -85,14 +85,14 @@ expected to occur at each state can be given by:
 \end{equation}
 
 A direct approach will be used to solve this equation here. 
-By enumerating all equations of (\ref{eq:general_blocking_time_at_each_state}) 
+By enumerating all equations of ((\ref{eq:general_blocking_time_at_each_state})) 
 for all states \((u,v)\) that belong in \(S_b\) 
 a system of linear equations arises where the unknown variables are all the 
 \(b(u,v)\) terms. 
 Note here that these equations correspond to all blocking states as defined in
-\ref{eq:set_of_blocking_states}. 
+(\ref{eq:set_of_blocking_states}). 
 Equations that correspond to non-blocking states have a value of \(0\) as 
-defined in \ref{eq:general_blocking_time_at_each_state}
+defined in (\ref{eq:general_blocking_time_at_each_state})
 The general form of the equation in terms of \(C,T,N \text{ and } M\) is given by: 
 
 \begin{align}
@@ -111,7 +111,7 @@ The general form of the equation in terms of \(C,T,N \text{ and } M\) is given b
 \end{align}
 
 The equivalent matrix notation of the linear system of equations 
-(\ref{eq:first_eq_of_blocking_general}) - (\ref{eq:last_eq_of_blocking_general})
+((\ref{eq:first_eq_of_blocking_general})) - ((\ref{eq:last_eq_of_blocking_general}))
 is given by \(Zx=y\), where:
 \begin{equation}\label{eq:general_algebaric_approach_blocking_time}
     \scalebox{0.73}{\(
@@ -170,9 +170,9 @@ The resultant formula for the mean blocking time is given by:
 To illustrate how the described formula works consider a Markov model where 
 \(C=2, T=2, N=4, M=2\) (figure \ref{fig:example_algeb_blocking}). 
 The equations that correspond to such a model are shown in 
-(\ref{eq:first_eq_of_blocking_example})-(\ref{eq:last_eq_of_blocking_example}) 
+((\ref{eq:first_eq_of_blocking_example}))-((\ref{eq:last_eq_of_blocking_example})) 
 and their equivalent matrix notation form is shown in 
-\ref{eq:example_algebaric_approach_blocking_time}.
+(\ref{eq:example_algebaric_approach_blocking_time}).
 
 \begin{minipage}{.5\textwidth}
     \begin{figure}[H]

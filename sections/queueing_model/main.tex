@@ -40,7 +40,7 @@ The states of the Markov chain are denoted by \((u,v)\) where:
 \end{itemize}
 
 We denote the state space of the Markov chain as  \(S=S(T)\) which can be 
-written as the disjoint union~\ref{eq:definition_of_S_as_disjoint_union}.
+written as the disjoint union (\ref{eq:definition_of_S_as_disjoint_union}).
 
 \begin{align}
     S(T) =& S_1(T) \cup S_2(T) \text{ where:} \nonumber \\
@@ -55,7 +55,7 @@ Q_{(u_i, v_i),(u_j, v_j)} \) represents the transition rate from state
 \( i = (u_i, v_i) \) to state \( j = (u_j , v_j) \) for all 
 \( (u_i, v_i), (u_j, v_j) \in S \).
 The entries of \(Q\) can be calculated using the state-mapping function 
-described in \ref{eq:markov_transition_rate}: 
+described in (\ref{eq:markov_transition_rate}): 
 
 \begin{equation} \label{eq:markov_transition_rate}
     Q_{ij} = 
@@ -86,14 +86,13 @@ can be seen in the general Markov chain model shown in figure
 \input{imgs/general_markov_model/main.tex}
 
 
-In order to consider this model numerically an adjustment needs 
-to be made. 
+In order to consider this model numerically an adjustment needs to be made. 
 The problem defined above assumes no upper boundary to the number of individuals 
 that can wait for service or for the ones that are blocked in the buffer centre. 
-Therefore, a different state space \( \tilde S \) needs to be constructed where 
-\( \tilde S \subseteq S \) and there is a maximum allowed number of individuals \(N\) 
-that can be in the system and a maximum allowed number of individuals \(M\) that can
-be blocked in the buffer centre:
+Therefore, a different state space \( \tilde S \) is constructed where 
+\( \tilde S \subseteq S \) and there is a maximum allowed number of individuals 
+\(N\) that can be in the system and a maximum allowed number of individuals 
+\(M\) that can be blocked in the buffer centre:
 
 \begin{equation}
     \tilde S = \left\{ (u, v) \in S\;| u \leq M, v\leq N \right\}

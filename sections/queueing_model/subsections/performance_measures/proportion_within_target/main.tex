@@ -97,7 +97,7 @@ The hypoexponential distribution is defined with two vectors of size equal
 to the number of Erlang random variables \cite{Akkouchi2008}, \cite{Smaili2013}. 
 The vector \(\vec{r}\) contains all the \(k\)-values of the erlang distributions 
 and \(\vec{\lambda}\) is a vector of the distinct parameters as illustrated in
-equation \ref{eq:connection_between_Hypoexponential_Erlang}.
+equation (\ref{eq:connection_between_Hypoexponential_Erlang}).
 
 \begin{equation}\label{eq:connection_between_Hypoexponential_Erlang}
     \begin{rcases}
@@ -144,7 +144,7 @@ The general CDF of the hypoexponential distribution \(Hypo(\vec{r},
 
 
 The computation of the derivative makes equation 
-\ref{eq:general_cdf_hypoexponential} computationally expensive. 
+(\ref{eq:general_cdf_hypoexponential}) computationally expensive. 
 In \cite{Legros2015} an alternative linear version of that CDF is explored via 
 matrix analysis, and is given by the following formula:
 
@@ -169,8 +169,8 @@ matrix analysis, and is given by the following formula:
 
 
 \paragraph{Specific CDF of hypoexponential distribution}
-Equations \ref{eq:general_cdf_hypoexponential} and 
-\ref{eq:linear_general_cdf_hypoexponential} refers to the general CDF of the
+Equations (\ref{eq:general_cdf_hypoexponential}) and 
+(\ref{eq:linear_general_cdf_hypoexponential}) refers to the general CDF of the
 hypoexponential distribution where the size of the vector parameters can be of
 any size \cite{Favaro2010}.
 In the Markov chain models described in figures 
@@ -204,11 +204,11 @@ arises, where the derivative is removed:
 \end{align}
 
 Note here that the only difference between equations
-\ref{eq:general_cdf_hypoexponential} and \ref{eq:specific_cdf_hypoexponential} 
+(\ref{eq:general_cdf_hypoexponential}) and (\ref{eq:specific_cdf_hypoexponential}) 
 is the \(\Psi\) function. 
 The next part proves that the expression for \(\Psi\) can be simplified for the 
 cases of \(k = 1,2\). 
-Equation \ref{eq:hypoexponential_expression_to_proof} shows the expression to 
+Equation (\ref{eq:hypoexponential_expression_to_proof}) shows the expression to 
 be proved.
 
 \begin{equation} \label{eq:hypoexponential_expression_to_proof}
@@ -223,17 +223,17 @@ be proved.
 
 
 
-\paragraph{Proof of equation \ref{eq:hypoexponential_expression_to_proof}}
+\paragraph{Proof of equation (\ref{eq:hypoexponential_expression_to_proof})}
  
 This section aims to show that there exists a simplified version of equation 
-\ref{eq:general_cdf_hypoexponential} that is specific to the proposed Markov 
+(\ref{eq:general_cdf_hypoexponential}) that is specific to the proposed Markov 
 model.
 Function \(\Psi\) is defined using the parameter \(t\) and the variables \(k\) 
 and \(l\).
 Given the Markov model, the range of values that \(k\) and \(l\) can take can be
 bounded.
 First of all, from the range of the double summation in equation 
-\ref{eq:general_cdf_hypoexponential}, it can be seen that 
+(\ref{eq:general_cdf_hypoexponential}), it can be seen that 
 \(k = 1, 2, \dots, \mid \vec{r} \mid\).
 Now, \(\mid \vec{r} \mid\) represents the size of the parameter vectors that, 
 for the Markov model, will always be 2. 
@@ -245,7 +245,7 @@ thus forming two erlang distributions. Therefore:
     k = 1, 2
 \end{equation*}
 
-By observing equation \ref{eq:general_cdf_hypoexponential} once more, the range
+By observing equation (\ref{eq:general_cdf_hypoexponential}) once more, the range
 of values that \(l\) takes are \(l = 1, 2, \dots, r_k\), where \(r_1\) is 
 subject to the individual's position in the queue and \(r_2 = 1\).
 In essence, the hypoexponential distribution will be used with these bounds:
@@ -255,12 +255,12 @@ In essence, the hypoexponential distribution will be used with these bounds:
     k = 2 & \qquad \Rightarrow \qquad l = 1
 \end{align}
 
-Thus the left hand side of equation \ref{eq:hypoexponential_expression_to_proof} 
+Thus the left hand side of equation (\ref{eq:hypoexponential_expression_to_proof}) 
 needs only to be defined for these bounds. 
 The specific hypoexponential distribution investigated here is of the form
 \(Hypo((r_1, 1)(\lambda_1, \lambda_2))\).
 Note the initial conditions \(\lambda_0=0, r_0=1\) defined in equation 
-\ref{eq:general_cdf_hypoexponential} also hold here.
+(\ref{eq:general_cdf_hypoexponential}) also hold here.
 Thus the proof is split into two parts, for \(k=1\) and \(k=2\).
 
 
@@ -402,8 +402,8 @@ state \((u,v)\) of the model.
 
 
 Thus, the CDF of the random variables \(X_{(u,v)}^{(1)}\) and 
-\(X_{(u,v)}^{(2)}\) can be calculated using equations \ref{eq:cdf_erlang} and 
-\ref{eq:specific_cdf_hypoexponential}:
+\(X_{(u,v)}^{(2)}\) can be calculated using equations (\ref{eq:cdf_erlang}) and 
+(\ref{eq:specific_cdf_hypoexponential}):
 
 \begin{equation}
     P(X_{(u,v)}^{(1)} < t) = 
@@ -447,8 +447,8 @@ Thus, the CDF of the random variables \(X_{(u,v)}^{(1)}\) and
 
 
 In addition, the set of accepting states for type 1 \(S_A^{(1)}\) and type 2 
-\(S_A^{(2)}\) individuals defined in \ref{eq:accepting_states_class_1} and 
-\ref{eq:accepting_states_class_2} are also needed here.
+\(S_A^{(2)}\) individuals defined in (\ref{eq:accepting_states_class_1}) and 
+(\ref{eq:accepting_states_class_2}) are also needed here.
 Note here that, \(S\) denotes the set of all states of the Markov chain model. 
 
 \begin{align*}
