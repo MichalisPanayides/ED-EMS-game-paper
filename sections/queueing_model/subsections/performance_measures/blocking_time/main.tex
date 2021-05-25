@@ -123,3 +123,25 @@ represent states \((u_i, v_i), (u_j, v_j) \in S_b\).
         0, & \textbf{otherwise} \\
     \end{cases}
 \end{equation}
+
+Additional details on the blocking time formula 
+(\ref{eq:algebraic_blocking_time}) can be found in appendix 
+\ref{sec:appendix_mean_blocking}. 
+Figure \ref{fig:markov_vs_des_blocking_time_comparison} illustrates a comparison 
+between Markov chains and discrete event simulation of the blocking time of
+type 2 individuals.
+
+\begin{figure}[ht]
+    \centering
+    \scalebox{0.7}{\includegraphics{
+        imgs/markov_vs_des/blocking_time/main.pdf
+    }}
+    \caption{
+        Comparison of mean blocking time between values obtained from the Markov
+        chain formulas and values obtained from simulation. The simulation 
+        was ran 100 times and the recorded mean blocking time at each iteration
+        is used to populate the violin plots.
+    }
+    \label{fig:markov_vs_des_blocking_time_comparison}
+\end{figure}
+ 
