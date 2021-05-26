@@ -10,9 +10,9 @@ import known
 
 @task
 def compile(c):
-    """ Compile the LaTeX document. """
+    """Compile the LaTeX document."""
 
-    c.run(f"latexmk main.tex")
+    c.run(f"latexmk -xelatex main.tex")
 
 
 @task
@@ -32,8 +32,7 @@ def spellcheck(c):
         incorrect_words = set()
         for error in errors:
             if not any(
-                re.fullmatch(word.lower(), error.lower())
-                for word in known.words
+                re.fullmatch(word.lower(), error.lower()) for word in known.words
             ):
                 incorrect_words.add(error)
 
