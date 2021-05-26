@@ -5,6 +5,7 @@ words = {
     "calc",
     "CDF",
     "CDFs",
+    "Ciw",
     "dt",
     "erlang",
     "HB",
@@ -21,5 +22,5 @@ words = {
     "queueing",
     "RHS",
     "th",
-    "Zx"
+    "Zx",
 }
