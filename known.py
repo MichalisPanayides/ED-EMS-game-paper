@@ -6,6 +6,7 @@ words = {
     "CDF",
     "CDFs",
     "Ciw",
+    "DES",
     "dt",
     "erlang",
     "HB",
@@ -21,6 +22,7 @@ words = {
     "pre",
     "queueing",
     "RHS",
+    "stochasticity",
     "th",
     "Zx",
 }
