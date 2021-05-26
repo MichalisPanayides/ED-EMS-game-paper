@@ -58,9 +58,29 @@ and \(p_a\) are the probabilities that the next event to occur will be a service
     p_a(u,v) = \frac{\lambda_1}{\lambda_1 + \min(v,C)\mu}
 \end{equation}
 
-% TODO: These might possibly need to be moved to the appendix 
-The system of equations produced by (\ref{eq:general_blocking_time_at_each_state}) can be solved by considering the linear system \(Zx=y\), where:
+The system of equations produced by 
+(\ref{eq:general_blocking_time_at_each_state}) can be solved by considering the 
+linear system \(Zx=y\). 
+Assuming \(i\) and \(j\) represent states \((u_i, v_i), (u_j, v_j) \in S_b\) 
+then \(Z_{ij}\) is given by:
 
+\begin{equation}\label{eq:general_mapping_function_of_blocking_matrix}
+    Z_{ij} = 
+    \begin{cases}
+        p_a, & \textbf{if } j = i + 1 \textbf{ and } v_i \neq N \\
+        \\
+        p_s, & \textbf{if } j = i - 1 \textbf{ and } v_i \neq N, v_i \neq T \\
+             & \textbf{or } j = i - N + T \textbf{ and } u_i \geq 2,\,v_i = T \\
+        \\
+        1, & \textbf{if } j = i - 1 \textbf{ and } v_i = N \\
+        \\
+        -1, & \textbf{if } i = j \\
+        \\
+        0, & \textbf{otherwise} \\
+    \end{cases}
+\end{equation}
+
+Equation~(\ref{eq:general_algebaric_approach_blocking_time}) shows this.
 \begin{equation}\label{eq:general_algebaric_approach_blocking_time}
     \scalebox{0.73}{\(
         Z = 
@@ -104,25 +124,6 @@ The system of equations produced by (\ref{eq:general_blocking_time_at_each_state
     \)}
 \end{equation}
 
-Matrix \(Z\) can be alternatively defined using \(Z_{ij}\) defined in equation 
-(\ref{eq:general_mapping_function_of_blocking_matrix}) where \(i\) and \(j\) 
-represent states \((u_i, v_i), (u_j, v_j) \in S_b\).
-
-\begin{equation}\label{eq:general_mapping_function_of_blocking_matrix}
-    Z_{ij} = 
-    \begin{cases}
-        p_a, & \textbf{if } j = i + 1 \textbf{ and } v_i \neq N \\
-        \\
-        p_s, & \textbf{if } j = i - 1 \textbf{ and } v_i \neq N, v_i \neq T \\
-             & \textbf{or } j = i - N + T \textbf{ and } u_i \geq 2,\,v_i = T \\
-        \\
-        1, & \textbf{if } j = i - 1 \textbf{ and } v_i = N \\
-        \\
-        -1, & \textbf{if } i = j \\
-        \\
-        0, & \textbf{otherwise} \\
-    \end{cases}
-\end{equation}
 
 Additional details on the blocking time formula 
 (\ref{eq:algebraic_blocking_time}) can be found in appendix 
