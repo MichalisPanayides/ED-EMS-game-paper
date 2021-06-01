@@ -68,14 +68,10 @@ then \(Z_{ij}\) is given by:
     Z_{ij} = 
     \begin{cases}
         p_a, & \textbf{if } j = i + 1 \textbf{ and } v_i \neq N \\
-        \\
         p_s, & \textbf{if } j = i - 1 \textbf{ and } v_i \neq N, v_i \neq T \\
              & \textbf{or } j = i - N + T \textbf{ and } u_i \geq 2,\,v_i = T \\
-        \\
         1, & \textbf{if } j = i - 1 \textbf{ and } v_i = N \\
-        \\
         -1, & \textbf{if } i = j \\
-        \\
         0, & \textbf{otherwise} \\
     \end{cases}
 \end{equation}
@@ -129,13 +125,14 @@ Additional details on the blocking time formula
 (\ref{eq:algebraic_blocking_time}) can be found in appendix 
 \ref{sec:appendix_mean_blocking}. 
 
-\subsubsection{Example}
 Figure \ref{fig:markov_vs_des_blocking_time_comparison} illustrates a comparison 
 between the formulas that arise from the Markov chain model and the equivalent 
 values of the blocking time extracted from discrete event simulation
 (appendix~\ref{sec:appendix_des}).
 The blocking time is calculated using both methods for a range of values of
-\(\lambda_2\) 
+\(\lambda_2\).
+The simulation was ran 100 times and the recorded mean blocking time at each 
+iteration is used to populate the violin plots.
 
 \begin{figure}[H]
     \centering

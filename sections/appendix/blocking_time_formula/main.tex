@@ -146,14 +146,10 @@ is given by \(Zx=y\), where:
     Z_{ij} = 
     \begin{cases}
         p_a, & \textbf{if } j = i + 1 \textbf{ and } v_i \neq N \\
-        \\
         p_s, & \textbf{if } j = i - 1 \textbf{ and } v_i \neq N, v_i \neq T \\
             & \textbf{or } j = i - N + T \textbf{ and } u_i \geq 2,\,v_i = T \\
-        \\
         1, & \textbf{if } j = i - 1 \textbf{ and } v_i = N \\
-        \\
         -1, & \textbf{if } i = j \\
-        \\
         0, & \textbf{otherwise} \\
     \end{cases}
     \tag{\ref{eq:general_mapping_function_of_blocking_matrix} revisited}
