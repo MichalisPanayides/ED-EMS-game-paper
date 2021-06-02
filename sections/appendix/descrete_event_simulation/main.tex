@@ -1,0 +1,22 @@
+\section{Discrete Event Simulation}\label{sec:appendix_des}
+
+For the purposes of this study, a discrete event simulation (DES) model was
+constructed to support the Markov chain version described in 
+section~\ref{sec:queueing_model}.
+The queueing model was built in python using the Ciw 
+library~\cite{ciwpython}.
+
+The constructed model simulates a queueing system with two waiting spaces and 
+two types of individuals. 
+The expected behaviour of the nodes in Ciw have been modified such that 
+individuals moving from waiting zone 2 into waiting zone 1 may remain blocked 
+if there are more than \(T\) individuals in waiting zone 1.
+
+The same performance measures described in sections 
+\ref{sec:waiting_time}, \ref{sec:blocking_time} and 
+\ref{sec:proportion_within_target} can also be calculated using the DES model.
+The simulation can be ran a number of times to eliminate stochasticity and the
+outcomes of the two methods can be directly comparable. 
+% TODO Add more documentation (instructions on how to use code)
+
+% TODO: Archive simulation python code
