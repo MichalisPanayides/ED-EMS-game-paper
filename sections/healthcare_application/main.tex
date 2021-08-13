@@ -2,30 +2,26 @@
 
 \subsection{Application}
 
-The system defined in section [ ] 
-% TODO: Reference appropriate section
-can be directly applied to a healthcare scenario.
+The system defined in section \ref{sec:model_overview} can be directly applied 
+to a healthcare scenario with two such queueing systems.
 The two queueing systems can be thought of as two Emergency Departments (ED) and 
-the distributor as the Emergency Medical Services (EMS) that distributes 
-individuals to them.
-These individuals are patients of the corresponding Emergency Department 
-that are sent to.
-
-The parameters of the model described in section [ ]
-% TODO: Reference appropriate section
-can also be mapped into parameters of the ED and the EMS.
+the Emergency Medical Services (EMS) as a distributor that distributes 
+patients to them.
+The parameters of the model can also be mapped into parameters of the ED and 
+the EMS.
 
 \begin{itemize}
-    \item \( \lambda_2 \): The rate of patients that the EMS receives
+    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
+    receives
     \item \( \lambda_{1_i} \): The arrival rate of other patients to ED \(i\)
-    \item \( \mu_i \): The service rate of patients the ED \(i\)
-    \item \( C_i \): The number of available resources in ED \(i\)  
+    \item \( \mu_i \): The service rate of patients at ED \(i\)
+    \item \( C_i \): The number of available resources (beds) in ED \(i\)  
     \item \( T_i \): The strategy that ED \(i\) chooses to play
-    \item \( N_i \): The patient capacity of ED \(i\)
-    \item \( M_i \): The parking capacity of ED \(i\)
+    \item \( N_i \): The total patient capacity of ED \(i\)
+    \item \( M_i \): The total parking capacity of ED \(i\)
     \item \( R \): The time target for both EDs
-    \item \( \alpha \in [0, 1] \) : \textit{Importance} of blocking time and lost 
-    individuals (equation \ref{eq:obj-distributor})
+    \item \( \alpha \in [0, 1] \) : \textit{Importance} of blocking time and 
+    lost individuals (equation \ref{eq:obj-distributor})
 \end{itemize}
 
 The patients that are distributed by the EMS arrive at the hospital via an 
@@ -42,35 +38,83 @@ from and their utilities is the proportion of individuals whose time in the
 system lie within a predetermined target time.
 The EMS has to decide how to distribute its patients among the two EDs so that 
 the blocking time of ambulances is minimised. 
+As defined in \ref{sec:model_overview}, the interaction between the two EDs 
+is a Normal form game that is then used to inform the decision of the EMS.
 Note that the formulated game here assumes that prior to making a choice the 
-EMS knows the strategies that each ED is playing. 
-
-% TODO: Add a figure to show the applied game
+EMS knows the strategies that each ED is playing (figure 
+\ref{fig:imperfect-info-game}).
 
 \subsection{Data Analysis}
 
 This subsection aims to analyse how the gaming framework can affect the 
-performance measures of the queueing systems and how to escape certain 
-inefficient situations.
+performance measures of the two hospitals and how to avoid certain inefficient 
+situations.
+
+In order to analyse the strategies played by the two EDs, the learning algorithm
+asymmetric replicator dynamics is used.
+% TODO: Cite asymmetric replicator dynamics
+The use of a learning algorithm allows to investigate, not only the outcome of 
+the game, but also how that outcome is reached.
+Consider figure \ref{fig:ard-by-itself}. 
+By running asymmetric replicator dynamics on the system the behaviour that 
+emerges can be observed.
+It can be seen that for these particular set of parameters 
+(\ref{eq:ard-parameters}), the strategies of the two hospitals converge over 
+time. 
+Both hospital 1 (row player) and hospital 2 (column player) seem to be playing 
+the same strategy \(s_10\) which indicates that thresholds \(T_1 = 10\) and 
+\(T_2 = 10\) are played.
+What is more important in this example is how the two hospitals reached these
+decisions which also highlights the importance of using a learning algorithm.
+Hospital 2 is able to reach the decision in a very short time while hospital 1
+takes longer to get there.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4, trim=120 0 120 0]{imgs/asymmetric_rd/asymmetric_rd.png}
+    \label{fig:ard-by-itself}
+    \caption{Asymmetric replicator dynamics run}
+\end{figure}
+
+
+\begin{multicols}{3}
+    \begin{itemize} \label{eq:ard-parameters}
+        \item \( \lambda_{1_1} \) = 1
+        \item \( \mu_1 \) = 2
+        \item \( C_1 \) = 2
+        \item \( N_1 \) = 10
+        \item \( M_1 \) = 6
+
+        \columnbreak
+        \item \( \lambda_{1_2} \) = 2
+        \item \( \mu_2 \) = 2.5
+        \item \( C_2 \) = 2
+        \item \( N_2 \) = 10
+        \item \( M_2 \) = 6
+        
+        \columnbreak
+        \item \( \lambda_2 \) = 2
+        \item \( R \) = 2
+        \item \( \alpha \) = 0.5
+    \end{itemize}
+\end{multicols}
+
 To study such effects a new concept is introduced that considers the ratio 
-between the best possible performance measure and the one that is being
-played by the players.
+between each hospital's best achievable blocking time and the one that is being
+played.
 This new concept is defined as the compartmentalised price of anarchy of the 
-players of the game and is defined as \(PoA_i(P, s)\), where \(i \in [1, 2]\) 
-to distinguish among the two players, \(P\) denotes the performance measure 
-function to be used and \(s\) is the strategy that is being played by player 
-\( i \). 
+players of the game and is defined as \(PoA_i(\tilde{s})\), where 
+\(i \in [1, 2]\) to distinguish among the two players/hospitals where 
+\(\tilde{s}\) is the strategy that is being played by player \( i \). 
 The compartmentalised price of anarchy aims to measure inefficiencies in the 
 model.
-For instance the \(PoA\) for the blocking time of player \(i\) is given by:
+The \(PoA\) for the blocking time of player \(i\) for strategy \(\tilde{s}\) 
+is given by:
 
 \begin{equation}\label{eq:poa_compartmentalised}
-    % TODO: Make sure this equation makes sense
-    PoA_{i}(B, s) = \frac{B_i(s)}{\min_{\bar{s} \in S_i} B_i(\bar{s})}
+    PoA_{i}(\tilde{s}) = \frac{B_i(\tilde{s})}{\min_{s \in S_i} B_i(s)}
 \end{equation}
 
-% TODO: Remove \newpage from here
-\newpage
 Consider a game with the following parameters:
 
 \begin{multicols}{3}
@@ -98,12 +142,10 @@ Consider a game with the following parameters:
 \end{multicols}
 
 Using equation (\ref{eq:poa_compartmentalised}) and asymmetric replicator 
-dynamics (described in section [ ])
-% TODO: reference asymmetric replicator dynamics
-the game can be simulated and show the compartmentalised price of 
-anarchy at every iteration for each ED.
+dynamics the game can be simulated and show the compartmentalised price of 
+anarchy at every iteration for both players.
 Figure \ref{fig:ard_original} shows the strategies that are being played and 
-the values of \(PoA_1(B, s)\) and \(PoA_2(B, s)\) for all iterations of the 
+the values of \(PoA_1(s)\) and \(PoA_2(s)\) for all iterations of the 
 learning algorithm until it reaches an evolutionary stable pair of strategies.
 
 \begin{figure}[H]
