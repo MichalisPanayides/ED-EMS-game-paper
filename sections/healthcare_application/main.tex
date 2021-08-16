@@ -51,34 +51,32 @@ performance measures of the two hospitals and how to avoid certain inefficient
 situations.
 
 In order to analyse the strategies played by the two EDs, the learning algorithm
-asymmetric replicator dynamics is used.
-% TODO: Cite asymmetric replicator dynamics
+asymmetric replicator dynamics is used \cite{asymmetricreplicatordynamics}.
 The use of a learning algorithm allows to investigate, not only the outcome of 
 the game, but also how that outcome is reached.
 Consider figure \ref{fig:ard-by-itself}. 
 By running asymmetric replicator dynamics on the system the behaviour that 
 emerges can be observed.
-It can be seen that for these particular set of parameters 
-(\ref{eq:ard-parameters}), the strategies of the two hospitals converge over 
-time. 
+It can be seen that for these particular set of parameters the strategies of 
+the two hospitals converge over time. 
 Both hospital 1 (row player) and hospital 2 (column player) seem to be playing 
 the same strategy \(s_10\) which indicates that thresholds \(T_1 = 10\) and 
 \(T_2 = 10\) are played.
 What is more important in this example is how the two hospitals reached these
 decisions which also highlights the importance of using a learning algorithm.
-Hospital 2 is able to reach the decision in a very short time while hospital 1
-takes longer to get there.
+Hospital 2 is able to reach the decision in a very short amount of time while 
+hospital 1 takes longer and goes through numerous strategies to get there.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4, trim=120 0 120 0]{imgs/asymmetric_rd/asymmetric_rd.png}
-    \label{fig:ard-by-itself}
     \caption{Asymmetric replicator dynamics run}
+    \label{fig:ard-by-itself}
 \end{figure}
 
 
 \begin{multicols}{3}
-    \begin{itemize} \label{eq:ard-parameters}
+    \begin{itemize}
         \item \( \lambda_{1_1} \) = 1
         \item \( \mu_1 \) = 2
         \item \( C_1 \) = 2
@@ -99,9 +97,9 @@ takes longer to get there.
     \end{itemize}
 \end{multicols}
 
-To study such effects a new concept is introduced that considers the ratio 
-between each hospital's best achievable blocking time and the one that is being
-played.
+To study the efficiency of the strategies being played a new concept is 
+introduced that considers the ratio between each hospital's best achievable 
+blocking time and the one that is being played.
 This new concept is defined as the compartmentalised price of anarchy of the 
 players of the game and is defined as \(PoA_i(\tilde{s})\), where 
 \(i \in [1, 2]\) to distinguish among the two players/hospitals where 
@@ -141,6 +139,7 @@ Consider a game with the following parameters:
     \end{itemize}
 \end{multicols}
 
+\textbf{Base run:}
 Using equation (\ref{eq:poa_compartmentalised}) and asymmetric replicator 
 dynamics the game can be simulated and show the compartmentalised price of 
 anarchy at every iteration for both players.
@@ -149,7 +148,7 @@ the values of \(PoA_1(s)\) and \(PoA_2(s)\) for all iterations of the
 learning algorithm until it reaches an evolutionary stable pair of strategies.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth, trim=0 400 0 0]{imgs/asymmetric_rd_and_PoA/asymmetric_original.pdf}
+    \includegraphics[width=\textwidth]{imgs/asymmetric_rd_and_PoA/asymmetric_original.pdf}
     \caption{The strategies played when running asymmetric replicator dynamics
     along with the compartmentalised price of anarchy of the blocking time at
     each iteration of the learning algorithm}
@@ -161,13 +160,14 @@ strategies where \(T_1 = 5\) and \(T_2 = 6\). After a number of iterations the
 price of anarchy for both players stabilises and barely increases until the 
 final iteration. 
 
+\textbf{Increasing \(\lambda_2\):}
 Figure \ref{fig:ard_lambda_2} shows a similar run of the
 algorithm but when the strategies begin to stabilise a huge increase in the
 arrival rate of ambulances occurs (i.e \( \lambda_2 = 10.7 \)).
 
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth, trim=0 400 0 0]{imgs/asymmetric_rd_and_PoA/asymmetric_flooding.pdf}
+    \includegraphics[width=\textwidth]{imgs/asymmetric_rd_and_PoA/asymmetric_flooding.pdf}
     \caption{The strategies played when running asymmetric replicator dynamics
     along with the compartmentalised price of anarchy of the blocking time at
     each iteration of the learning algorithm. After a number of iterations the 
@@ -177,22 +177,23 @@ arrival rate of ambulances occurs (i.e \( \lambda_2 = 10.7 \)).
 \end{figure}
 
 
-By increasing \(\lambda_2\) there is no change in the how the players behave
-(\(T_1 = 5, T_2 = 6\)), but the outcome of the system does change. 
+By increasing \(\lambda_2\) there is no change as to how players behave
+(\(T_1 = 5, T_2 = 6\)), but the efficiency of the system does change. 
 There is a decline in the price of anarchy of the blocking time which at first 
 glance indicates that upon flooding the system it becomes more efficient. 
 This is non-sensical though.
 What it really shows is that the steep increase in \( \lambda_2 \) simply leaves 
 less potential for improvement. 
 
+\textbf{Increasing number of servers \( C_1 and C_2 \):}
 Figure \ref{fig:ard_num_of_servers} shows a run of asymmetric replicator 
-dynamics with a change in the number of servers of both models.
+dynamics with a change in the number of servers of the hospitals.
 The number of servers are increased from \(C_1 = 3, C_2 = 2\) to 
 \(C_1 = 4, C_2 = 3\).
 
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth, trim=0 400 0 0]{imgs/asymmetric_rd_and_PoA/asymmetric_increase_C.pdf}
+    \includegraphics[width=\textwidth]{imgs/asymmetric_rd_and_PoA/asymmetric_increase_C.pdf}
     \caption{
         The strategies played when running asymmetric replicator dynamics
         along with the compartmentalised price of anarchy of the blocking time 
@@ -202,7 +203,7 @@ The number of servers are increased from \(C_1 = 3, C_2 = 2\) to
     \label{fig:ard_num_of_servers}
 \end{figure}
 
-In this case the both the behaviour as well as the price of anarchy change.
+In this case, both the behaviour as well as the price of anarchy change.
 The players change their strategies from \(T_1 = 5, T_2 = 6\) to 
 \(T_1 = 6, T_2 = 7\) and the \(PoA\) of the blocking time goes down.
 By adding more resources to the models they are able to increase their 
@@ -210,13 +211,17 @@ efficiency.
 Although this is a good way to escape such inefficiencies, it might not always
 be cost efficient.
 
-Figure \ref{fig:ard_penalty} is slightly different than the previous ones.
-Once asymmetric replicator dynamics becomes stable on some inefficient 
-strategies (in terms of the blocking time) the payoff matrices of the two are
-scaled in such a way so that the selected strategy is penalised.
+\textbf{Incentivising players:}
+From figures \ref{fig:ard_lambda_2} and \ref{fig:ard_num_of_servers} it can be
+seen that we can change some parameters of the model to make it more efficient.
+The approach used on figure \ref{fig:ard_penalty} is slightly different than 
+the previous cases.
+Once the played strategies in asymmetric replicator dynamics strategies 
+converge the payoff matrices of the two are scaled in such a way so that the 
+utilities of the selected strategy is penalised.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth, trim=0 400 0 0]{imgs/asymmetric_rd_and_PoA/asymmetric_penalty.pdf}
+    \includegraphics[width=\textwidth]{imgs/asymmetric_rd_and_PoA/asymmetric_penalty.pdf}
     \caption{
         The strategies played when running asymmetric replicator dynamics
         along with the compartmentalised price of anarchy of the blocking time 
@@ -226,6 +231,11 @@ scaled in such a way so that the selected strategy is penalised.
     \label{fig:ard_penalty}
 \end{figure}
 
+Figure \ref{fig:ard_penalty} shows that players start playing strategies 
+\( T_1 = 5\) and \( T_2 = 6 \) and mid-run of the learning algorithm a penalty
+is applied to these strategies on the payoff matrix.
 By incentivising the players in such a way the players change their strategies 
-and ambulance patients are accepted in the ED more often.
-Thus the blocking time \(PoA\) for both EDs drops down. 
+to \(T_1 = 6\) and \(T_2 = 7\), and thus ambulance patients are accepted in the 
+ED more often.
+Hence, the \(PoA\) for both EDs is decreased, meaning that the whole system is
+more efficient in terms of the blocking time.
