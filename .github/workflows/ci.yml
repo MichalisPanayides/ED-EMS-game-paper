@@ -32,3 +32,6 @@ jobs:
 
       - name: Test spellcheck
         run: inv spellcheck
+
+      - name: Run proselint
+        run: proselint .
