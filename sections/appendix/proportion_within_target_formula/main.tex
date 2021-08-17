@@ -2,8 +2,8 @@
     
 In order to consider such measure though one would need to obtain the 
 distribution of time in the system for all individuals. 
-The complexity of such task lies on the fact that different individuals arrive 
-at different states of the Markov model. 
+The complexity of such task is caused by the fact that different individuals 
+arrive at different states of the Markov model. 
 Consider the case when an arrival occurs when the model is at a specific state.
 
 \paragraph{Time distribution at specific state (1 server):}
@@ -180,7 +180,7 @@ This is true since for any dimensions of this Markov chain model there will
 always be at most two distinct exponential parameters; the parameter for 
 finishing a service (\(\mu\)) and the parameter for moving forward in the queue 
 (\(C \mu\)). 
-For the special case of \(C=1\) the hypoexponential distribution will not be 
+For the case of \(C=1\) the hypoexponential distribution will not be 
 used as this is equivalent to an erlang distribution.
 Therefore, by fixing the sizes of \(\vec{r}\) and \(\vec{\lambda}\) to 2, the 
 following specific expression for the CDF of the hypoexponential distribution
@@ -285,7 +285,7 @@ Thus the proof is split into two parts, for \(k=1\) and \(k=2\).
             \left( \frac{1}{t(t + \lambda_2)}\right)
         \end{split}
     \end{equation*}
-    In essence, it only remains to show that:
+    In essence, it is only needed to show that:
     \[-\frac{\partial^{l-1}}{\partial t^{l-1}} 
     \left( \frac{1}{t(t + \lambda_2)}\right) = \frac{(-1)^{l} (l-1)!}{\lambda_2}
     \left[\frac{1}{t^l} - \frac{1}{(t + \lambda_2)^l}\right]\]
