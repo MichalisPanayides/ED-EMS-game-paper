@@ -4,13 +4,16 @@ import subprocess
 import sys
 
 from invoke import task
+import proselint as plnt
 
 import known
 
 
 @task
 def compile(c):
-    """Compile the LaTeX document."""
+    """
+    Compile the LaTeX document.
+    """
 
     c.run(f"latexmk -xelatex main.tex")
 
@@ -42,3 +45,48 @@ def spellcheck(c):
                 print(string)
             exit_codes.append(1)
     sys.exit(max(exit_codes))
+
+
+@task
+def proselint(c):
+    """
+    Check the spelling of all .tex files
+    """
+
+    def remove_expected_errors(errors):
+        """
+        Remove errors that were expected from the error list
+        """
+        expected_errors = (
+            "annotations.misc",
+            "leonard.exclamation.30ppm",
+        )
+        updated_errors = []
+        for error in errors:
+            if error[0] not in expected_errors:
+                updated_errors.append(error)
+        return updated_errors
+
+    all_tex_files = list(pathlib.Path().glob("**/*.tex"))
+    exit_codes = [0]
+    for path in all_tex_files:
+        with open(path, "r") as f:
+            text = f.read()
+            errors = plnt.tools.lint(text)
+        errors = remove_expected_errors(errors)
+        if errors:
+            print(f"In {path} the following errors were found: ")
+            for error in errors:
+                print(error)
+            exit_codes.append(1)
+    sys.exit(max(exit_codes))
+
+
+@task
+def alex(c):
+    """
+    Check for inconsiderate and insensitive writing of all .tex files
+    """
+    all_tex_files = list(pathlib.Path().glob("**/*.tex"))
+    for file in all_tex_files:
+        c.run(f"alex {file}")
