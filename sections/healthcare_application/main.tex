@@ -25,17 +25,17 @@ the EMS.
 \end{itemize}
 
 The patients that are distributed by the EMS arrive at the hospital via an 
-ambulance and are then either unloaded at the ED or remain blocked outside in 
+ambulance and are then either unloaded at the ED or stay blocked outside in 
 the ambulance.
-Whether or not the ambulance and the patient remain blocked is determined by 
+Whether or not the ambulance and the patient stay blocked is determined by 
 the threshold that the given ED chooses to play.
 High threshold indicates that the ED accepts patients even if it is relatively 
-full, while low threshold means that the ED blocks ambulances more easily.
+full, while low threshold means that the ED blocks ambulances more frequently.
 
 The game to be played now is between the two EDs and the EMS. 
 The strategies of the two EDs are the range of thresholds that they can choose
 from and their utilities is the proportion of individuals whose time in the 
-system lie within a predetermined target time.
+system is within a predetermined target time.
 The EMS has to decide how to distribute its patients among the two EDs so that 
 the blocking time of ambulances is minimised. 
 As defined in \ref{sec:model_overview}, the interaction between the two EDs 
@@ -64,7 +64,7 @@ the same strategy \(s_10\) which indicates that thresholds \(T_1 = 10\) and
 \(T_2 = 10\) are played.
 What is more important in this example is how the two hospitals reached these
 decisions which also highlights the importance of using a learning algorithm.
-Hospital 2 is able to reach the decision in a very short amount of time while 
+Hospital 2 is able to reach the decision in a short amount of time while 
 hospital 1 takes longer and goes through numerous strategies to get there.
 
 \begin{figure}[H]
@@ -182,7 +182,7 @@ By increasing \(\lambda_2\) there is no change as to how players behave
 There is a decline in the price of anarchy of the blocking time which at first 
 glance indicates that upon flooding the system it becomes more efficient. 
 This is non-sensical though.
-What it really shows is that the steep increase in \( \lambda_2 \) simply leaves 
+What it really shows is that the steep increase in \( \lambda_2 \) leaves 
 less potential for improvement. 
 
 \textbf{Increasing number of servers \( C_1 and C_2 \):}
