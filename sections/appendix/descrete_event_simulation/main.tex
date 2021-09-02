@@ -17,6 +17,47 @@ The same performance measures described in sections
 \ref{sec:proportion_within_target} can also be calculated using the DES model.
 The simulation can be ran a number of times to eliminate stochasticity and the
 outcomes of the two methods can be directly comparable. 
-% TODO Add more documentation (instructions on how to use code)
+
+This discrete event simulation model was built in python and can be installed by 
+running the following command in the terminal:
+\begin{lstlisting}[language=bash, style=terminalstyle]
+    $ pip install ambulance_game
+\end{lstlisting}
+
+Having installed the package, the following script can be used to simulate, and 
+get all required performance measures, of a queueing system with two waiting 
+spaces and two types of individuals for a runtime of 2000 unit time with the 
+following parameters:
+
+\begin{multicols}{2}
+    \begin{itemize}
+        \centering
+        \item \( \lambda_1 = 2 \)
+        \item \( \lambda_2 = 3 \)
+        \item \( \mu = 1 \)
+        \item \( C = 6 \)
+        \columnbreak
+        \item \( T = 10 \)
+        \item \( N = 20 \)
+        \item \( M = 10 \)
+        \item \( R = 1 \)
+    \end{itemize}
+\end{multicols}
+
+\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/simulation.py}
+
+The script above shows the outcome of the DES model for a single run.
+To minimise the stochasticity of the simulation, the model can be simulated for 
+numerous trials. 
+The following script can be used to run the simulation for a number of times 
+and get the mean of the waiting, service and blocking times:
+
+\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/multiple_runs.py}
+
+
+Finally, the proportion of individuals within target for multiple runs can be
+calculated by running the following block of code:
+
+\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/multiple_runs_proportion.py}
 
 % TODO: Archive simulation python code
