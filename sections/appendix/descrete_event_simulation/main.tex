@@ -18,46 +18,164 @@ The same performance measures described in sections
 The simulation can be ran a number of times to eliminate stochasticity and the
 outcomes of the two methods can be directly comparable. 
 
-This discrete event simulation model was built in python and can be installed by 
-running the following command in the terminal:
-\begin{lstlisting}[language=bash, style=terminalstyle]
-    $ pip install ambulance_game
-\end{lstlisting}
+\subsection{Tutorial: building the DES model}
 
-Having installed the package, the following script can be used to simulate, and 
-get all required performance measures, of a queueing system with two waiting 
-spaces and two types of individuals for a runtime of 2000 unit time with the 
-following parameters:
+The DES model is constructed in a generic way that so that it can be used for
+any queueing system with two waiting spaces and two types of individuals.
+For instance, consider a queueing system with the following parameters, as 
+described in section~\ref{sec:queueing_model}:
 
-\begin{multicols}{2}
+\begin{multicols}{4}
     \begin{itemize}
-        \centering
         \item \( \lambda_1 = 2 \)
         \item \( \lambda_2 = 3 \)
+        \columnbreak
         \item \( \mu = 1 \)
         \item \( C = 6 \)
         \columnbreak
         \item \( T = 10 \)
         \item \( N = 20 \)
+        \columnbreak
         \item \( M = 10 \)
-        \item \( R = 1 \)
     \end{itemize}
 \end{multicols}
 
-\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/simulation.py}
 
-The script above shows the outcome of the DES model for a single run.
-To minimise the stochasticity of the simulation, the model can be simulated for 
-numerous trials. 
-The following script can be used to run the simulation for a number of times 
-and get the mean of the waiting, service and blocking times:
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=0.8],
+        % the rectangle of parking queue
+        \draw (0,0) -- ++(3cm,0) -- ++(0,-1.5cm) -- ++(-3cm,0);
+        % the vertical lines of parking queue
+        \foreach \i in {1,...,4, 7.1}
+            \draw (3cm-\i*12pt,0) -- +(0,-1.5cm);
+        
+        % The label above Queue 1 -> M
+        \node[anchor=north] at (1.5cm, 1cm) {\( 
+            \overbrace{\qquad \qquad \qquad \qquad}^{10} 
+        \)};
+        
+        % the rectangle in Queue 2
+        \draw (5,1.25) -- ++(2cm,0) -- ++(0,-1.5cm) -- ++(-2cm,0);
+        % the vertical lines in Queue 2
+        \foreach \i in {1,...,4, 5.7}
+            \draw (7cm-\i*10pt,1.25) -- +(0,-1.5cm);
+        % The two vertical lines at the very start of Queue 2 
+        \draw (7cm-54pt,1.2) -- +(0,-0.5cm);
+        \draw (7cm-54pt,0.3) -- +(0,-0.5cm);        
+        \draw (7cm-51pt,1.1) -- +(0,-0.4cm);
+        \draw (7cm-51pt,0.3) -- +(0,-0.4cm);
 
-\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/multiple_runs.py}
+        % The label between the lines for T
+        \node[anchor=north] at (5.19, 0.78 cm) {\small{\( 10 \)}};
+
+        % The label above Queue 2 -> N
+        \node[anchor=north] at (6.6cm, 2.2cm) {\(
+            \overbrace{\qquad \qquad \qquad \qquad}^{20}
+        \)};
+
+        % the circle in Queue 2
+        \draw (7.75,0.5) circle [radius=0.75cm] node {\(6\)};
+
+        % Arrow line from Queue 2 outside
+        \draw[->] (8.5,0.525) -- +(20pt,0);
+        
+        % Line from lambda_2 to Queue 1
+        \draw[<-] (-0.3,-0.75) -- +(-40pt,0) node[left] {\( 3 \)};
+
+        % Lines after Parking queue
+        \draw[-] (3,-0.75) -- +(34pt,0);
+        \draw (4.2, 0.525) -- (4.2, -0.75);
+        
+        % Lines for lambda_1 arrivals
+        \draw (4.2, 1.8) -- +(-169.5pt,0) node[left] {\( 2 \)};
+        \draw (4.2, 1.8) -- (4.2, 0.525);
+
+        % Line from both individuals to Queue 2
+        \draw[->] (4.2, 0.525) -- (4.8, 0.525);  
+    \end{tikzpicture}
+    \caption{A diagrammatic representation of the queueing model example}
+    \label{fig:diagram_of_queueing_system_appendix_example}
+\end{figure}
+
+This model will be studied by using  
+\lstinline[style=pystyle]{ambulance_game}.
+Install the created library in your python environment, by running the 
+following command in the command line:
+\begin{lstlisting}[language=bash, style=terminalstyle]
+    $ pip install ambulance_game
+\end{lstlisting}
+
+Having installed the package, the following code can be used to simulate the 
+queueing system defined earlier and get all the data records for a single run.
+
+\begin{lstlisting}[style=pystyle]
+    
+    >>> import ambulance_game as abg
+    >>> Simulation = abg.simulation.simulate_model(
+    ...     lambda_1=3,
+    ...     lambda_2=2,
+    ...     mu=1,
+    ...     num_of_servers=6,
+    ...     threshold=10,
+    ...     system_capacity=20,
+    ...     buffer_capacity=10,
+    ... )
+    >>> all_records = Simulation.get_all_records()
+    >>> all_records[3]
+    Record(id_number=1, customer_class=0, node=2, arrival_date=0.4728763843239206, waiting_time=0.0, service_start_date=0.4728763843239206, service_time=0.5457131455415929, service_end_date=1.0185895298655134, time_blocked=0.0, exit_date=1.0185895298655134, destination=-1, queue_size_at_arrival=0, queue_size_at_departure=4)
+\end{lstlisting}
+
+The above block code outputs the fourth individual record from the simulation
+object.
+The simulation object can be used to view the every event that occurred in the 
+simulation 
+The data records can then be used to get overall performance measures about the
+constructed queueing model.
+The overall waiting time that individuals wait in waiting zone 1 can be acquired 
+by running:
 
 
-Finally, the proportion of individuals within target for multiple runs can be
-calculated by running the following block of code:
+\begin{lstlisting}[style=pystyle]
+    >>> import numpy as np
+    >>> mean_wait = np.mean(
+    ...    [record.waiting_time for record in all_records if record.node == 2]
+    ... )
+    0.2246928220731305
+\end{lstlisting}
 
-\lstinputlisting[language=Python, style=pystyle]{sections/appendix/descrete_event_simulation/multiple_runs_proportion.py}
+This value is the average waiting time of all the customers in the system for a
+single run. 
+By nature, discrete event simulation can output different results for different
+runs of the same set of parameters.
+This stochasticity can be reduced by running the simulation multiple times 
+and then getting the mean waiting time from all the runs.
+
+\begin{lstlisting}[style=pystyle]
+    >>> all_simulations = abg.simulation.get_multiple_runs_results(
+    ...     lambda_1=3,
+    ...     lambda_2=2,
+    ...     mu=1,
+    ...     num_of_servers=6,
+    ...     threshold=10,
+    ...     system_capacity=20,
+    ...     buffer_capacity=10,
+    ...     seed_num=0,
+    ...     num_of_trials=10,
+    ... )
+    >>> mean_wait = np.mean(
+    ...     [np.mean(w.waiting_times) for w in all_simulations]
+    ... )
+    0.35037759808989827
+\end{lstlisting}
+
+
+\subsection{How-to guide}
+
+\subsection{Reference}
+
+\subsection{Explanation}
+
+
 
 % TODO: Archive simulation python code
