@@ -7,6 +7,15 @@ to a healthcare scenario with two such queueing systems.
 The two queueing systems can be thought of as two Emergency Departments (ED) and 
 the Emergency Medical Services (EMS) as a distributor that distributes 
 patients to them.
+
+The patients that are distributed by the EMS arrive at the hospital via an 
+ambulance and are then either unloaded at the ED or stay blocked outside in 
+the ambulance.
+Whether or not the ambulance and the patient stay blocked is determined by 
+the threshold that the given ED chooses to play.
+High threshold indicates that the ED accepts patients even if it is relatively 
+full, while low threshold means that the ED blocks ambulances more frequently.
+
 The parameters of the model correspond to the following parameters of the ED and 
 the EMS:
 
@@ -25,19 +34,12 @@ the EMS:
     lost individuals (equation \ref{eq:obj-distributor})
 \end{itemize}
 
-The patients that are distributed by the EMS arrive at the hospital via an 
-ambulance and are then either unloaded at the ED or stay blocked outside in 
-the ambulance.
-Whether or not the ambulance and the patient stay blocked is determined by 
-the threshold that the given ED chooses to play.
-High threshold indicates that the ED accepts patients even if it is relatively 
-full, while low threshold means that the ED blocks ambulances more frequently.
-
 The strategies of the two EDs are the range of thresholds that they can choose
 from and their utilities is the proportion of individuals whose time in the 
 system is within a predetermined target time.
 The EMS has to decide how to distribute its patients among the two EDs so that 
-the blocking time of ambulances is minimised. 
+the weighted combination of the ambulance blocking time and the percentage of 
+lost ambulances is minimised. 
 As defined in \ref{sec:model_overview}, the interaction between the two EDs 
 is a Normal form game that is then used to inform the decision of the EMS.
 Note that the formulated game here assumes that prior to making a choice the 
@@ -113,7 +115,9 @@ is given by:
     PoA_{i}(\tilde{s}) = \frac{B_i(\tilde{s})}{\min_{s \in S_i} B_i(s)}
 \end{equation}
 
-Consider a game with the following parameters:
+Consider a game with two smaller (lower \( N_i, M_i \)) and busier (higher 
+\(\lambda_{1_i} \) and \(\lambda_2\)) hospitals with the following set of 
+parameters:
 
 \begin{multicols}{3}
     \begin{itemize}        
@@ -141,8 +145,8 @@ Consider a game with the following parameters:
 
 \textbf{Initial scenario:}
 Using equation (\ref{eq:poa_compartmentalised}) and asymmetric replicator 
-dynamics the emergent behaviour can be measured and the compartmentalised price of 
-anarchy at every iteration for both players.
+dynamics the emergent behaviour can be measured and the compartmentalised price 
+of anarchy at every iteration for both players.
 Figure \ref{fig:ard_original} shows the strategies that are being played and 
 the values of \(PoA_1(s)\) and \(PoA_2(s)\) for all iterations of the 
 learning algorithm until it reaches an evolutionary stable pair of strategies.
@@ -163,7 +167,7 @@ final iteration.
 \textbf{Increasing \(\lambda_2\):}
 Figure \ref{fig:ard_lambda_2} shows a similar run of the
 algorithm but when the strategies begin to stabilise an increase in the
-arrival rate of ambulances occurs (i.e \( \lambda_2 = 10.7 \)).
+arrival rate of ambulances occurs (i.e \( \lambda_2 = 24 \)).
 
 
 \begin{figure}[H]
@@ -172,7 +176,7 @@ arrival rate of ambulances occurs (i.e \( \lambda_2 = 10.7 \)).
     along with the compartmentalised price of anarchy of the blocking time at
     each iteration of the learning algorithm. After a number of iterations the 
     arrival rate of ambulance patients is significantly increased to flood the
-    system completely \( \lambda_2 = 10.7 \).}
+    system completely \( \lambda_2 = 24 \).}
     \label{fig:ard_lambda_2}
 \end{figure}
 
@@ -186,7 +190,7 @@ This is non-sensical though.
 What it really shows is that the steep increase in \( \lambda_2 \) leaves 
 the system unable to cope regardless of the decisions made.
 
-\textbf{Increasing number of servers \( C_1 and C_2 \):}
+\textbf{Increasing number of servers \( C_1 \) and \( C_2 \):}
 Figure \ref{fig:ard_num_of_servers} shows a run of asymmetric replicator 
 dynamics with a change in the number of servers of the hospitals.
 The number of servers are increased from \(C_1 = 3, C_2 = 2\) to 
