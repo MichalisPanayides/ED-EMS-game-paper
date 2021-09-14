@@ -59,8 +59,88 @@ This subsection aims to analyse how the gaming framework can affect the
 performance measures of the two hospitals and how to avoid certain inefficient 
 situations.
 
+The most commonly used method for analysing normal form games is the Nash 
+equilibrium \cite{kreps1989nash}. 
+The Nash equilibrium is the point of the game were players have no incentive to 
+deviate from their strategy.
+Consider the following game:
+
+\begin{multicols}{3}
+    \begin{itemize}
+        \item \( \lambda_{1_1} \) = 1
+        \item \( \mu_1 \) = 2
+        \item \( C_1 \) = 2
+        \item \( N_1 \) = 10
+        \item \( M_1 \) = 6
+        \columnbreak
+
+        \item \( \lambda_{1_2} \) = 2
+        \item \( \mu_2 \) = 2.5
+        \item \( C_2 \) = 2
+        \item \( N_2 \) = 10
+        \item \( M_2 \) = 6
+        \columnbreak
+
+        \item \( \lambda_2 \) = 2
+        \item \( R \) = 2
+        \item \( \alpha \) = 0.5
+    \end{itemize}
+\end{multicols}
+
+The set of possible actions to choose from for player 1 and player 2 is the
+set of thresholds that the EDs can choose from: 
+\begin{equation}
+    T_1 = \{ 0, \ldots, N_1 \}, \quad T_2 = \{ 0, \ldots, N_2 \}
+\end{equation}
+
+For this example the only Nash equilibrium of the game is achieved when both 
+players choose a threshold of \( T_1 = 10, T_2 = 10 \).
+This means that the two players' best response to each other is to only block
+ambulances when they are full. 
+
+Although the Nash equilibria is a great theoretical measure it sometimes may be
+% TODO: great theoretical measure?
+inconsistent with our intuitive notions about what should be the outcome of a 
+game \cite{myerson1978refinements}.
+Therefore it might not be the best way to describe human behaviour.
+Since the work of Maynard Smith \cite{smith1986evolutionary} evolutionary game 
+theory gives the tools for the emergence of stable behaviour.
+One such model that allows for asymmetric payoffs, as is the case above, is 
+replicator dynamics.
+Stable outcomes of this algorithm will correspond to a subset of Nash
+equilibria but more importantly, will give a model of emergent behaviour. 
+
 In order to analyse the strategies played by the two EDs, the learning algorithm
 asymmetric replicator dynamics is used \cite{asymmetricreplicatordynamics}.
+The two players are treated as two separate populations where each 
+individual in the population is assigned a strategy. 
+As the game progresses the proportion of each player playing each strategy 
+changes based on their previous interactions.
+The fitness of each each strategy is defined as:
+
+\begin{equation}\label{eq:asymmetric_fitness}
+    f_x = Ay, \quad f_y = x^T B
+\end{equation}
+
+Here, \(x \in \mathbb{R}^{m \times 1} \) and
+\(y \in \mathbb{R}^{n \times 1}\) correspond to the proportion of individuals 
+that play each strategy on the two populations.
+Similarly, the average fitness of each strategy is defined as:
+\begin{equation}
+    \phi_x = f_x x^T, \quad \phi_y = f_y y
+\end{equation}
+
+The rate of change of strategy \( i \) of both types of individuals is captured 
+by:
+\begin{equation}
+    \frac{dx}{dt}_i = x_i((f_x)_i - \phi_x), \quad \text{ for all }i
+\end{equation}
+
+\begin{equation}
+    \frac{dy}{dt}_i = y_i((f_y)_i - \phi_y), \quad \text{ for all }i
+\end{equation}
+% TODO: Too much info?
+
 The use of a learning algorithm allows to investigate, not only the outcome of 
 the game, but also how that outcome is reached.
 Consider figure \ref{fig:ard-by-itself}. 
@@ -69,7 +149,7 @@ emerges can be observed.
 It can be seen that for this particular set of parameters the strategies of 
 the two hospitals converge over time. 
 Both hospital 1 (row player) and hospital 2 (column player) seem to be playing 
-the same strategy \(s_10\) which indicates that thresholds \(T_1 = 10\) and 
+the same strategy \(s_{10}\) which indicates that thresholds \(T_1 = 10\) and 
 \(T_2 = 10\) are played.
 What is more important in this example is how the two hospitals reached these
 decisions which also highlights the importance of using a learning algorithm.
@@ -83,28 +163,6 @@ hospital 1 takes longer and goes through numerous strategies to get there.
     \label{fig:ard-by-itself}
 \end{figure}
 
-
-\begin{multicols}{3}
-    \begin{itemize}
-        \item \( \lambda_{1_1} \) = 1
-        \item \( \mu_1 \) = 2
-        \item \( C_1 \) = 2
-        \item \( N_1 \) = 10
-        \item \( M_1 \) = 6
-
-        \columnbreak
-        \item \( \lambda_{1_2} \) = 2
-        \item \( \mu_2 \) = 2.5
-        \item \( C_2 \) = 2
-        \item \( N_2 \) = 10
-        \item \( M_2 \) = 6
-        
-        \columnbreak
-        \item \( \lambda_2 \) = 2
-        \item \( R \) = 2
-        \item \( \alpha \) = 0.5
-    \end{itemize}
-\end{multicols}
 
 To study the efficiency of the strategies being played a new concept is 
 introduced that considers the ratio between each hospital's best achievable 
