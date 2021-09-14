@@ -2,14 +2,17 @@
 
 words = {
     "automata",
+    "Ay",
     "calc",
     "CDF",
     "CDFs",
     "Ciw",
     "DES",
     "dt",
+    "dx",
+    "dy",
     "EDs",
-    "erlang",
+    "equilibria" "erlang",
     "HB",
     "hypoexponential",
     "ieeetr",
