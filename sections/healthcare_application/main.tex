@@ -163,6 +163,20 @@ hospital 1 takes longer and goes through numerous strategies to get there.
     \label{fig:ard-by-itself}
 \end{figure}
 
+In order to analyse how efficient the strategies played at every iteration are, 
+the concept of the price of anarchy is used.
+Price of anarchy is a measure that is used to quantify the efficiency of a
+behaviour \cite{roughgarden2005selfish}.
+In other words the price of anarchy is the worst-case measure and it is
+defined as:
+
+\begin{equation}\label{eq:general_price_of_anarchy}
+    \text{PoA} = \frac{\max_{s \in E} F(s)}{\min_{s \in S} F(s)}
+\end{equation}
+
+Here, \(S\) is the set of all sets of strategies \((s_1, s_2)\), \(E\) is the 
+set of all possible sets of equilibria and \(F\) is the cost function to 
+measure the efficiency for. 
 
 To study the efficiency of the strategies being played a new concept is 
 introduced that considers the ratio between each hospital's best achievable 
