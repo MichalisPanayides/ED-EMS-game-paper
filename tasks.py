@@ -60,6 +60,9 @@ def proselint(c):
         expected_errors = (
             "annotations.misc",
             "leonard.exclamation.30ppm",
+            "typography.symbols.ellipsis",
+            "typography.symbols.sentence_spacing",
+            "security.credit_card",
         )
         updated_errors = []
         for error in errors:
