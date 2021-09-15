@@ -8,12 +8,22 @@ The two queueing systems can be thought of as two Emergency Departments (ED) and
 the Emergency Medical Services (EMS) as a distributor that distributes 
 patients to them.
 
-There are numerous new articles that focus on the problems that arise when 
+There are numerous news articles that focus on the problems that arise when 
 ambulances stay parked outside of the hospital for a long amount of time
-\cite{dailyrecords}, \cite{staffordshirelive}.
+~\cite{dailyrecords}, \cite{staffordshirelive}.
 Some news reports also comment on the long idle time of ambulances when 
-they are not in use \cite{herefordtimes} and there are several reports of 
-examples where this became an issue for new patients \cite{southwalesargus}.
+they are not in use~\cite{herefordtimes} and there are several reports of 
+examples where this became an issue for new patients~\cite{southwalesargus}.
+A particular article looked into this problem from the point of view of an 
+ambulance paramedic:
+
+\begin{quotation}
+    % <!--alex ignore he-she her-him-->
+    ``He knows if a patient arrives more urgently in need of help, his will be 
+    pushed back''~\cite{bbcwales}
+
+    ``We used to bring poorly patients in, and we were out on the road again in 15 minutes.''~\cite{bbcwales}
+\end{quotation}
 
 The patients that are distributed by the EMS arrive at the hospital via an 
 ambulance and are then either unloaded at the ED or stay blocked outside in 
@@ -98,9 +108,8 @@ players choose a threshold of \( T_1 = 10, T_2 = 10 \).
 This means that the two players' best response to each other is to only block
 ambulances when they are full. 
 
-Although the Nash equilibria is a great theoretical measure it sometimes may be
-% TODO: great theoretical measure?
-inconsistent with our intuitive notions about what should be the outcome of a 
+Nash equilibria is a theoretical measure which can be
+inconsistent with intuitive notions about what should be the outcome of a 
 game \cite{myerson1978refinements}.
 Therefore it might not be the best way to describe human behaviour.
 Since the work of Maynard Smith \cite{smith1986evolutionary} evolutionary game 
@@ -139,7 +148,6 @@ by:
 \begin{equation}
     \frac{dy}{dt}_i = y_i((f_y)_i - \phi_y), \quad \text{ for all }i
 \end{equation}
-% TODO: Too much info?
 
 The use of a learning algorithm allows to investigate, not only the outcome of 
 the game, but also how that outcome is reached.
@@ -167,8 +175,8 @@ In order to analyse how efficient the strategies played at every iteration are,
 the concept of the price of anarchy is used.
 Price of anarchy is a measure that is used to quantify the efficiency of a
 behaviour \cite{roughgarden2005selfish}.
-In other words the price of anarchy is the worst-case measure and it is
-defined as:
+In other words the price of anarchy is the worst-case equilibria measure and it 
+is defined as:
 
 \begin{equation}\label{eq:general_price_of_anarchy}
     \text{PoA} = \frac{\max_{s \in E} F(s)}{\min_{s \in S} F(s)}
@@ -310,54 +318,83 @@ Matrices \(A\) and \(B\) represent the original payoff matrices while matrices
 It can be observed that matrix \(\tilde{A}\) is a scaled version of matrix 
 \(A\) only on the row that is most frequently played and similarly matrix 
 \(\tilde{B}\) of matrix \(B\) only on the column that is most frequently played
-(see figure \ref{fig:ard_penalty}).
+(matrix \(A\): row \(5\), matrix \(B\): column \(6\), see figure 
+\ref{fig:ard_penalty}).
+Note that the values of the payoff matrices only differ on the fourth digit
+which is the raw utility of the strategies played.
 
 \tiny
 \begin{equation*}
     A = 
     \begin{bmatrix}
-        0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 \\
-        0.99954989 & 0.99954978 & 0.99954961 & 0.99954924 & 0.99954845 & 0.9995466 & 0.999539 \\
-        0.99968233 & 0.99968194 & 0.99968151 & 0.99968067 & 0.99967874 & 0.9996734 & 0.999649  \\
-        0.99990299 & 0.99990245 & 0.99990189 & 0.99990081 & 0.99989832 & 0.9998909 & 0.9998517 \\
-        0.99999996 & 0.99999994 & 0.99999992 & 0.99999988 & 0.99999973 & 0.9999989 & 0.9999859 \\
-        0.9998773 & 0.99987995 & 0.99988236 & 0.99988643 & 0.99989417 & 0.9999126 & 0.9999712
+        0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 & 0.9995052 
+        & 0.9995052 & 0.9995052 \\
+        0.99954989 & 0.99954978 & 0.99954961 & 0.99954924 & 0.99954845 
+        & 0.9995466 & 0.999539 \\
+        0.99968233 & 0.99968194 & 0.99968151 & 0.99968067 & 0.99967874 
+        & 0.9996734 & 0.999649  \\
+        0.99990299 & 0.99990245 & 0.99990189 & 0.99990081 & 0.99989832
+        & 0.9998909 & 0.9998517 \\
+        \color{blue}0.99999996 & \color{blue}0.99999994 & \color{blue}0.99999992 
+        & \color{blue}0.99999988 & \color{blue}0.99999973 & \color{blue}0.9999989 
+        & \color{blue}0.9999859 \\
+        0.9998773 & 0.99987995 & 0.99988236 & 0.99988643 & 0.99989417 
+        & 0.9999126 & 0.9999712
     \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
     B = 
     \begin{bmatrix}
-        0.99917127 & 0.99925823 & 0.99946188 & 0.99968499 & 0.9998942 &  1.0 & 0.99982128 \\
-        0.99917127 & 0.99925479 & 0.99945638 & 0.99968051 & 0.99989153 & 0.99999997 & 0.9998333  \\
-        0.99917127 & 0.99924532 & 0.99943793 & 0.99966451 & 0.99988286 & 0.99999966 & 0.99985269 \\
-        0.99917127 & 0.99924146 & 0.99942878 & 0.99965484 & 0.99987667 & 0.99999921 & 0.99986701 \\
-        0.99917127 & 0.9992342 &  0.99941013 & 0.99963286 & 0.99986077 & 0.9999972 & 0.9998958  \\
-        0.99917127 & 0.99921279 & 0.99934961 & 0.99954933 & 0.99978407 & 0.99997106 & 0.99997276 \\
+        0.99917127 & 0.99925823 & 0.99946188 & 0.99968499 & 0.9998942 
+        & \color{red}1.0 & 0.99982128 \\
+        0.99917127 & 0.99925479 & 0.99945638 & 0.99968051 & 0.99989153 
+        & \color{red}0.99999997 & 0.9998333  \\
+        0.99917127 & 0.99924532 & 0.99943793 & 0.99966451 & 0.99988286 
+        & \color{red}0.99999966 & 0.99985269 \\
+        0.99917127 & 0.99924146 & 0.99942878 & 0.99965484 & 0.99987667 
+        & \color{red}0.99999921 & 0.99986701 \\
+        0.99917127 & 0.9992342 &  0.99941013 & 0.99963286 & 0.99986077 
+        & \color{red}0.9999972 & 0.9998958  \\
+        0.99917127 & 0.99921279 & 0.99934961 & 0.99954933 & 0.99978407 
+        & \color{red}0.99997106 & 0.99997276 \\
     \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
     \tilde{A} = 
     \begin{bmatrix}
-        0.99950518 & 0.99950518 & 0.99950518 & 0.99950518 & 0.99950518 & 0.99950518 & 0.99950518 \\
-        0.99954989 & 0.99954978 & 0.99954961 & 0.99954924 & 0.99954845 & 0.99954656 & 0.99953879 \\
-        0.99968233 & 0.99968194 & 0.99968151 & 0.99968067 & 0.99967874 & 0.99967339 & 0.9996492  \\
-        0.99990299 & 0.99990245 & 0.99990189 & 0.99990081 & 0.99989832 & 0.9998909 & 0.99985171 \\
-        0.99969996 & 0.99969994 & 0.99969992 & 0.99969988 & 0.99969973 & 0.99969895 & 0.99968586 \\
-        0.9998773 &  0.99987995 & 0.99988236 & 0.99988643 & 0.99989417 & 0.99991264 & 0.99997122
+        0.99950518 & 0.99950518 & 0.99950518 & 0.99950518 & 0.99950518
+        & 0.99950518 & 0.99950518 \\
+        0.99954989 & 0.99954978 & 0.99954961 & 0.99954924 & 0.99954845
+        & 0.99954656 & 0.99953879 \\
+        0.99968233 & 0.99968194 & 0.99968151 & 0.99968067 & 0.99967874
+        & 0.99967339 & 0.9996492  \\
+        0.99990299 & 0.99990245 & 0.99990189 & 0.99990081 & 0.99989832
+        & 0.9998909 & 0.99985171 \\
+        \color{blue}0.99969996 & \color{blue}0.99969994 & \color{blue}0.99969992 
+        & \color{blue}0.99969988 & \color{blue}0.99969973 & \color{blue}0.99969895 
+        & \color{blue}0.99968586 \\
+        0.9998773 &  0.99987995 & 0.99988236 & 0.99988643 & 0.99989417
+        & 0.99991264 & 0.99997122 \\
     \end{bmatrix}
 \end{equation*}
 
 \begin{equation*}
     \tilde{B} = 
     \begin{bmatrix}
-        0.99917127 & 0.99925823 & 0.99946188 & 0.99968499 & 0.9998942 &  0.9997 & 0.99982128 \\
-        0.99917127 & 0.99925479 & 0.99945638 & 0.99968051 & 0.99989153 & 0.99969997 & 0.9998333 \\
-        0.99917127 & 0.99924532 & 0.99943793 & 0.99966451 & 0.99988286 & 0.99969966 & 0.99985269 \\
-        0.99917127 & 0.99924146 & 0.99942878 & 0.99965484 & 0.99987667 & 0.99969921 & 0.99986701 \\
-        0.99917127 & 0.9992342 &  0.99941013 & 0.99963286 & 0.99986077 & 0.9996972 & 0.9998958 \\
-        0.99917127 & 0.99921279 & 0.99934961 & 0.99954933 & 0.99978407 & 0.99967106 & 0.99997276
+        0.99917127 & 0.99925823 & 0.99946188 & 0.99968499 & 0.9998942
+        & \color{red}0.9997 & 0.99982128 \\
+        0.99917127 & 0.99925479 & 0.99945638 & 0.99968051 & 0.99989153
+        & \color{red}0.99969997 & 0.9998333 \\
+        0.99917127 & 0.99924532 & 0.99943793 & 0.99966451 & 0.99988286
+        & \color{red}0.99969966 & 0.99985269 \\
+        0.99917127 & 0.99924146 & 0.99942878 & 0.99965484 & 0.99987667
+        & \color{red}0.99969921 & 0.99986701 \\
+        0.99917127 & 0.9992342 &  0.99941013 & 0.99963286 & 0.99986077
+        & \color{red}0.9996972 & 0.9998958 \\
+        0.99917127 & 0.99921279 & 0.99934961 & 0.99954933 & 0.99978407
+        & \color{red}0.99967106 & 0.99997276 \\
     \end{bmatrix}
 \end{equation*}
 \normalsize
