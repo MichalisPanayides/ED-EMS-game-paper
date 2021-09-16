@@ -297,15 +297,68 @@ code:
 % TODO: Fix code for proportion of individuals within time target
 
 \subsection{Reference}
+The primary tool that was used in the construction of the discrete event 
+simulation model was the python library \texttt{ciw}.
+See Ciw's documentation for a more detailed explanation of how it works and 
+what are its capabilities~\cite{ciwpython}.
 
+Find below a detailed list of the functions that were created for the simulation
+model:
+
+\begin{itemize}
+    \item \lstinline[style=pystyle]{build_model}: \textit{Builds a ciw object 
+    that represents a model of a queuing network with two service centres.}
+    \item \lstinline[style=pystyle]{build_custom_node}: \textit{Build a custom 
+    node to replace the default ciw.Node. Inherits from the original ciw.Node 
+    class and replaces two methods.}
+    \item \lstinline[style=pystyle]{simulate_model}: \textit{Simulate the model
+    by using the custom node and returning the simulation object}
+    \item \lstinline[style=pystyle]{get_simulated_state_probabilities}: \textit{
+    Calculates the vector pi in a dictionary format or an array format}
+    \item \lstinline[style=pystyle]{extract_times_from_records}: \textit{Get the
+    required times (waiting, service, blocking) out of ciw's records where all 
+    individuals are treated the same way}
+    \item \lstinline[style=pystyle]{extract_times_from_individuals}: \textit{
+    Extract waiting times and service times for all individuals and proceed to 
+    extract blocking times for just class 2 individuals}
+    \item \lstinline[style=pystyle]{get_list_of_results}: \textit{Modify the 
+    outputs so that they are returned in a list format where it is sometimes 
+    easier to be used by other functions.}
+    \item \lstinline[style=pystyle]{get_multiple_runs_results}: \textit{Get the 
+    waiting times, service times and blocking times for multiple runs of the 
+    simulation}
+    \item \lstinline[style=pystyle]{get_average_simulated_state_probabilities}:
+    \textit{This function runs \hfill\break
+    get\_simulated\_state\_probabilities for multiple iterations to eliminate 
+    any stochasticity from the results}
+    \item \lstinline[style=pystyle]
+    {get_mean_blocking_difference_between_two_systems}: \textit{Given a 
+    predefined proportion of class's 2 arrival rate calculate the mean 
+    difference between blocking times of two systems with a given set of 
+    parameters}
+    \item \lstinline[style=pystyle]{calculate_class_2_individuals_best_response}
+    \textit{Obtains the optimal distribution of class 2 individuals such that 
+    the blocking times in the two systems are identical and thus minimised}
+    \item \lstinline[style=pystyle]
+    {extract_total_individuals_and_the_ones_within_target_for_both_classes}:
+    \hfill\break \textit{Extract the total number of individuals that pass 
+    through the model and the total number of individuals that exit the model 
+    within the given target.}
+    \item \lstinline[style=pystyle]
+    {get_mean_proportion_of_individuals_within_target_for_multiple_runs}: 
+    \textit{Get the average proportion of individuals within target by running 
+    the simulation multiple times}
+\end{itemize}
 
 
 
 \subsection{Explanation}
 
-For every service completion Ciw stores all data records in a simulation 
-object~\cite{ciwpython}.
-For the specific library the records that are stored, along with the 
+Based on Ciw's functionality the simulation model stores all data records in a
+Record object. 
+For every event that takes place a record is created with all the relevant
+information.
+For this specific library, the records that are stored, along with the 
 range of values that they can take are as follows:
 
 \begin{multicols}{2}
