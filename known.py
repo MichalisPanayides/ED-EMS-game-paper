@@ -14,6 +14,8 @@ words = {
     "CDF",
     "CDFs",
     "Ciw",
+    "Ciw's",
+    "ciw's",
     "codegreen",
     "commentstyle",
     "DES",
