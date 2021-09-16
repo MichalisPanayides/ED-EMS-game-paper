@@ -110,7 +110,6 @@ Having installed the package, the following code can be used to simulate the
 queueing system defined earlier and get all the data records for a single run.
 
 \begin{lstlisting}[style=pystyle]
-    
     >>> import ambulance_game as abg
     >>> Simulation = abg.simulation.simulate_model(
     ...     lambda_1=3,
@@ -120,10 +119,12 @@ queueing system defined earlier and get all the data records for a single run.
     ...     threshold=10,
     ...     system_capacity=20,
     ...     buffer_capacity=10,
+    ...     seed_num=0,
     ... )
     >>> all_records = Simulation.get_all_records()
     >>> all_records[3]
     Record(id_number=1, customer_class=0, node=2, arrival_date=0.4728763843239206, waiting_time=0.0, service_start_date=0.4728763843239206, service_time=0.5457131455415929, service_end_date=1.0185895298655134, time_blocked=0.0, exit_date=1.0185895298655134, destination=-1, queue_size_at_arrival=0, queue_size_at_departure=4)
+
 \end{lstlisting}
 
 The above block code outputs the fourth individual record from the simulation
@@ -141,7 +142,9 @@ by running:
     >>> mean_wait = np.mean(
     ...    [record.waiting_time for record in all_records if record.node == 2]
     ... )
-    0.2246928220731305
+    >>> mean_wait
+    0.3608431242229529
+
 \end{lstlisting}
 
 This value is the average waiting time of all the customers in the system for a
@@ -166,7 +169,9 @@ and then getting the mean waiting time from all the runs.
     >>> mean_wait = np.mean(
     ...     [np.mean(w.waiting_times) for w in all_simulations]
     ... )
-    0.35037759808989827
+    >>> mean_wait
+    0.3566390561071839
+
 \end{lstlisting}
 
 
@@ -201,9 +206,11 @@ used:
     ...     mu=1,
     ...     num_of_servers=6,
     ...     threshold=10,
+    ...     seed_num=0,
     ... )
-    >>> Simulation.get_all_records()[1]
-    Record(id_number=1, customer_class=0, node=2, arrival_date=0.5391449803891563, waiting_time=0.0, service_start_date=0.5391449803891563, service_time=0.17003700443114755, service_end_date=0.7091819848203038, time_blocked=0.0, exit_date=0.7091819848203038, destination=-1, queue_size_at_arrival=0, queue_size_at_departure=0)
+    >>> Simulation.get_all_records()[4]
+    Record(id_number=2, customer_class=0, node=2, arrival_date=0.5727571550618586, waiting_time=0.0, service_start_date=0.5727571550618586, service_time=0.7159547497671506, service_end_date=1.2887119048290092, time_blocked=0.0, exit_date=1.2887119048290092, destination=-1, queue_size_at_arrival=1, queue_size_at_departure=3)
+
 \end{lstlisting}
 
 Additional arguments that can be passed to the function are:
@@ -226,16 +233,27 @@ service time and the proportion of individuals within target.
     >>> mean_wait = np.mean(
     ...     [w.waiting_time for w in records]
     ... )
+    >>> mean_wait
+    0.23845862661827116
+
     >>> mean_block = np.mean(
     ...     [b.time_blocked for b in records]
     ... )
+    >>> mean_block
+    0.08501727452006658
+
     >>> mean_service = np.mean(
     ...     [s.service_time for s in records]
     ... )
+    >>> mean_service
+    0.7102610863960119
+
     >>> target = 1
     >>> proportion_within_target = np.mean(
     ...     [w.waiting_time <= target for w in records]
     ... )
+    >>> proportion_within_target
+    0.9387470071827614
     
 \end{lstlisting}
 
@@ -260,27 +278,35 @@ numerous times and get the average performance measures out of all the runs.
     ...     num_of_trials=10,
     ... )
     >>> mean_wait = np.mean([
-    ...     np.mean(w.waiting_times) for w in mean_simulations
+    ...     np.mean(w.waiting_times) for w in all_simulations
     ... ])
+    >>> mean_wait
+    0.35585979549204577
+
     >>> mean_service = np.mean([
-    ...     np.mean(s.service_times) for s in mult_results
+    ...     np.mean(s.service_times) for s in all_simulations
     ... ])
+    >>> mean_service
+    1.002184850213415
+
     >>> mean_block = np.mean([
-    ...     np.mean(b.blocking_times) for b in mult_results
+    ...     np.mean(b.blocking_times) for b in all_simulations
     ... ])
+    >>> mean_block
+    0.3976966024549059
+
 \end{lstlisting}
 
 To get the average proportion of individuals within target, run the following
 code:
 
 \begin{lstlisting}[style=pystyle]
-    >>> import ambulance_game as abg
+    >>> import numpy as np
     >>> (
     ...     overall_proportion,
     ...     class_1_proportion,
     ...     class_2_proportion,
-    ... ) = abg.simulation.
-    get_mean_proportion_of_individuals_within_target_for_multiple_runs(    
+    ... ) = abg.simulation.get_mean_proportion_of_individuals_within_target_for_multiple_runs(    
     ...     lambda_1=3,
     ...     lambda_2=2,
     ...     mu=1,
@@ -293,6 +319,15 @@ code:
     ...     runtime=2000,
     ...     target=1,
     ... )
+    >>> np.mean(overall_proportion)
+    0.45785790578122043
+
+    >>> np.mean(class_1_proportion)
+    0.4406768928300989
+
+    >>> np.mean(class_2_proportion)
+    0.4840634188366037
+    
 \end{lstlisting}
 % TODO: Fix code for proportion of individuals within time target
 
