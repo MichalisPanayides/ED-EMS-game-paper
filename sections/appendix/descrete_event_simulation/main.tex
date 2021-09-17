@@ -331,6 +331,97 @@ code:
 \end{lstlisting}
 % TODO: Fix code for proportion of individuals within time target
 
+To get the steady state probabilities of the model based on the simulation the
+following code can be used:
+\begin{lstlisting}[style=pystyle]
+    >>> import numpy as np
+    >>> import ambulance_game as abg
+    >>> simulation_object = abg.simulation.simulate_model(
+    ...     lambda_1=1,
+    ...     lambda_2=2,
+    ...     mu=2,
+    ...     num_of_servers=2,
+    ...     threshold=3,
+    ...     system_capacity=4,
+    ...     buffer_capacity=2,
+    ...     seed_num=0,
+    ...     runtime=2000,
+    ... )
+    >>> probs = abg.simulation.get_simulated_state_probabilities(
+    ...    simulation_object=simulation_object,
+    ... )
+    >>> np.round(probs, decimals=3)
+    array([[0.166, 0.266, 0.192, 0.147, 0.025],
+           [  nan,   nan,   nan, 0.094, 0.024],
+           [  nan,   nan,   nan, 0.058, 0.027]])
+
+    >>> np.nansum(probs)
+    1.0
+
+\end{lstlisting}
+
+Similarly to get the average steady state probabilities over multiple runs,
+one can use:
+
+\begin{lstlisting}[style=pystyle]
+    >>> import numpy as np
+    >>> import ambulance_game as abg
+    >>> probs = abg.simulation.get_average_simulated_state_probabilities(
+    ...     lambda_1=1,
+    ...     lambda_2=2,
+    ...     mu=2,
+    ...     num_of_servers=2,
+    ...     threshold=3,
+    ...     system_capacity=4,
+    ...     buffer_capacity=2,
+    ...     seed_num=0,
+    ...     runtime=2000,
+    ...     num_of_trials=10,
+    ... )
+    >>> np.round(probs, decimals=3)
+    array([[0.18 , 0.267, 0.197, 0.144, 0.024],
+           [  nan,   nan,   nan, 0.085, 0.022],
+           [  nan,   nan,   nan, 0.054, 0.026]])
+    
+    >>> np.nansum(probs)
+    1.0
+
+\end{lstlisting}
+
+In the scenario where there are two queueing models and a service that 
+distributes individuals to the models, (i.e. the scenario described in this 
+paper) the simulation can be used to decide what proportion of individuals 
+to send to each the model.
+Note that the output of the function shows the value of \(p_1\), the proportion
+of class 2 individuals to be sent to queueing model 1. 
+
+\begin{lstlisting}[style=pystyle]
+    >>> import ambulance_game as abg
+    >>> abg.simulation.calculate_class_2_individuals_best_response(
+    ...     lambda_2=4,
+    ...     lambda_1_1=1,
+    ...     lambda_1_2=1,
+    ...     mu_1=4,
+    ...     mu_2=3,
+    ...     num_of_servers_1=2,
+    ...     num_of_servers_2=2,
+    ...     threshold_1=3,
+    ...     threshold_2=3,
+    ...     system_capacity_1=3,
+    ...     system_capacity_2=3,
+    ...     buffer_capacity_1=2,
+    ...     buffer_capacity_2=2,
+    ...     seed_num_1=0,
+    ...     seed_num_2=0,
+    ...     num_of_trials=3,
+    ...     warm_up_time=100,
+    ...     runtime=1000,
+    ... )
+    0.6343260586929469
+
+\end{lstlisting}
+
+
 \subsection{Reference}
 The primary tool that was used in the construction of the discrete event 
 simulation model was the python library \texttt{ciw}.
@@ -348,8 +439,6 @@ model:
     class and replaces two methods.}
     \item \lstinline[style=pystyle]{simulate_model}: \textit{Simulate the model
     by using the custom node and returning the simulation object}
-    \item \lstinline[style=pystyle]{get_simulated_state_probabilities}: \textit{
-    Calculates the vector pi in a dictionary format or an array format}
     \item \lstinline[style=pystyle]{extract_times_from_records}: \textit{Get the
     required times (waiting, service, blocking) out of ciw's records where all 
     individuals are treated the same way}
@@ -362,6 +451,17 @@ model:
     \item \lstinline[style=pystyle]{get_multiple_runs_results}: \textit{Get the 
     waiting times, service times and blocking times for multiple runs of the 
     simulation}
+    \item \lstinline[style=pystyle]
+    {extract_total_individuals_and_the_ones_within_target_for_both_classes}:
+    \hfill\break \textit{Extract the total number of individuals that pass 
+    through the model and the total number of individuals that exit the model 
+    within the given target.}
+    \item \lstinline[style=pystyle]
+    {get_mean_proportion_of_individuals_within_target_for_multiple_runs}: 
+    \textit{Get the average proportion of individuals within target by running 
+    the simulation multiple times}
+    \item \lstinline[style=pystyle]{get_simulated_state_probabilities}: \textit{
+    Calculates the vector \(\pi\) in a dictionary format or an array format}
     \item \lstinline[style=pystyle]{get_average_simulated_state_probabilities}:
     \textit{This function runs \hfill\break
     get\_simulated\_state\_probabilities for multiple iterations to eliminate 
@@ -374,15 +474,6 @@ model:
     \item \lstinline[style=pystyle]{calculate_class_2_individuals_best_response}
     \textit{Obtains the optimal distribution of class 2 individuals such that 
     the blocking times in the two systems are identical and thus minimised}
-    \item \lstinline[style=pystyle]
-    {extract_total_individuals_and_the_ones_within_target_for_both_classes}:
-    \hfill\break \textit{Extract the total number of individuals that pass 
-    through the model and the total number of individuals that exit the model 
-    within the given target.}
-    \item \lstinline[style=pystyle]
-    {get_mean_proportion_of_individuals_within_target_for_multiple_runs}: 
-    \textit{Get the average proportion of individuals within target by running 
-    the simulation multiple times}
 \end{itemize}
 
 
