@@ -103,7 +103,7 @@ This model will be studied by using
 Install the created library in your python environment, by running the 
 following command in the command line:
 \begin{lstlisting}[style=terminalstyle]
-    $ pip install ambulance_game
+    $ python -m pip install ambulance_game
 \end{lstlisting}
 
 Having installed the package, the following code can be used to simulate the 
@@ -129,7 +129,7 @@ queueing system defined earlier and get all the data records for a single run.
 
 The above block code outputs the fourth individual record from the simulation
 object.
-The simulation object can be used to view the every event that occurred in the 
+The simulation object can be used to view every event that occurred in the 
 simulation 
 The data records can then be used to get overall performance measures about the
 constructed queueing model.
@@ -180,7 +180,7 @@ and then getting the mean waiting time from all the runs.
 The package can be installed by either running:
 
 \begin{lstlisting}[style=terminalstyle]
-    $ pip install ambulance_game
+    $ python -m pip install ambulance_game
 \end{lstlisting}
 
 in the command line or via the instructions provided in the GitHub repository.
@@ -198,6 +198,7 @@ are the following:
 
 To get the simulation object with all the data records, the following code can be
 used:
+
 \begin{lstlisting}[style=pystyle]
     >>> import ambulance_game as abg
     >>> Simulation = abg.simulation.simulate_model(
@@ -223,7 +224,7 @@ Additional arguments that can be passed to the function are:
     \item \textit{runtime}: How long to run the simulation for.
 \end{itemize}
 
-From a single run of the simulation the data records can be used the get the
+From a single run of the simulation the data records can be used to get the
 average for certain performance measures. 
 The following code can be used to get the mean waiting time, blocking time, 
 service time and the proportion of individuals within target.
@@ -258,7 +259,7 @@ service time and the proportion of individuals within target.
 \end{lstlisting}
 
 
-To eliminate any stochasticity in the simulation, the simulation can be run
+To reduce the effects of stochasticity in the simulation, the simulation can be run
 numerous times and get the average performance measures out of all the runs.
 
 
