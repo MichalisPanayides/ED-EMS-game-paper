@@ -177,6 +177,7 @@ and then getting the mean waiting time from all the runs.
 
 \subsection{How-to guide}
 
+\subsubsection{How to install:}
 The package can be installed by either running:
 
 \begin{lstlisting}[style=terminalstyle]
@@ -185,7 +186,10 @@ The package can be installed by either running:
 
 in the command line or via the instructions provided in the GitHub repository.
 % TODO: Cite repository
-The required arguments that need to be passed to the simulate\_model() function
+
+\subsubsection{How to simulate the model:}
+The required arguments that need to be passed to the 
+\lstinline[style=pystyle]{simulate_model()} function
 are the following:
 \begin{itemize}
     \item lambda\_1 (\(\lambda_1\)): The arrival rate of class 1 individuals.
@@ -216,14 +220,15 @@ used:
 
 Additional arguments that can be passed to the function are:
 \begin{itemize}
-    \item \textit{system\_capacity}: The maximum number of individuals in 
+    \item \textit{system\_capacity} (\(N\)): The maximum number of individuals in 
     waiting zone 2.
-    \item \textit{buffer\_capacity}: The maximum number of individuals in 
+    \item \textit{buffer\_capacity} \(M\): The maximum number of individuals in 
     waiting zone 1.
     \item \textit{seed\_num}: The seed number for the random number generator.
     \item \textit{runtime}: How long to run the simulation for.
 \end{itemize}
 
+\subsubsection{How to get the performance measures for a single run:}
 From a single run of the simulation the data records can be used to get the
 average for certain performance measures. 
 The following code can be used to get the mean waiting time, blocking time, 
@@ -259,9 +264,9 @@ service time and the proportion of individuals within target.
 \end{lstlisting}
 
 
-To reduce the effects of stochasticity in the simulation, the simulation can be run
-numerous times and get the average performance measures out of all the runs.
-
+\subsubsection{How to get the average performance measures:}
+To reduce the effects of stochasticity in the simulation, the simulation can be 
+run numerous times and get the average performance measures out of all the runs.
 
 \begin{lstlisting}[style=pystyle]
     >>> import numpy as np
@@ -332,6 +337,8 @@ code:
 \end{lstlisting}
 % TODO: Fix code for proportion of individuals within time target
 
+\subsubsection{How to get the steady state probabilities vector \( \pi \):}
+
 To get the steady state probabilities of the model based on the simulation the
 following code can be used:
 \begin{lstlisting}[style=pystyle]
@@ -360,7 +367,6 @@ following code can be used:
     >>> np.round(total, decimals=5)
     1.0
        
-
 \end{lstlisting}
 
 Similarly to get the average steady state probabilities over multiple runs,
@@ -391,6 +397,10 @@ one can use:
     1.0
 
 \end{lstlisting}
+
+
+\subsubsection{How to get the optimal distribution of class 2 individuals among 2 
+queuing models:}
 
 In the scenario where there are two queueing models and a service that 
 distributes individuals to the models, (i.e. the scenario described in this 
