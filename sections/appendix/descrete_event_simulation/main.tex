@@ -282,6 +282,7 @@ run numerous times and get the average performance measures out of all the runs.
     ...     seed_num=0,
     ...     runtime=2000,
     ...     num_of_trials=10,
+    ...     target=1,
     ... )
     >>> mean_wait = np.mean([
     ...     np.mean(w.waiting_times) for w in all_simulations
@@ -301,39 +302,9 @@ run numerous times and get the average performance measures out of all the runs.
     >>> mean_block
     0.3976966024549059
 
-\end{lstlisting}
-
-To get the average proportion of individuals within target, run the following
-code:
-
-\begin{lstlisting}[style=pystyle]
-    >>> import numpy as np
-    >>> (
-    ...     overall_proportion,
-    ...     class_1_proportion,
-    ...     class_2_proportion,
-    ... ) = abg.simulation.get_mean_proportion_of_individuals_within_target_for_multiple_runs(    
-    ...     lambda_1=3,
-    ...     lambda_2=2,
-    ...     mu=1,
-    ...     num_of_servers=6,
-    ...     threshold=10,
-    ...     system_capacity=20,
-    ...     buffer_capacity=10,
-    ...     seed_num=0,
-    ...     num_of_trials=10,
-    ...     runtime=2000,
-    ...     target=1,
-    ... )
-    >>> np.mean(overall_proportion)
+    >>> np.mean([p.proportion_within_target for p in all_simulations])
     0.45785790578122043
-
-    >>> np.mean(class_1_proportion)
-    0.4406768928300989
-
-    >>> np.mean(class_2_proportion)
-    0.4840634188366037
-    
+        
 \end{lstlisting}
 % TODO: Fix code for proportion of individuals within time target
 
