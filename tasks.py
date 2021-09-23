@@ -60,6 +60,9 @@ def proselint(c):
         expected_errors = (
             "annotations.misc",
             "leonard.exclamation.30ppm",
+            "typography.symbols.ellipsis",
+            "typography.symbols.sentence_spacing",
+            "security.credit_card",
         )
         updated_errors = []
         for error in errors:
@@ -90,3 +93,11 @@ def alex(c):
     all_tex_files = list(pathlib.Path().glob("**/*.tex"))
     for file in all_tex_files:
         c.run(f"alex {file}")
+
+
+@task
+def doctests(c):
+    """
+    Run doctests
+    """
+    c.run('python -m pytest --doctest-glob="*.tex"')
