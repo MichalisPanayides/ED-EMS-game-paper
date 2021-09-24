@@ -153,10 +153,10 @@ Thus, its objective is to minimise the blocked time of the individuals
 that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
 decision of the distributor is the proportion of lost individuals.
-Equation \ref{eq:obj-distributor} can be used to capture a mixture 
+Equation \ref{eq:obj_distributor} can be used to capture a mixture 
 between the two objectives.
 
-\begin{equation}\label{eq:obj-distributor}
+\begin{equation}\label{eq:obj_distributor}
     \alpha P(L_A) + (1 - \alpha) B_A = 
     \alpha P(L_B) + (1 - \alpha) B_B
 \end{equation}
@@ -166,7 +166,7 @@ where high \(\alpha\) indicates a higher weight on the proportion of lost
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
 
-Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj-distributor} gives
+Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj_distributor} gives
 an imperfect information extensive form game. 
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
@@ -181,7 +181,7 @@ individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates th
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}[-, node distance = 3cm, scale=0.8]
-        \node[anchor=north](HA){\(H_A\)};
+        \node[anchor=north](HA){\(Q_A\)};
         \node[anchor=north](HA_d1) at (3, 2){.};
         \node[anchor=north](HA_d2) at (3, -2){.};
     
@@ -190,7 +190,7 @@ individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates th
         \path (HA_d1) edge [bend left] node {}(HA_d2);
         \path (HA_d1) [dashed] edge node {}(HA_d2);
     
-        \node[anchor=north](HB) at (4.1, 0){\(H_B\)};
+        \node[anchor=north](HB) at (4.1, 0){\(Q_B\)};
         \node[anchor=north](HB_d1) at (6.9, 2){.};
         \node[anchor=north](HB_d2) at (6.9, -2){.};
     
@@ -212,18 +212,17 @@ individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates th
 \end{figure}
 
 The first 
-queueing system \(H_A\) decides on a threshold, then the second system \(H_B\)
-chooses its own threshold, without knowing the strategy of \(H_A\), and finally
+queueing system \(Q_A\) decides on a threshold, then the second system \(Q_B\)
+chooses its own threshold, without knowing the strategy of \(Q_A\), and finally
 the distributor makes its choice. Note here that the dotted line represents the
-fact that \(H_B\) is unaware of the state of the game when making its own 
-decisions. The game can thus be partitioned into a normal form game between the
-two queueing systems and finding the distributor's best choice. 
+fact that \(Q_B\) is unaware of the state of the game when making its own 
+decisions. 
 
 In order to define the normal form game the two payoff matrices of the players 
 are required. From equation \ref{eq:obj-queueing-systems} the utilities of the
 players can be formulated as:
 
-\begin{equation}
+\begin{equation} \label{eq:payoff-entry}
     U_{T_1, T_2}^i = \quad -\left( 
         \hat{P} - P(W_i < R) 
     \right)^2
@@ -232,7 +231,7 @@ players can be formulated as:
 Consequently, the payoff matrices of the game can be populated by these 
 utilities:
 
-\begin{equation} \label{eq:payoff-matrices}
+\begin{equation} \label{eq:payoff_matrices}
     A = 
     \begin{pmatrix}
         U_{1,1}^A & U_{1,2}^A & \dots & U_{1,N_B}^A \\
@@ -251,3 +250,4 @@ utilities:
 
 Based on the choice of strategy of these two players the distributor will then 
 make their own choice of the proportion of individuals to send to each system.
+
