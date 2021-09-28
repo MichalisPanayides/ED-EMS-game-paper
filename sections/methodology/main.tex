@@ -76,7 +76,7 @@ The payoff matrices and their utilities are defined by equations
 
 Similarly, the entries of the routing matrix are defined by equation 
 (\ref{eq:obj_distributor}):
-% TODO: Make sure this is defined PROPERLY and CONSISTENTLY in model_overview section or here
+% TODO: Make sure this is defined PROPERLY and CONSISTENTLY in model_overview section or here in model_overview section or here
 \begin{equation*}
     (p_A, p_B) \quad s.t. \quad 
     \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
@@ -121,6 +121,91 @@ The game can thus be partitioned into a normal form game between the
 two queueing systems and then finding the distributor's best strategy. 
 
 \subsection{Backwards Induction}
+
+In order to populate the payoff matrices and the routing matrix the method
+of backwards induction is used.
+Consider figure \ref{fig:imperfect-info-game} and the flow of the game that was
+described (i.e. \(Q_A, Q_B \rightarrow D\)).
+Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
+matrix \(R\) the entries of the matrices are calculated in a backwards way 
+(\(D \rightarrow Q_A, Q_B\)). 
+Thus for every pair of strategies \(T_A, T_B\), the proportion of individuals 
+that are to be transported to each queueing system is calculated first. 
+
+Consider a game where the capacities of the two systems are \(N_A = 4\) and 
+\(N_B = 3\).
+The strategy space of players \(Q_A\) and \(Q_B\) would then be 
+\(T_A = \{1, 2, 3, 4\}\) and \(T_B = \{1, 2, 3\}\) respectively.
+Now, starting from an arbitrary starting point of \(T_A=1\) and \(T_B=1\), the
+corresponding entry of the routing matrix the routing matrix can be calculated.
+Using equation \ref{eq:obj_distributor} for \(T_A=1\) and \(T_B=1\):
+
+\begin{equation*}
+    (p_A, p_B) \quad s.t. \quad 
+    \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
+    \alpha L_B(p_B) + (1 - \alpha) B_B(p_B)
+\end{equation*}
+
+The above equation can be solved by using Brent's bisection algorithm.
+% TODO: Cite Brent's algorithm
+The calculated value of \(p_A\) corresponds to the entry on the first row and 
+first column of the routing matrix:
+
+\begin{equation}\label{eq:routing_matrix_1_1}
+    R = 
+    \begin{pmatrix}
+        p_{1,1}^A & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}
+\end{equation}
+
+In fact all remaining values of the routing matrix can be calculated by
+solving \(N \times M\) similar equations using Brent's bisection algorithm.
+Therefore, having calculated the entire routing matrix the payoff matrices can
+be calculated.
+Consider once again the case of \(T_A=1, T_B=1\). 
+
+% TODO: Make sure this is defined PROPERLY and CONSISTENTLY in model_overview section or here
+\begin{equation*}
+    U_{1, 1}^A = \quad 1 -\left( 
+        \hat{P} - P(W_A < R) 
+    \right)^2,
+    \quad
+    U_{1, 1}^B = \quad 1 -\left( 
+        \hat{P} - P(W_B < R) 
+    \right)^2 \tag{\ref{eq:payoff-entry} revisited}
+\end{equation*}
+
+These are the utilities of players \(A\) and \(B\) when both players choose a
+strategy of \(T = 1\).
+% TODO: Change R everywhere to t
+Here \(R\) is the predefined waiting time target to be met by a percentage of 
+individuals \( \hat{P} \) and \(P(W_i < R)\) is properly defined in section
+\ref{sec:proportion_within_target}.
+
+\begin{equation}\label{eq:payoff_matrices_1_1}
+    A = 
+    \begin{pmatrix}
+        U_{1, 1}^A & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}, \quad
+    B = 
+    \begin{pmatrix}
+        U_{1, 1}^B & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}
+\end{equation}
+
+Similar to the routing matrix, the above procedure can be repeated for all 
+possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
+matrices. 
+
 
 \subsection{Nash Equilibrium}
 
