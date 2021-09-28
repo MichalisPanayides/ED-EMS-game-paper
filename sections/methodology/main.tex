@@ -76,9 +76,12 @@ The payoff matrices and their utilities are defined by equations
 
 Similarly, the entries of the routing matrix are defined by equation 
 (\ref{eq:obj_distributor}):
+% TODO: Make sure this is defined PROPERLY and CONSISTENTLY in model_overview section or here
 \begin{equation*}
-    p_A, p_B \quad s.t. \quad \alpha P(L_A) + (1 - \alpha) B_A = \alpha P(L_B) 
-    + (1 - \alpha) B_B \tag{\ref{eq:obj_distributor} revisited}
+    (p_A, p_B) \quad s.t. \quad 
+    \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
+    \alpha L_B(p_B) + (1 - \alpha) B_B(p_B)
+    \tag{\ref{eq:obj_distributor} revisited}
 \end{equation*}
 
 Equation \ref{eq:obj_distributor} is properly defined and explained in section 
@@ -88,7 +91,7 @@ thresholds we can get the full routing matrix that consists of the proportions
 to send to queueing system A (\(p_A\)) and to queueing system B (\(p_B\)).
 
 \begin{equation}\label{eq:routing_matrix}
-    R_A = 
+    R = 
     \begin{pmatrix}
         (p_{1,1}^A, p_{1,1}^B) & (p_{1,2}^A, p_{1,2}^B) & \dots & 
         (p_{1,N_B}^A, p_{1,N_B}^B) \\
@@ -97,6 +100,20 @@ to send to queueing system A (\(p_A\)) and to queueing system B (\(p_B\)).
         \vdots & \vdots & \ddots & \vdots \\
         (p_{N_A,1}^A, p_{N_A,1}^B) & (p_{N_A,2}^A, p_{N_A,2}^B) & \dots & 
         (p_{N_A,N_B}^A, p_{N_A,N_B}^B) \\
+    \end{pmatrix}
+\end{equation}
+
+Note that since \(p_{i,j}^A + p_{i,j}^B = 1\) the routing matrix needs only to
+store one of the two values; either \(p_{i,j}^A\) or \(p_{i,j}^B\).
+Thus, the routing matrix \(R\) can be simplified to:
+
+\begin{equation}\label{eq:routing_matrix_simplified}
+    R = 
+    \begin{pmatrix}
+        p_{1,1}^A & p_{1,2}^A & \dots & p_{1,N_B}^A \\
+        p_{2,1}^A & p_{2,2}^A & \dots & p_{2,N_B}^A \\
+        \vdots & \vdots & \ddots & \vdots \\
+        p_{N_A,1}^A & p_{N_A,2}^A & \dots & p_{N_A,N_B}^A \\
     \end{pmatrix}
 \end{equation}
 
