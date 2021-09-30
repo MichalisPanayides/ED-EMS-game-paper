@@ -7,7 +7,7 @@ The problem studied is a 3-player normal form game. The players are:
     \item a service that distributes individuals to these two queueing systems.
 \end{itemize}
 
-This is a standard Normal form game~\cite{Maschler2013},  
+This is a standard normal form game~\cite{Maschler2013},  
 in that each player in this game has their own objectives which they aim to 
 optimise.
 More specifically, the queueing systems' objective is captured by an upper bound
@@ -115,10 +115,10 @@ objective, which is to make sure that the waiting time in the first waiting zone
 of a proportion of individuals will be below the predefined target time.
 
 \begin{equation}
-    P(W < R) \geq \hat{P}
+    P(W < t) \geq \hat{P}
 \end{equation}
 
-where \(W\) is the mean waiting time of all individuals, \(R\) is the time 
+where \(W\) is the mean waiting time of all individuals, \(t\) is the time 
 target and \(\hat{P}\) is the percentage of individuals need to be within that 
 target. 
 There are numerous objective functions that can be used to capture this 
@@ -129,7 +129,7 @@ the mean waiting is more than the target time, and completely ignore the
 percentage goal.
 
 \begin{equation}
-    \arg \max_{T_i} \quad P(W_i < R)
+    \arg \max_{T_i} \quad P(W_i < t)
 \end{equation}
 
 A more sophisticated objective function would be to get the proportion 
@@ -137,46 +137,45 @@ of individuals as close to the percentage aim.
 In other words, to find the threshold that minimises the difference between the 
 probability and the percentage goal (or maximise its negation).
 
-\begin{equation}\label{eq:obj-queueing-systems}
-    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < R) \right)^2
+\begin{equation}\label{eq:obj_queueing_systems}
+    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2
 \end{equation}
 
 
 The third player, the distributor has their own choices to make and their own 
 goals to satisfy.
-The strategy set of the third player is the proportion \(0 \leq p \leq 1\) of 
-individuals it sends to the first queueing system (the proportion \(1 - q\) is 
-sent to the second queueing system).
+The strategy set of the third player is the proportion \(0 \leq p_A \leq 1\) of 
+individuals it sends to the first queueing system (the proportion 
+\(p_B = 1 - p_A\) is sent to the second queueing system).
 In addition, the distributor aims to minimise any potential blockages
 that may occur, given the pair of thresholds chosen by the two queueing systems.
-Thus, its objective is to minimise the blocked time of the individuals 
+Thus, its objective is to minimise the blocked time of the individuals (\(B_i\))
 that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
-decision of the distributor is the proportion of lost individuals.
+decision of the distributor is the proportion of lost individuals (\(L_i\)).
 Equation \ref{eq:obj_distributor} can be used to capture a mixture 
-between the two objectives.
-
-\begin{equation}\label{eq:obj_distributor}
-    \alpha P(L_A) + (1 - \alpha) B_A = 
-    \alpha P(L_B) + (1 - \alpha) B_B
-\end{equation}
+between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\).
+\begin{equation*}\label{eq:obj_distributor}
+    (p_A, p_B) \quad s.t. \quad 
+    \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
+    \alpha L_B(p_B) + (1 - \alpha) B_B(p_B)
+\end{equation*}
 
 Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
-
-Using equations \ref{eq:obj-queueing-systems} and \ref{eq:obj_distributor} gives
-an imperfect information extensive form game. 
+Using equations (\ref{eq:obj_queueing_systems}) and (\ref{eq:obj_distributor}) 
+gives an imperfect information extensive form game. 
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players~\cite{Berwanger2008}. In this study the state of the problem that is
 hidden is the threshold that each of the first two players chooses to play.
-In other words, each queueing system chooses to play a strategy without the 
+In other words, each queueing system chooses to play a strategy without 
 knowing the other system's strategy.
 The distributor then, fully aware of the chosen threshold strategies, distributes 
 individuals among the two systems in order to minimise the time that its 
-individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates this. 
+individuals will be blocked. Figure \ref{fig:imperfect_info_game} illustrates this. 
 
 \begin{figure}[ht]
     \centering
@@ -208,7 +207,7 @@ individuals will be blocked. Figure \ref{fig:imperfect-info-game} illustrates th
     \end{tikzpicture}
     \caption{Imperfect information Extensive Form Game between the distributor 
     and the 2 queueing systems}
-    \label{fig:imperfect-info-game}
+    \label{fig:imperfect_info_game}
 \end{figure}
 
 The first 
@@ -219,13 +218,13 @@ fact that \(Q_B\) is unaware of the state of the game when making its own
 decisions. 
 
 In order to define the normal form game the two payoff matrices of the players 
-are required. From equation \ref{eq:obj-queueing-systems} the utilities of the
+are required. From equation \ref{eq:obj_queueing_systems} the utilities of the
 players can be formulated as:
 
-\begin{equation} \label{eq:payoff-entry}
-    U_{T_1, T_2}^i = \quad -\left( 
-        \hat{P} - P(W_i < R) 
-    \right)^2
+\begin{equation} \label{eq:payoff_entry}
+    U_{T_1, T_2}^i = -\left( 
+        \hat{P} - P(W_i < t) 
+    \right)^2 \quad \textbf{where } i \in \{A, B\}
 \end{equation}
 
 Consequently, the payoff matrices of the game can be populated by these 
@@ -238,7 +237,7 @@ utilities:
         U_{2,1}^A & U_{2,2}^A & \dots & U_{2,N_B}^A \\
         \vdots & \vdots & \ddots & \vdots \\
         U_{N_A,1}^A & U_{N_A,2}^A & \dots & U_{N_A,N_B}^A \\
-    \end{pmatrix},
+    \end{pmatrix}, \,
     B = 
     \begin{pmatrix}
         U_{1,1}^B & U_{1,2}^B & \dots & U_{1,N_B}^B \\

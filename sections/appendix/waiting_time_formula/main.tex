@@ -83,7 +83,7 @@ in the first row will return a non-zero sojourn time.
 Thus, the expected waiting time of type 1 and type 2 individuals when upon
 arriving at state \( (u,v) \) can be given by the following recursive formulas:
 
-\begin{equation} \label{eq:waiting-time-at-each-state-type-1}
+\begin{equation} \label{eq:waiting_time_at_each_state_type_1}
     w^{(1)}(u,v) = 
     \begin{cases} 
         0, \hspace{4.85cm} & \textbf{if } (u,v) \notin S_w \\
@@ -92,7 +92,7 @@ arriving at state \( (u,v) \) can be given by the following recursive formulas:
     \end{cases}
 \end{equation}
 
-\begin{equation} \label{eq:waiting-time-at-each-state-type-2}
+\begin{equation} \label{eq:waiting_time_at_each_state_type_2}
     w^{(2)}(u,v) = 
     \begin{cases} 
         0, \hspace{4.85cm} & \textbf{if } (u,v) \notin S_w \\
@@ -105,12 +105,12 @@ Finally, the mean waiting time can be calculated by summing over all expected
 waiting times of accepting states multiplied by the probability of being at that 
 state and dividing by the probability of being in any accepting state.
 
-\begin{equation} \label{eq:recursive-waiting-time-type-1}
+\begin{equation} \label{eq:recursive_waiting_time_type_1}
     W^{(1)} = \frac{\sum_{(u,v) \in S_A^{(1)}} w^{(1)}(u,v) 
     \pi_{(u,v)}}{\sum_{(u,v) \in S_A^{(1)}} \pi_{(u,v)}}
 \end{equation}
 
-\begin{equation}\label{eq:recursive-waiting-time-type-2}
+\begin{equation}\label{eq:recursive_waiting_time_type_2}
     W^{(2)} = \frac{\sum_{(u,v) \in S_A^{(2)}} w^{(2)}(u,v) \pi_{(u,v)}}
     {\sum_{(u,v) \in S_A^{(2)}} \pi_{(u,v)}}
 \end{equation}
