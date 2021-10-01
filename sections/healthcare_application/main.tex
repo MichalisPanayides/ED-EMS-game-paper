@@ -115,39 +115,10 @@ Therefore it might not be the best way to describe human behaviour.
 Since the work of Maynard Smith \cite{smith1986evolutionary} evolutionary game 
 theory gives the tools for the emergence of stable behaviour.
 One such model that allows for asymmetric payoffs, as is the case above, is 
-replicator dynamics.
+replicator dynamics described in section 
+(\ref{sec:methodology_learning_algorithms}).
 Stable outcomes of this algorithm will correspond to a subset of Nash
 equilibria but more importantly, will give a model of emergent behaviour. 
-
-In order to analyse the strategies played by the two EDs, the learning algorithm
-asymmetric replicator dynamics is used \cite{asymmetricreplicatordynamics}.
-The two players are treated as two separate populations where each 
-individual in the population is assigned a strategy. 
-As the game progresses the proportion of each player playing each strategy 
-changes based on their previous interactions.
-The fitness of each strategy is defined as:
-
-\begin{equation}\label{eq:asymmetric_fitness}
-    f_x = Ay, \quad f_y = x^T B
-\end{equation}
-
-Here, \(x \in \mathbb{R}^{m \times 1} \) and
-\(y \in \mathbb{R}^{n \times 1}\) correspond to the proportion of individuals 
-that play each strategy on the two populations.
-Similarly, the average fitness of each strategy is defined as:
-\begin{equation}
-    \phi_x = f_x x^T, \quad \phi_y = f_y y
-\end{equation}
-
-The rate of change of strategy \( i \) of both types of individuals is captured 
-by:
-\begin{equation}
-    \frac{dx}{dt}_i = x_i((f_x)_i - \phi_x), \quad \text{ for all }i
-\end{equation}
-
-\begin{equation}
-    \frac{dy}{dt}_i = y_i((f_y)_i - \phi_y), \quad \text{ for all }i
-\end{equation}
 
 The use of a learning algorithm allows to investigate, not only the outcome of 
 the game, but also how that outcome is reached.
