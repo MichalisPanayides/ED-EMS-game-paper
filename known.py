@@ -43,6 +43,7 @@ words = {
     "nan",
     "nansum",
     "np",
+    "nashpy",
     "num",
     "numpy",
     "Panayides",

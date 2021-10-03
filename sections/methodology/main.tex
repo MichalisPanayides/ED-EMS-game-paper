@@ -150,7 +150,22 @@ Similar to the routing matrix, the above procedure can be repeated for all
 possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
 matrices. 
 
-\subsection{Nash Equilibrium}
+\subsection{Nash Equilibrium}\label{sec:methodology_nash_equilibrium}
+
+Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
+be used to help us find the Nash equilibrium of the game. 
+The Nash equilibrium is the point of the game were both players have no 
+incentive to deviate from their played strategies \cite{kreps1989nash}.
+In other words their chosen strategies are a best response to each other.
+
+The Lemke-Howson algorithm is used to get all Nash equilibria of the game 
+\cite{LemkeHowson}.
+Lemke-Howson uses best response polytopes to get one of the Nash equilibrium of
+the game. 
+By iterating over all possible dropped labels of the best response polytope all
+Nash equilibria can be acquired.
+All game theoretic calculations were done in Python using the Nashpy library 
+\cite{axelrodproject}.
 
 \subsection{Learning Algorithms}\label{sec:methodology_learning_algorithms}
 
