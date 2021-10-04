@@ -48,7 +48,7 @@ the EMS:
     \item \( M_i \): The total parking capacity of ED \(i\in\{1, 2\} \)
     \item \( R \): The time target for both EDs
     \item \( \alpha \in [0, 1] \) : \textit{Weighting} of blocking time and 
-    lost individuals (equation \ref{eq:obj-distributor})
+    lost individuals (equation \ref{eq:obj_distributor})
 \end{itemize}
 
 The strategies of the two EDs are the range of thresholds that they can choose
@@ -61,7 +61,7 @@ As defined in \ref{sec:model_overview}, the interaction between the two EDs
 is a Normal form game that is then used to inform the decision of the EMS.
 Note that the formulated game here assumes that prior to making a choice the 
 EMS knows the strategies that each ED is playing (figure 
-\ref{fig:imperfect-info-game}). This corresponds to reacting to experienced delays.
+\ref{fig:imperfect_info_game}). This corresponds to reacting to experienced delays.
 
 \subsection{Numerical Results}
 
@@ -70,9 +70,7 @@ performance measures of the two hospitals and how to avoid certain inefficient
 situations.
 
 The most commonly used method for analysing normal form games is the Nash 
-equilibrium \cite{kreps1989nash}. 
-The Nash equilibrium is the point of the game were players have no incentive to 
-deviate from their strategy.
+equilibrium described in section \ref{sec:methodology_nash_equilibrium}
 Consider the following game:
 
 \begin{multicols}{3}
@@ -115,43 +113,14 @@ Therefore it might not be the best way to describe human behaviour.
 Since the work of Maynard Smith \cite{smith1986evolutionary} evolutionary game 
 theory gives the tools for the emergence of stable behaviour.
 One such model that allows for asymmetric payoffs, as is the case above, is 
-replicator dynamics.
+replicator dynamics described in section 
+(\ref{sec:methodology_learning_algorithms}).
 Stable outcomes of this algorithm will correspond to a subset of Nash
 equilibria but more importantly, will give a model of emergent behaviour. 
 
-In order to analyse the strategies played by the two EDs, the learning algorithm
-asymmetric replicator dynamics is used \cite{asymmetricreplicatordynamics}.
-The two players are treated as two separate populations where each 
-individual in the population is assigned a strategy. 
-As the game progresses the proportion of each player playing each strategy 
-changes based on their previous interactions.
-The fitness of each strategy is defined as:
-
-\begin{equation}\label{eq:asymmetric_fitness}
-    f_x = Ay, \quad f_y = x^T B
-\end{equation}
-
-Here, \(x \in \mathbb{R}^{m \times 1} \) and
-\(y \in \mathbb{R}^{n \times 1}\) correspond to the proportion of individuals 
-that play each strategy on the two populations.
-Similarly, the average fitness of each strategy is defined as:
-\begin{equation}
-    \phi_x = f_x x^T, \quad \phi_y = f_y y
-\end{equation}
-
-The rate of change of strategy \( i \) of both types of individuals is captured 
-by:
-\begin{equation}
-    \frac{dx}{dt}_i = x_i((f_x)_i - \phi_x), \quad \text{ for all }i
-\end{equation}
-
-\begin{equation}
-    \frac{dy}{dt}_i = y_i((f_y)_i - \phi_y), \quad \text{ for all }i
-\end{equation}
-
 The use of a learning algorithm allows to investigate, not only the outcome of 
 the game, but also how that outcome is reached.
-Consider figure \ref{fig:ard-by-itself}. 
+Consider figure \ref{fig:ard_by_itself}. 
 By running asymmetric replicator dynamics on the system the behaviour that 
 emerges can be observed.
 It can be seen that for this particular set of parameters the strategies of 
@@ -168,7 +137,7 @@ hospital 1 takes longer and goes through numerous strategies to get there.
     \centering
     \includegraphics[scale=0.4, trim=120 0 120 0]{imgs/asymmetric_rd/asymmetric_rd.png}
     \caption{Asymmetric replicator dynamics run}
-    \label{fig:ard-by-itself}
+    \label{fig:ard_by_itself}
 \end{figure}
 
 In order to analyse how efficient the strategies played at every iteration are, 

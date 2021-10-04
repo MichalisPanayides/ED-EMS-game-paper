@@ -1,7 +1,209 @@
-\section{Methodology}
+\section{Methodology}\label{sec:methodology}
+
+Th problem defined in section \ref{sec:model_overview} describes a normal-form
+game between the decision makers of two queueing systems and a third player that 
+decides how to distribute individuals to the systems.
+The strategy space of the two queueing systems is defined as the possible values
+that the threshold parameter can take \(T_i \in (1, N_i)\).
+Then, the distributor has to decide on the proportion of individuals to send to 
+each queueing system \(p_A \text{ and } p_B\), where \(p_A, p_B \in [0, 1] \)
+and \(p_A + p_B = 1\).
+Figure \ref{fig:imperfect_info_game} form section \ref{sec:model_overview} 
+shows a diagrammatic representation of the game to be played and the decisions 
+to be made.
+As described in section \ref{sec:model_overview} queueing system \(A\) decides
+on a strategy, at the same time, queueing system \(B\) chooses its own 
+threshold, unaware of the first queueing system's choice.
+Finally, the distributor makes its choice based on the strategies that the 
+queueing systems chose to play. 
+
+The utilities to each player can be represented by 3 matrices; the two payoff 
+matrices of the normal form game and the routing matrix.
+The payoff matrices and their utilities are defined by equations 
+(\ref{eq:payoff_entry}) and (\ref{eq:payoff_matrices}) in section 
+\ref{sec:model_overview}.
+
+The routing matrix holds the values \((p_A, p_B)\) which are the proportion 
+of class 2 individuals to send to queueing system \(A\) and \(B\).
+Each pair \((p_A, p_B)\) can be calculated using equation 
+(\ref{eq:obj_distributor}) and is essentially
+a best response to the actions of the queueing systems.
+Equation \ref{eq:obj_distributor} is defined and explained in section 
+\ref{sec:model_overview}.
+Thus, using equation \ref{eq:obj_distributor} for all possible sets of 
+thresholds we can get the full routing matrix that consists of the proportions
+to send to queueing system A (\(p_A\)) and to queueing system B (\(p_B\)).
+
+\begin{equation}\label{eq:routing_matrix}
+    R = 
+    \begin{pmatrix}
+        (p_{1,1}^A, p_{1,1}^B) & (p_{1,2}^A, p_{1,2}^B) & \dots & 
+        (p_{1,N_B}^A, p_{1,N_B}^B) \\
+        (p_{2,1}^A, p_{2,1}^B) & (p_{2,2}^A, p_{2,2}^B) & \dots & 
+        (p_{2,N_B}^A, p_{2,N_B}^B) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        (p_{N_A,1}^A, p_{N_A,1}^B) & (p_{N_A,2}^A, p_{N_A,2}^B) & \dots & 
+        (p_{N_A,N_B}^A, p_{N_A,N_B}^B) \\
+    \end{pmatrix}
+\end{equation}
+
+Note that since \(p_{i,j}^A + p_{i,j}^B = 1\) the routing matrix needs only to
+store one of the two values; either \(p_{i,j}^A\) or \(p_{i,j}^B\).
+Thus, the routing matrix \(R\) can be simplified to:
+
+\begin{equation}\label{eq:routing_matrix_simplified}
+    R = 
+    \begin{pmatrix}
+        p_{1,1}^A & p_{1,2}^A & \dots & p_{1,N_B}^A \\
+        p_{2,1}^A & p_{2,2}^A & \dots & p_{2,N_B}^A \\
+        \vdots & \vdots & \ddots & \vdots \\
+        p_{N_A,1}^A & p_{N_A,2}^A & \dots & p_{N_A,N_B}^A \\
+    \end{pmatrix}
+\end{equation}
+
+The game can thus be partitioned into a normal form game between the
+two queueing systems and then finding the distributor's best strategy. 
 
 \subsection{Backwards Induction}
 
-\subsection{Nash Equilibrium}
+In order to populate the payoff matrices and the routing matrix the method
+of backwards induction is used.
+Consider figure \ref{fig:imperfect_info_game} and the flow of the game that was
+described (i.e. \(Q_A, Q_B \rightarrow D\)).
+Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
+matrix \(R\) the entries of the matrices are calculated in a backwards way 
+(\(D \rightarrow Q_A, Q_B\)). 
+Thus for every pair of strategies \(T_A, T_B\), the proportion of individuals 
+that are to be transported to each queueing system is calculated first. 
 
-\subsection{Learning Algorithms}
+Consider a game where the capacities of the two systems are \(N_A = 4\) and 
+\(N_B = 3\).
+The strategy space of players \(Q_A\) and \(Q_B\) would then be 
+\(T_A = \{1, 2, 3, 4\}\) and \(T_B = \{1, 2, 3\}\) respectively.
+Now, starting from an arbitrary starting point of \(T_A=1\) and \(T_B=1\), the
+corresponding entry of the routing matrix the routing matrix can be calculated.
+Using equation (\ref{eq:obj_distributor}) for \(T_A=1\) and \(T_B=1\):
+\begin{align}
+    & \alpha L_A(p_A;T_A=1;T_B=1) + (1 - \alpha) B_A(p_A;T_A=1;T_B=1) = 
+    \nonumber \\
+    & \alpha L_B(p_B;T_A=1;T_B=1) + (1 - \alpha) B_B(p_B;T_A=1;T_B=1) 
+    \label{eq:obj_distributor_1_1}
+\end{align}
+
+The values of \(p_A\) and \(p_B\) that satisfy equation 
+(\ref{eq:obj_distributor_1_1}) are here found numerically using Brent's 
+bisection algorithm~\cite{brent1973algorithms}.
+The calculated value of \(p_A\) corresponds to the entry on the first row and 
+first column of the routing matrix:
+
+\begin{equation}\label{eq:routing_matrix_1_1}
+    R = 
+    \begin{pmatrix}
+        p_{1,1}^A & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}
+\end{equation}
+
+In fact all remaining values of the routing matrix can be calculated by
+solving \(N \times M\) similar equations using Brent's bisection algorithm.
+Therefore, having calculated the entire routing matrix the payoff matrices can
+be calculated.
+Consider once again the case of \(T_A=1, T_B=1\). 
+
+
+\begin{align}
+    U_{1, 1}^A = 1 -\left( 
+        \hat{P} - P(W_A(T_A=1, T_B=1) < t) 
+    \right)^2 \nonumber
+    \\
+    U_{1, 1}^B = 1 -\left( 
+        \hat{P} - P(W_B(T_A=1, T_B=1) < t) 
+    \right)^2 \label{eq:payoff_entry_1_1}
+\end{align}
+
+These are the utilities of players \(A\) and \(B\) when both players choose a
+strategy of \(T = 1\).
+Here \(R\) is the predefined waiting time target to be met by a percentage of 
+individuals \( \hat{P} \) and \(P(W_i < t)\) is properly defined in section
+\ref{sec:proportion_within_target}.
+
+\begin{equation}\label{eq:payoff_matrices_1_1}
+    A = 
+    \begin{pmatrix}
+        U_{1, 1}^A & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}, \quad
+    B = 
+    \begin{pmatrix}
+        U_{1, 1}^B & - & - \\
+        - & - & - \\
+        - & - & - \\
+        - & - & - \\
+    \end{pmatrix}
+\end{equation}
+
+Similar to the routing matrix, the above procedure can be repeated for all 
+possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
+matrices. 
+
+\subsection{Nash Equilibrium}\label{sec:methodology_nash_equilibrium}
+
+Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
+be used to measure some form of emergent behaviour.
+One possibility would be to compute the Nash equilibrium
+which is the point of the game were both players have no 
+incentive to deviate from their played strategies \cite{kreps1989nash}.
+In other words their chosen strategies are a best response to each other.
+
+Computation of Nash equilibria can be done relatively efficiently using the 
+Lemke Howson algorithm~\cite{LemkeHowson}.
+Lemke-Howson uses best response polytopes to get one of the Nash equilibrium of
+the game. 
+Other algorithms exists that will compute all Nash equilibria but 
+for large games the computational complexity becomes problematic.
+All game theoretic calculations were done in Python using the Nashpy library 
+\cite{thenashpyproject}.
+
+\subsection{Learning Algorithms}\label{sec:methodology_learning_algorithms}
+
+Another approach to measuring emergent behaviour is to consider 
+the emergence itself and not only stable end points. 
+Indeed, some Nash equilibria might not arise naturally. 
+Thus, in order to analyse the strategies played by the two EDs, the learning 
+algorithm: asymmetric replicator dynamics is 
+used~\cite{asymmetricreplicatordynamics}.
+The two players are modelled as two separate populations where each 
+individual in the population is assigned a strategy.
+As the game progresses the proportion of each player playing each strategy 
+changes based on their previous interactions.
+The fitness of each strategy is defined as:
+
+\begin{equation}\label{eq:asymmetric_fitness}
+    f_x = Ay, \quad f_y = x^T B
+\end{equation}
+
+Here, \(x \in \mathbb{R}^{m \times 1} \) and
+\(y \in \mathbb{R}^{n \times 1}\) correspond to the proportion of individuals 
+that play each strategy in each population.
+Similarly, the average fitness of each strategy is given by:
+\begin{equation}
+    \phi_x = f_x x^T, \quad \phi_y = f_y y
+\end{equation}
+
+The rate of change of strategy \( i \) of both types of individuals is captured 
+by:
+\begin{equation}
+    \frac{dx}{dt}_i = x_i((f_x)_i - \phi_x), \quad \text{ for all }i
+\end{equation}
+
+\begin{equation}
+    \frac{dy}{dt}_i = y_i((f_y)_i - \phi_y), \quad \text{ for all }i
+\end{equation}
+ 
+In addition to asymmetric replicator dynamics, the learning algorithms
+fictitious play and stochastic fictitious play \cite{fudenberg1998theory}
+were used.
