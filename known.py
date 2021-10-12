@@ -45,6 +45,7 @@ words = {
     "nan",
     "nansum",
     "nashpy",
+    "NHS",
     "np",
     "num",
     "numpy",
