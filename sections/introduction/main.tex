@@ -6,18 +6,20 @@ This is a problem for the ambulance service, since the longer ambulances are
 blocked in the hospital's parking space the longer the patients in them will
 have to wait to receive their treatment but also the longer future patients 
 will be stuck waiting for an ambulance.
-This paper aims to describe a game theoretic model that is informed by a 
+This paper aims to describe a game theoretic model informed by an underlying 
 queueing model motivated by this scenario.
 
 Emergency departments (EDs) are constantly under a lot of pressure to meet 
 targets and satisfy regulations \cite{EmergencyDepartmentWinterPressures}.
 There are various news reports that indicate that this is in fact an ongoing 
-issue that affects both the patients and the ambulance service.
+issue that affects both the patients and the emergency medical services (EMS).
 Due to this blockage patients may spend a considerable amount of time in the 
-back of an ambulance waiting to be dispatched to the ED \cite{mirror}, 
-\cite{thenews}, \cite{bmj}.
-On the other hand though this can also cause ambulances to waste valuable time 
-where they could be attending to new patients \cite{eastanglia}.
+back of an ambulance waiting to be dispatched to the ED.
+Examples of such reports are \cite{mirror}, \cite{thenews} and \cite{bmj} where
+the impact that this issue has on patients is shown. 
+Furthermore, this is also a huge issue for the EMS.
+By blocking the ambulances at the hospital's parking space, valuable time is 
+wasted where ambulances could be attending new patients \cite{eastanglia}.
 
 In the past a number of papers have been published that touch upon the use of 
 queueing models together with game theoretic concepts.
@@ -61,7 +63,6 @@ considered arrivals of batches that can share the parking service.
 Finally, \cite{afeche2007decentralized} examines a tandem network of two M/M/1 
 queues that are ran by two different profit-maximising service providers and 
 receive three different types of customers.
-% TODO: State the gap in the literature
 
 The EDs in the United Kingdom have to follow some set of regulations imposed to 
 them by the NHS.
@@ -72,7 +73,7 @@ An assumption of this work is that some managerial decision making is involved
 in choosing when to start blocking ambulances.
 This paper touches upon the following new aspects:
 \begin{itemize}
-    \item The emergence of gaming behaviour in the emergency department
+    \item The emergence of gaming behaviour between EDs and the EMS.
     \item A queueing model with 2 consecutive waiting spaces where one would 
     serve as a parking space for the ambulances
 \end{itemize}
