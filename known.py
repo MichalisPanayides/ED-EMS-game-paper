@@ -22,6 +22,7 @@ words = {
     "dt",
     "dx",
     "dy",
+    "ED's",
     "EDs",
     "equilibria",
     "erlang",
