@@ -48,23 +48,32 @@ a product instantly and seller 2 is modelled as a make-to-order M/M/1 queue.
 The game that is played requires the two sellers to make a choice on the price 
 of the product and then seller 2 to set a capacity that guarantees a maximum 
 expected delay.
+In the above models, the players are attempting to increase their share of 
+individuals choosing to queue.
+In public healthcare type settings~\cite{knight2013selfish}, this is not 
+necessarily the case. 
+Players might not necessarily aim to maximise the so called `market share'.
+Rather, the overall service needs to be considered as players aim to minimise
+the overall congestion.
 In~\cite{sadat2015can} a healthcare application was studied where patients 
 could choose between two hospitals, where a utility function is derived that is
 based on patients' perceived quality of life.
-In~\cite{knight2013selfish} the impact that individual behaviour has on the 
-efficiency of public services is investigated.
+How individual behaviour based on congestion impacts the efficiency of public 
+services is investigated in~\cite{knight2013selfish}.
 The authors place the individuals' choices between different public services 
 within the formulation of routing games and measure inefficiencies using a 
-concept known as the price of anarchy (\(PoA\))~\cite{koutsoupias1999worst}.
+concept known as the price of anarchy (PoA)~\cite{koutsoupias1999worst}.
 They show that the price of anarchy increases with worth of service and that is
 low for systems with insufficient capacities.
-In \cite{deo2011centralized} the authors study the network effect of ambulance 
+In~\cite{deo2011centralized} the authors study the network effect of ambulance 
 diversion by proposing a non-cooperative game between two EDs that are modelled
 as a queueing network.
 Each ED's objective is to minimise its own waiting time and chooses a diversion
 threshold based on the patients it has.
 In equilibrium both EDs choose to divert ambulances in order to avoid getting
 arrivals from the other ED.
+In this paper this concept is extended by allowing the ambulance service to 
+decide how to distribute its patients among the two EDs.
 
 Another specific part of this research is the construction of a queueing system
 with a tandem buffer and a single service centre.
@@ -113,20 +122,30 @@ model between two queueing systems and a service that distributes individuals
 to them. 
 The resultant model will then be used to explore the emergent dynamics between 
 the three players.
+While giving some consideration to equilibrium behaviour similarly to the 
+work of~\cite{FirmCompetition, FirmCompetition2, deo2011centralized, 
+veltman2005equilibrium}, emergent behaviour is more precisely addressed by 
+considering a number of learning algorithms.
 This study explores two new concepts; getting performance measures for a new
 queueing theoretic model with a tandem buffer and a single service centre and 
-using a learning algorithm to model the emergence of behaviour at the interface
-between Emergency Medical Services (EMS) and the Emergency Department (ED).
+using a learning algorithm to model the emergence of behaviour.
 The model is then applied to the healthcare scenario between two EDs and the 
 EMS while looking into the inefficiencies that emerge and ways to apply some 
 incentive mechanisms to improve them.
 The EDs are modelled as two queueing systems each with a tandem buffer and a 
-service centre where their performance measures of the queueing models are then
-used as the utilities of the game.
+service centre. 
+The performance measures are then used as the utilities of the game.
+The novelty of the queueing model here is a contribution to not only the game 
+theoretic literature but also to the queueing theoretic literature.
+To the authors knowledge, no such model of a tandem queueing model controlled 
+by a strategic decision has been considered. 
+% TODO Be sure if this is correct 
+
 
 This paper first gives an overview of the game theoretic model, then goes on 
-to describe a novel queueing model, and then follows with the methodology that 
-was used to build the game.
+to describe a novel queueing model, and then follows with a number of theoretic 
+results pertaining to the performance measures of the queuing model. 
+These are used to build the utilities of the game.
 Finally, there is a section that describes how this game theoretic framework
 can be applied at the interface between the EMS and EDs together with some 
 analysis on the behaviour that is observed.
