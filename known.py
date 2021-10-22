@@ -31,6 +31,7 @@ words = {
     "hypoexponential",
     "ieeetr",
     "ij",
+    "incentivisation",
     "incentivised",
     "incentivising",
     "keepspaces",
