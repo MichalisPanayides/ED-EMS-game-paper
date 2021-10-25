@@ -9,17 +9,22 @@ performance measure.
 The proportion of type 1 individuals within a time target:
 
 \begin{equation}\label{eq:proportion_within_target_type_1}
-    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} P(X_{(u,v)}^{(1)} < t) 
+    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} 
+    P(X_{\mathcal{A}_1(u,v)}^{(1)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(1)}} \pi_{u,v}}
 \end{equation}
 
 The proportion of type 2 individuals within a time target:
 
 \begin{equation}\label{eq:proportion_within_target_type_2}
-    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} P(X_{(u,v)}^{(2)} < t) 
+    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} 
+    P(X_{\mathcal{A}_2(u,v)}^{(2)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(2)}} \pi_{u,v}}
 \end{equation}
 
+The terms \(\mathcal{A}_1(u,v)\) and \(\mathcal{A}_2(u,v)\) are defined by
+equations \ref{eq:arriving_state_class_1} and \ref{eq:arriving_state_class_2}
+in section \ref{sec:blocking_time}.
 The overall proportion individuals within a time target (where \(P_{L'_1}\) and 
 \(P_{L'_1}\) are defined in (\ref{eq:proportion_of_accepting_individuals})):
 

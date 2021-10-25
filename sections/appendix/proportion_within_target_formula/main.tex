@@ -1,4 +1,5 @@
-\section{Mean blocking time} \label{sec:appendix_mean_proportion}
+\section{Mean proportion of individuals within target} 
+\label{sec:appendix_mean_proportion}
     
 In order to consider such measure though one would need to obtain the 
 distribution of time in the system for all individuals. 
@@ -445,8 +446,8 @@ Thus, the CDF of the random variables \(X_{(u,v)}^{(1)}\) and
 \end{equation}
 
 
-In addition, the set of accepting states for type 1 \(S_A^{(1)}\) and type 2 
-\(S_A^{(2)}\) individuals defined in (\ref{eq:accepting_states_type_1}) and 
+In addition, the set of accepting states for type 1 (\(S_A^{(1)}\)) and type 2 
+(\(S_A^{(2)}\)) individuals defined in (\ref{eq:accepting_states_type_1}) and 
 (\ref{eq:accepting_states_type_2}) are also needed here.
 Note here that, \(S\) denotes the set of all states of the Markov chain model. 
 
@@ -464,15 +465,20 @@ weighted average of the probability below target of all states in the Markov
 model.
 
 \begin{equation}
-    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} P(X_{u,v}^{(1)} < t) 
+    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} 
+    P(X_{\mathcal{A}_1(u,v)}^{(1)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(1)}} \pi_{u,v}}
 \end{equation}
 
 \begin{equation}
-    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} P(X_{u,v}^{(2)} < t) 
+    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} 
+    P(X_{\mathcal{A}_2(u,v)}^{(2)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(2)}} \pi_{u,v}}
 \end{equation}
 
+Note that \(\mathcal{A}_1(u,v)\) and \(\mathcal{A}_2(u,v)\) are defined in 
+section \ref{sec:blocking_time} by equations \ref{eq:arriving_state_class_1} 
+and \ref{eq:arriving_state_class_2}.
 
 \paragraph{Overall proportion within target}
 
