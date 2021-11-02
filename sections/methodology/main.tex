@@ -4,7 +4,7 @@ Th problem defined in section \ref{sec:model_overview} describes a normal-form
 game between the decision makers of two queueing systems and a third player that 
 decides how to distribute individuals to the systems.
 The strategy space of the two queueing systems is defined as the possible values
-that the threshold parameter can take \(T_i \in (1, N_i)\).
+that the threshold parameter can take \(T_i \in [1, N_i]\).
 Then, the distributor has to decide on the proportion of individuals to send to 
 each queueing system \(p_A \text{ and } p_B\), where \(p_A, p_B \in [0, 1] \)
 and \(p_A + p_B = 1\).
@@ -64,7 +64,7 @@ Thus, the routing matrix \(R\) can be simplified to:
 The game can thus be partitioned into a normal form game between the
 two queueing systems and then finding the distributor's best strategy. 
 
-\subsection{Backwards Induction}
+\subsection{Backwards induction}
 
 In order to populate the payoff matrices and the routing matrix the method
 of backwards induction is used.
@@ -126,7 +126,7 @@ Consider once again the case of \(T_A=1, T_B=1\).
 These are the utilities of players \(A\) and \(B\) when both players choose a
 strategy of \(T = 1\).
 Here \(R\) is the predefined waiting time target to be met by a percentage of 
-individuals \( \hat{P} \) and \(P(W_i < t)\) is properly defined in section
+individuals \( \hat{P} \) and \(P(W_i < t)\) is defined in section
 \ref{sec:proportion_within_target}.
 
 \begin{equation}\label{eq:payoff_matrices_1_1}
@@ -150,7 +150,7 @@ Similar to the routing matrix, the above procedure can be repeated for all
 possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
 matrices. 
 
-\subsection{Nash Equilibrium}\label{sec:methodology_nash_equilibrium}
+\subsection{Nash equilibrium}\label{sec:methodology_nash_equilibrium}
 
 Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
 be used to measure some form of emergent behaviour.
@@ -159,8 +159,8 @@ which is the point of the game were both players have no
 incentive to deviate from their played strategies \cite{kreps1989nash}.
 In other words their chosen strategies are a best response to each other.
 
-Computation of Nash equilibria can be done relatively efficiently using the 
-Lemke Howson algorithm~\cite{LemkeHowson}.
+Computation of Nash equilibria can be done in a relatively efficient way using 
+the Lemke Howson algorithm~\cite{LemkeHowson}.
 Lemke-Howson uses best response polytopes to get one of the Nash equilibrium of
 the game. 
 Other algorithms exists that will compute all Nash equilibria but 
@@ -168,7 +168,7 @@ for large games the computational complexity becomes problematic.
 All game theoretic calculations were done in Python using the Nashpy library 
 \cite{thenashpyproject}.
 
-\subsection{Learning Algorithms}\label{sec:methodology_learning_algorithms}
+\subsection{Learning algorithms}\label{sec:methodology_learning_algorithms}
 
 Another approach to measuring emergent behaviour is to consider 
 the emergence itself and not only stable end points. 

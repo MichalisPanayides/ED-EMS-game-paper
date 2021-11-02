@@ -8,8 +8,8 @@ This is a queuing model that consists of two waiting spaces, one for each type
 of individual.
 
 The model consists of two types of individuals; type 1 and type 2.
-Type 1 individuals arrive instantly at waiting zone 1 and proceed to wait to
-receive their service. 
+Type 1 individuals arrive instantly at waiting zone 1 and wait to receive their 
+service. 
 Type 2 individuals arrive at waiting zone 2 and wait there until they are 
 allowed to move to waiting zone 1. 
 They are allowed to proceed only when the number of 
@@ -17,16 +17,18 @@ individuals in waiting zone 1 \textbf{and} in service is less than a
 pre-determined threshold \(T\).
 When the number of individuals is equal to or exceeds this threshold, all 
 second type individuals that arrive will stay 
-\textit{``blocked''} in waiting zone 2 until the number of people in the 
-system is reduced below \(T\). 
+\textit{``blocked''} in waiting zone 2 until the number of people in 
+the next queue and in service falls below \(T\). 
 This is shown diagrammatically in figure \ref{fig:diagram_of_queueing_system}.
 The parameters of the described queueing model are:
 
 \begin{itemize}
-    \item \(\lambda_i\): The arrival rate of individuals of type \(i\in\{1, 2\}\)
+    \item \(\lambda_i\): The arrival rate of individuals of type 
+    \(i\in\{1, 2\}\)
     \item \(\mu\): The service rate for individuals receiving service
     \item \(C\): The number of servers
-    \item \(T\): The threshold at which individuals of the second type are blocked
+    \item \(T\): The threshold at which individuals of the second type are 
+    blocked
 \end{itemize}
 
 Under the assumption that all rates (arrival and service) are Markovian the
@@ -49,10 +51,10 @@ written as the disjoint union (\ref{eq:definition_of_S_as_disjoint_union}).
     S_2(T) =& \{(u, v)\in\mathbb{N}_0^2 \; | \; v \geq T \} \nonumber
 \end{align}
 
-The transition matrix \(Q\) of the Markov chain consists of the transition rates
-between the numerous states of the model. Every entry \( Q_{ij} = 
-Q_{(u_i, v_i),(u_j, v_j)} \) represents the transition rate from state 
-\( i = (u_i, v_i) \) to state \( j = (u_j , v_j) \) for all 
+The generator matrix \(Q\) of the Markov chain consists of the 
+rates between the numerous states of the model. 
+Every entry \( Q_{ij} = Q_{(u_i, v_i),(u_j, v_j)} \) represents the rate from 
+state \( i = (u_i, v_i) \) to state \( j = (u_j , v_j) \) for all 
 \( (u_i, v_i), (u_j, v_j) \in S \).
 The entries of \(Q\) can be calculated using the state-mapping function 
 described in (\ref{eq:markov_transition_rate}): 
@@ -99,7 +101,7 @@ Therefore, a different state space \( \tilde S \) is constructed where
 \end{equation}
 
 
-The transition matrix \( Q \) defined in (\ref{eq:markov_transition_rate}) can 
+The generator matrix \( Q \) defined in (\ref{eq:markov_transition_rate}) can 
 be used to get the probability vector \( \pi \).
 The vector \( \pi \) is commonly used to study stochastic systems and it's main
 purpose is to keep track of the probability of being at any given state of 
@@ -135,7 +137,7 @@ are not as straightforward to calculate.
 Such performance measures are the mean waiting time in the system (for both 
 type 1 and type 2 individuals), the mean time blocked in waiting zone 2 (only 
 valid for type 2 individuals) and the proportion of individuals that wait in 
-waiting zone 1 within a predefined time target.
+waiting zone 1 within a predefined time target (for both types).
 
 \input{sections/queueing_model/waiting_time/main.tex}
 

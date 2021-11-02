@@ -4,8 +4,8 @@
 
 The system defined in section \ref{sec:model_overview} can be applied 
 to a healthcare scenario with two such queueing systems.
-The two queueing systems can be thought of as two Emergency Departments (ED) and 
-the Emergency Medical Services (EMS) as a distributor that distributes 
+The two queueing systems can be thought of as two Emergency Departments (ED) 
+and the Emergency Medical Services (EMS) as a distributor that distributes 
 patients to them.
 
 There are numerous news articles that focus on the problems that arise when 
@@ -22,7 +22,8 @@ ambulance paramedic:
     ``He knows if a patient arrives more urgently in need of help, his will be 
     pushed back''~\cite{bbcwales}
 
-    ``We used to bring poorly patients in, and we were out on the road again in 15 minutes.''~\cite{bbcwales}
+    ``We used to bring poorly patients in, and we were out on the road again in
+    15 minutes.''~\cite{bbcwales}
 \end{quotation}
 
 The patients that are distributed by the EMS arrive at the hospital via an 
@@ -33,19 +34,21 @@ the threshold that the given ED chooses to play.
 High threshold indicates that the ED accepts patients even if it is relatively 
 full, while low threshold means that the ED blocks ambulances more frequently.
 
-The parameters of the model correspond to the following parameters of the ED and 
-the EMS:
+The parameters of the model correspond to the following parameters of the ED 
+and the EMS:
 
 \begin{itemize}
     \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
-    receives
-    \item \( \lambda_{1_i} \): The arrival rate of other patients to ED \(i\in\{1, 2\}\)
-    \item \( \mu_i \): The service rate of patients at ED \(i\in\{1, 2\}\)
-    \item \( C_i \): The number of available resources (beds) in ED \(i\in\{1, 2\}\)  
-    \item \( T_i \): The action that ED \(i\in\{1, 2\} \) chooses to play which 
+    receives and distributes to EDs
+    \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
+    \(i\in\{A, B\}\)
+    \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
+    \item \( C_i \): The number of available resources (beds) in ED 
+    \(i\in\{A, B\}\)  
+    \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
     corresponds to the threshold at which they do not accept EMS patients.
-    \item \( N_i \): The total patient capacity of ED \(i\in\{1, 2\} \)
-    \item \( M_i \): The total parking capacity of ED \(i\in\{1, 2\} \)
+    \item \( N_i \): The total patient capacity of ED \(i\in\{A, B\} \)
+    \item \( M_i \): The total parking capacity of ED \(i\in\{A, B\} \)
     \item \( R \): The time target for both EDs
     \item \( \alpha \in [0, 1] \) : \textit{Weighting} of blocking time and 
     lost individuals (equation \ref{eq:obj_distributor})
@@ -58,35 +61,36 @@ The EMS has to decide how to distribute its patients among the two EDs so that
 the weighted combination of the ambulance blocking time and the percentage of 
 lost ambulances is minimised. 
 As defined in \ref{sec:model_overview}, the interaction between the two EDs 
-is a Normal form game that is then used to inform the decision of the EMS.
+is a normal form game that is then used to inform the decision of the EMS.
 Note that the formulated game here assumes that prior to making a choice the 
 EMS knows the strategies that each ED is playing (figure 
-\ref{fig:imperfect_info_game}). This corresponds to reacting to experienced delays.
+\ref{fig:imperfect_info_game}). This corresponds to reacting to experienced 
+delays.
 
-\subsection{Numerical Results}\label{sec:numerical_results}
+\subsection{Numerical results}\label{sec:numerical_results}
 
 This subsection aims to analyse how the gaming framework can affect the 
-performance measures of the two hospitals and how to avoid certain inefficient 
+performance measures of the two hospitals and how to escape certain inefficient 
 situations.
 
 The most commonly used method for analysing normal form games is the Nash 
-equilibrium described in section \ref{sec:methodology_nash_equilibrium}
+equilibrium described in section \ref{sec:methodology_nash_equilibrium}.
 Consider the following game:
 
 \begin{multicols}{3}
     \begin{itemize}
-        \item \( \lambda_{1_1} \) = 1
-        \item \( \mu_1 \) = 2
-        \item \( C_1 \) = 2
-        \item \( N_1 \) = 10
-        \item \( M_1 \) = 6
+        \item \( \lambda_{1_A} \) = 1
+        \item \( \mu_A \) = 2
+        \item \( C_A \) = 2
+        \item \( N_A \) = 10
+        \item \( M_A \) = 6
         \columnbreak
 
-        \item \( \lambda_{1_2} \) = 2
-        \item \( \mu_2 \) = 2.5
-        \item \( C_2 \) = 2
-        \item \( N_2 \) = 10
-        \item \( M_2 \) = 6
+        \item \( \lambda_{1_B} \) = 2
+        \item \( \mu_B \) = 2.5
+        \item \( C_B \) = 2
+        \item \( N_B \) = 10
+        \item \( M_B \) = 6
         \columnbreak
 
         \item \( \lambda_2 \) = 2
@@ -98,11 +102,11 @@ Consider the following game:
 The set of possible actions to choose from for player 1 and player 2 is the
 set of thresholds that the EDs can choose from: 
 \begin{equation}
-    T_1 = \{ 0, \ldots, N_1 \}, \quad T_2 = \{ 0, \ldots, N_2 \}
+    T_A \in [1, N_A], \quad T_B \in [1, N_B]
 \end{equation}
 
 For this example the only Nash equilibrium of the game is achieved when both 
-players choose a threshold of \( T_1 = 10, T_2 = 10 \).
+players choose a threshold of \( T_A = 10, T_B = 10 \).
 This means that the two players' best response to each other is to only block
 ambulances when they are full. 
 
@@ -126,8 +130,8 @@ emerges can be observed.
 It can be seen that for this particular set of parameters the strategies of 
 the two hospitals converge over time. 
 Both hospital 1 (row player) and hospital 2 (column player) seem to be playing 
-the same strategy \(s_{10}\) which indicates that thresholds \(T_1 = 10\) and 
-\(T_2 = 10\) are played.
+the same strategy \(s_{10}\) which indicates that thresholds \(T_A = 10\) and 
+\(T_B = 10\) are played.
 What is more important in this example is how the two hospitals reached these
 decisions which also highlights the importance of using a learning algorithm.
 Hospital 2 is able to reach the decision in a short amount of time while 
@@ -151,7 +155,7 @@ is defined as:
     \text{PoA} = \frac{\max_{s \in E} F(s)}{\min_{s \in S} F(s)}
 \end{equation}
 
-Here, \(S\) is the set of all sets of strategies \((s_1, s_2)\), \(E\) is the 
+Here, \(S\) is the set of all sets of strategies \((s_A, s_B)\), \(E\) is the 
 set of all possible sets of equilibria and \(F\) is the cost function to 
 measure the efficiency for. 
 
@@ -160,7 +164,7 @@ introduced that considers the ratio between each hospital's best achievable
 blocking time and the one that is being played.
 This new concept is defined as the compartmentalised price of anarchy of the 
 players of the game and is defined as \(PoA_i(\tilde{s})\), where 
-\(i \in \{1, 2\}\) to distinguish among the two players/hospitals where 
+\(i \in \{A, B\}\) to distinguish among the two players/hospitals where 
 \(\tilde{s}\) is the strategy that is being played by player \( i \). 
 The compartmentalised price of anarchy aims to measure inefficiencies in the 
 model.
@@ -177,20 +181,20 @@ parameters:
 
 \begin{multicols}{3}
     \begin{itemize}        
-        \item \( \lambda_{1_1} \) = 4.5
-        \item \( \mu_1 \) = 2
-        \item \( C_1 \) = 3
-        \item \( T_1 \in [1, N_1] \) 
-        \item \( N_1 \) = 6
-        \item \( M_1 \) = 5
+        \item \( \lambda_{1_A} \) = 4.5
+        \item \( \mu_A \) = 2
+        \item \( C_A \) = 3
+        \item \( T_A \in [1, N_A] \) 
+        \item \( N_A \) = 6
+        \item \( M_A \) = 5
 
         \columnbreak
-        \item \( \lambda_{1_2} \) = 6
-        \item \( \mu_2 \) = 3
-        \item \( C_2 \) = 2
-        \item \( T_2 \in [1, N_2] \)
-        \item \( N_2 \) = 7
-        \item \( M_2 \) = 4
+        \item \( \lambda_{1_B} \) = 6
+        \item \( \mu_B \) = 3
+        \item \( C_B \) = 2
+        \item \( T_B \in [1, N_B] \)
+        \item \( N_B \) = 7
+        \item \( M_B \) = 4
         
         \columnbreak
         \item \( \lambda_2 \) = 10.7
@@ -204,7 +208,7 @@ Using equation (\ref{eq:poa_compartmentalised}) and asymmetric replicator
 dynamics the emergent behaviour can be measured and the compartmentalised price 
 of anarchy at every iteration for both players.
 Figure \ref{fig:ard_original} shows the strategies that are being played and 
-the values of \(PoA_1(s)\) and \(PoA_2(s)\) for all iterations of the 
+the values of \(PoA_A(s)\) and \(PoA_B(s)\) for all iterations of the 
 learning algorithm until it reaches an evolutionary stable pair of strategies.
 
 \begin{figure}[H]
@@ -216,7 +220,7 @@ learning algorithm until it reaches an evolutionary stable pair of strategies.
 \end{figure}
 
 The learning algorithm reaches a stable pair of 
-strategies where \(T_1 = 5\) and \(T_2 = 6\). After a number of iterations the
+strategies where \(T_A = 5\) and \(T_B = 6\). After a number of iterations the
 price of anarchy for both players stabilises and barely increases until the 
 final iteration. 
 
@@ -238,7 +242,7 @@ arrival rate of ambulances occurs (i.e \( \lambda_2 = 24 \)).
 
 
 By increasing \(\lambda_2\) there is no change as to how players behave
-(\(T_1 = 5, T_2 = 6\)), but the efficiency of the system does change. 
+(\(T_A = 5, T_B = 6\)), but the efficiency of the system does change. 
 There is a decline in the price of anarchy of the blocking time which at first 
 glance indicates that upon flooding the system it becomes the loss in efficiency
 due to rational individual behaviour decreases. 
@@ -246,11 +250,11 @@ This is non-sensical though.
 What it really shows is that the steep increase in \( \lambda_2 \) leaves 
 the system unable to cope regardless of the decisions made.
 
-\textbf{Increasing number of servers \( C_1 \) and \( C_2 \):}
+\textbf{Increasing number of servers \( C_A \) and \( C_B \):}
 Figure \ref{fig:ard_num_of_servers} shows a run of asymmetric replicator 
 dynamics with a change in the number of servers of the hospitals.
-The number of servers are increased from \(C_1 = 3, C_2 = 2\) to 
-\(C_1 = 4, C_2 = 3\).
+The number of servers are increased from \(C_A = 3, C_B = 2\) to 
+\(C_A = 4, C_B = 3\).
 
 
 \begin{figure}[H]
@@ -265,8 +269,8 @@ The number of servers are increased from \(C_1 = 3, C_2 = 2\) to
 \end{figure}
 
 In this case, both the behaviour as well as the price of anarchy change.
-The players change their strategies from \(T_1 = 5, T_2 = 6\) to 
-\(T_1 = 6, T_2 = 7\) and the \(PoA\) of the blocking time goes down.
+The players change their strategies from \(T_A = 5, T_B = 6\) to 
+\(T_A = 6, T_B = 7\) and the \(PoA\) of the blocking time goes down.
 By adding more resources to the models they are able to increase their 
 efficiency.
 Although this is a good way to escape such inefficiencies, it might not always
@@ -381,10 +385,10 @@ which is the raw utility of the strategies played.
 \end{figure}
 
 Figure \ref{fig:ard_penalty} shows that players start playing strategies 
-\( T_1 = 5\) and \( T_2 = 6 \) and mid-run of the learning algorithm a penalty
+\( T_A = 5\) and \( T_B = 6 \) and mid-run of the learning algorithm a penalty
 is applied to these strategies on the payoff matrix.
 By incentivising the players in such a way the players change their strategies 
-to \(T_1 = 6\) and \(T_2 = 7\), and thus ambulance patients are accepted in the 
+to \(T_A = 6\) and \(T_B = 7\), and thus ambulance patients are accepted in the 
 ED more often.
 Hence, the \(PoA\) for both EDs is decreased, meaning that the whole system is
 more efficient in terms of the blocking time.
