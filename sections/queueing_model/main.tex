@@ -4,7 +4,7 @@
 % overview section.
 In this section, a more in-depth explanation of the queueing model shown in 
 figure \ref{fig:diagram_of_queueing_system} will be given.
-This is a queuing model that consists of two waiting spaces, one for each type
+This is a queueing model that consists of two waiting zones, one for each type
 of individual.
 
 The model consists of two types of individuals; type 1 and type 2.
@@ -17,9 +17,9 @@ individuals in waiting zone 1 \textbf{and} in service is less than a
 pre-determined threshold \(T\).
 When the number of individuals is equal to or exceeds this threshold, all 
 second type individuals that arrive will stay 
-\textit{``blocked''} in waiting zone 2 until the number of people in 
+\textit{blocked} in waiting zone 2 until the number of people in 
 the next queue and in service falls below \(T\). 
-This is shown diagrammatically in figure \ref{fig:diagram_of_queueing_system}.
+This is shown diagrammatically in Figure \ref{fig:diagram_of_queueing_system}.
 The parameters of the described queueing model are:
 
 \begin{itemize}
@@ -32,7 +32,7 @@ The parameters of the described queueing model are:
 \end{itemize}
 
 Under the assumption that all rates (arrival and service) are Markovian the
-queuing system corresponds to a Markov chain~\cite{kemeny1976markov}.
+queueing system corresponds to a Markov chain~\cite{kemeny1976markov}.
 The states of the Markov chain are denoted by \((u,v)\) where:
 
 \begin{itemize}
@@ -82,7 +82,7 @@ described in (\ref{eq:markov_transition_rate}):
 Note that \(\Lambda\) here denotes the overall arrival rate in the model by both 
 types of individuals (i.e. \(\Lambda = \lambda_1 + \lambda_2\)). 
 A visualisation of how the transition rates relate to the states of the model 
-can be seen in the general Markov chain model shown in figure 
+can be seen in the general Markov chain model shown in Figure 
 \ref{fig:general_markov_model}.
 
 \input{imgs/general_markov_model/main.tex}
@@ -121,7 +121,7 @@ it and \( Q \) is given by:
 Using vector \(\pi\) there are numerous performance measures of the model that 
 can be calculated. 
 The following equations utilise \(\pi\) to get performance measures on the 
-average number of people at certain sets of state.
+average number of people at certain sets of state:
 
 \begin{itemize}
     \item Average number of people in the system: 
