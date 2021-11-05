@@ -14,6 +14,10 @@ More specifically, the queueing systems' objective is captured by an upper bound
 of the time that a fixed proportion of individuals spend in the system, 
 while the distributor aims to minimise the time that its individuals 
 are blocked.
+Although we generalise for any such system, relating this back to the
+motivating case study, here the decision makers of the queueing systems
+represent the ED managers and the distributor is the EMS who allocate (send)
+ambulances to one of the EDs (see Section \ref{sec:ems_ed_application}). 
 % TODO: Depending on how this is described earlier, we might need a little more 
 % here (as to what we mean by "blocked")
 
@@ -28,7 +32,7 @@ The strategy sets for each queueing system is the set
 the total capacities of the two queueing systems. We denote the chosen actions 
 from the strategy set as \(T_A, T_B\) and call these \textit{threshold}s.
 
-Both queueing systems follow a queueing model that has two waiting spaces for 
+Both queueing systems follow a queueing model that has two waiting zones for 
 individuals. 
 The first waiting zone is where the individuals queue right before receiving 
 their service and has a capacity of \( N - C \), where \(N\) is the total 
@@ -101,17 +105,17 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
     \end{tikzpicture}
     \caption{A diagrammatic representation of the queueing model. 
     The threshold \(T\) only applies to arrivals from the first buffer. 
-    If the second buffer is at that threshold only individuals of the first type 
+    If the second buffer is at that threshold, only individuals of the first type 
     are accepted (at a rate \(\lambda_1\)) and individuals of the second type 
-    (arriving at a rate \(\lambda_2\)) are held blocked in the first buffer.}
+    (arriving at a rate \(\lambda_2\)) are blocked in the first buffer.}
     \label{fig:diagram_of_queueing_system}
 \end{figure}
 
 Note here that both types of individuals can become lost to the system. 
-Individual allocated from the distributor become lost to the system whenever 
+An individual allocated from the distributor becomes lost to the system whenever 
 an arrival occurs and the second waiting zone is at full capacity (\(M\) 
 individuals already waiting).
-Similarly, other individuals get lost whenever they arrive at the first waiting 
+Similarly, individuals get lost whenever they arrive at the first waiting 
 zone and it is at full capacity (\(N - C\) individuals already waiting).
 
 Following this queuing model, the two queueing systems' choice of strategy will 
@@ -159,7 +163,7 @@ that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
 decision of the distributor is the proportion of lost individuals (\(L_i\)).
 Equation \ref{eq:obj_distributor} can be used to capture a mixture 
-between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\).
+between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
 \begin{equation*}\label{eq:obj_distributor}
     (p_A, p_B) \quad s.t. \quad 
     \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
@@ -170,8 +174,9 @@ Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
-Using either equation (\ref{eq:obj_queueing_systems}) or equation
-(\ref{eq:obj_distributor}) gives an imperfect information extensive form game. 
+Using either equation (\ref{eq:obj_distributor}) or 
+(\ref{eq:obj_queueing_systems}) gives an imperfect information extensive form 
+game. 
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players~\cite{Berwanger2008}. In this study the state of the problem that is
@@ -253,6 +258,6 @@ utilities:
     \end{pmatrix}
 \end{equation}
 
-Based on the choice of strategy of these two players the distributor will then 
+Based on the choice of strategy of these two players, the distributor will then 
 make their own choice of the proportion of individuals to send to each system.
 
