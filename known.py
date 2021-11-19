@@ -4,6 +4,7 @@ words = {
     "Abacws",
     "abg",
     "alsoletter",
+    "apalike",
     "automata",
     "Ax",
     "Ay",
