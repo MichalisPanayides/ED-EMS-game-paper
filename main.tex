@@ -1,22 +1,26 @@
-\documentclass{article}
+\documentclass[3p]{elsarticle}
+
 
 \input{packages.tex}
-\input{title.tex}
 
 \begin{document}
-    \maketitle
-    
-    \input{sections/abstract/main.tex}
+    \begin{frontmatter}
+        \input{title.tex}
+        \input{sections/abstract/main.tex}
+    \end{frontmatter}
+
     \input{sections/introduction/main.tex}
     \input{sections/model_overview/main.tex}
     \input{sections/queueing_model/main.tex}
     \input{sections/methodology/main.tex}
     \input{sections/healthcare_application/main.tex}
     \input{sections/conclusion/main.tex}
+    \input{sections/acknowledgements/main.tex}
     \newpage
-    \bibliographystyle{plain}
+    \bibliographystyle{apa}
     \bibliography{bibliography.bib}
 
+    \newpage
     \input{sections/appendix/main.tex}
       
 \end{document}
