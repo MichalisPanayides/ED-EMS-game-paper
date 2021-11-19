@@ -31,6 +31,7 @@ jobs:
           sudo apt-get install -y texlive-latex-extra
           sudo apt-get install -y texlive-xetex
           sudo apt-get install texlive-science
+          sudo apt-get install texlive-publishers
           sudo apt-get install aspell
 
       - name: Test PDF compiles
