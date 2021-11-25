@@ -1,35 +1,32 @@
 \section{Methodology}\label{sec:methodology}
 
-Th problem defined in section \ref{sec:model_overview} describes a normal-form
+The problem defined in section \ref{sec:model_overview} describes a normal-form
 game between the decision makers of two queueing systems and a third player that 
 decides how to distribute individuals to the systems.
 The strategy space of the two queueing systems is defined as the possible values
-that the threshold parameter can take \(T_i \in (1, N_i)\).
+that the threshold parameter can take \(T_i \in [1, N_i]\).
 Then, the distributor has to decide on the proportion of individuals to send to 
 each queueing system \(p_A \text{ and } p_B\), where \(p_A, p_B \in [0, 1] \)
 and \(p_A + p_B = 1\).
-Figure \ref{fig:imperfect_info_game} form section \ref{sec:model_overview} 
+Figure \ref{fig:imperfect_info_game} 
 shows a diagrammatic representation of the game to be played and the decisions 
 to be made.
-As described in section \ref{sec:model_overview} queueing system \(A\) decides
-on a strategy, at the same time, queueing system \(B\) chooses its own 
-threshold, unaware of the first queueing system's choice.
+As described in Section \ref{sec:model_overview}, queueing system \(A\) decides
+on a strategy and at the same time, queueing system \(B\) chooses its own 
+threshold but unaware of the first queueing system's choice.
 Finally, the distributor makes its choice based on the strategies that the 
 queueing systems chose to play. 
 
 The utilities to each player can be represented by 3 matrices; the two payoff 
 matrices of the normal form game and the routing matrix.
 The payoff matrices and their utilities are defined by equations 
-(\ref{eq:payoff_entry}) and (\ref{eq:payoff_matrices}) in section 
-\ref{sec:model_overview}.
+(\ref{eq:payoff_entry}) and (\ref{eq:payoff_matrices}).
 
 The routing matrix holds the values \((p_A, p_B)\) which are the proportion 
 of class 2 individuals to send to queueing system \(A\) and \(B\).
 Each pair \((p_A, p_B)\) can be calculated using equation 
 (\ref{eq:obj_distributor}) and is essentially
 a best response to the actions of the queueing systems.
-Equation \ref{eq:obj_distributor} is defined and explained in section 
-\ref{sec:model_overview}.
 Thus, using equation \ref{eq:obj_distributor} for all possible sets of 
 thresholds we can get the full routing matrix that consists of the proportions
 to send to queueing system A (\(p_A\)) and to queueing system B (\(p_B\)).
@@ -64,11 +61,11 @@ Thus, the routing matrix \(R\) can be simplified to:
 The game can thus be partitioned into a normal form game between the
 two queueing systems and then finding the distributor's best strategy. 
 
-\subsection{Backwards Induction}
+\subsection{Backwards induction}
 
 In order to populate the payoff matrices and the routing matrix the method
 of backwards induction is used.
-Consider figure \ref{fig:imperfect_info_game} and the flow of the game that was
+Consider Figure \ref{fig:imperfect_info_game} and the flow of the game that was
 described (i.e. \(Q_A, Q_B \rightarrow D\)).
 Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
 matrix \(R\) the entries of the matrices are calculated in a backwards way 
@@ -126,7 +123,7 @@ Consider once again the case of \(T_A=1, T_B=1\).
 These are the utilities of players \(A\) and \(B\) when both players choose a
 strategy of \(T = 1\).
 Here \(R\) is the predefined waiting time target to be met by a percentage of 
-individuals \( \hat{P} \) and \(P(W_i < t)\) is properly defined in section
+individuals \( \hat{P} \) and \(P(W_i < t)\) is defined in section
 \ref{sec:proportion_within_target}.
 
 \begin{equation}\label{eq:payoff_matrices_1_1}
@@ -150,7 +147,7 @@ Similar to the routing matrix, the above procedure can be repeated for all
 possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
 matrices. 
 
-\subsection{Nash Equilibrium}\label{sec:methodology_nash_equilibrium}
+\subsection{Nash equilibrium}\label{sec:methodology_nash_equilibrium}
 
 Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
 be used to measure some form of emergent behaviour.
@@ -159,8 +156,8 @@ which is the point of the game were both players have no
 incentive to deviate from their played strategies \cite{kreps1989nash}.
 In other words their chosen strategies are a best response to each other.
 
-Computation of Nash equilibria can be done relatively efficiently using the 
-Lemke Howson algorithm~\cite{LemkeHowson}.
+Computation of Nash equilibria can be done in a relatively efficient way using 
+the Lemke Howson algorithm~\cite{LemkeHowson}.
 Lemke-Howson uses best response polytopes to get one of the Nash equilibrium of
 the game. 
 Other algorithms exists that will compute all Nash equilibria but 
@@ -168,13 +165,13 @@ for large games the computational complexity becomes problematic.
 All game theoretic calculations were done in Python using the Nashpy library 
 \cite{thenashpyproject}.
 
-\subsection{Learning Algorithms}\label{sec:methodology_learning_algorithms}
+\subsection{Learning algorithms}\label{sec:methodology_learning_algorithms}
 
 Another approach to measuring emergent behaviour is to consider 
 the emergence itself and not only stable end points. 
 Indeed, some Nash equilibria might not arise naturally. 
-Thus, in order to analyse the strategies played by the two EDs, the learning 
-algorithm: asymmetric replicator dynamics is 
+Thus in order to analyse the strategies played by the two EDs, the learning 
+algorithm asymmetric replicator dynamics is 
 used~\cite{asymmetricreplicatordynamics}.
 The two players are modelled as two separate populations where each 
 individual in the population is assigned a strategy.

@@ -1,9 +1,12 @@
 """ A set of known words and end-of-word patterns for the spellchecker. """
 
 words = {
+    "Abacws",
     "abg",
     "alsoletter",
+    "apalike",
     "automata",
+    "Ax",
     "Ay",
     "backcolor",
     "backgroundcolor",
@@ -63,6 +66,7 @@ words = {
     "RGB",
     "RHS",
     "runtime",
+    "Senghennydd",
     "sensical",
     "societally",
     "stochasticity",

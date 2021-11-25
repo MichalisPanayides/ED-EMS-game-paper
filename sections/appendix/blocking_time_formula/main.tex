@@ -60,7 +60,7 @@ expected to occur at each state can be given by:
         c(u,v) + p_s(u,v) b(u-1, v) + p_a(u,v) b(u, v+1), & \textbf{if } u > 0 
         \textbf{ and } \vspace{-0.2cm} \\ 
         & \quad v = T \\
-        c(u,v) + p_s(u,v) b(u, v-1) + p_a(u,v) b(u, v+1), & \textbf{otherwise} \\
+        c(u,v) + p_s(u,v) b(u, v-1) + p_a(u,v) b(u, v+1), & \textbf{otherwise}\\
     \end{cases}
     \tag{\ref{eq:general_blocking_time_at_each_state} revisited}
 \end{equation*}
@@ -158,11 +158,14 @@ is given by \(Zx=y\), where:
 
 Thus, having calculated the mean blocking time for all blocking states 
 \(b(u,v)\), they can be combined together in a formula.
-The resultant formula for the mean blocking time is given by:
+Using the arriving states \(\mathcal{A}_2\) defined in section 
+\ref{sec:blocking_time} by equation \ref{eq:arriving_state_class_2} 
+the resultant formula for the mean blocking time is given by:
 
 \begin{equation}
-    B = \frac{\sum_{(u,v) \in S_A} \pi_{(u,v)} \; b(u,v)}{\sum_{(u,v) \in S_A} 
-    \pi_{(u,v)}} \tag{\ref{eq:algebraic_blocking_time} revisited}
+    B = \frac{\sum_{(u,v) \in S_A} \pi_{(u,v)} \; b(\mathcal{A}_2(u,v))}
+    {\sum_{(u,v) \in S_A} \pi_{(u,v)}} 
+    \tag{\ref{eq:algebraic_blocking_time} revisited}
 \end{equation}
 
 To illustrate how the described formula works consider a Markov model where 

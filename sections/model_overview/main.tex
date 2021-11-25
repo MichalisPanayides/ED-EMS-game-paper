@@ -14,12 +14,16 @@ More specifically, the queueing systems' objective is captured by an upper bound
 of the time that a fixed proportion of individuals spend in the system, 
 while the distributor aims to minimise the time that its individuals 
 are blocked.
+Although we generalise for any such system, relating this back to the
+motivating case study, here the decision makers of the queueing systems
+represent the ED managers and the distributor is the EMS who allocate (send)
+ambulances to one of the EDs (see Section \ref{sec:ems_ed_application}). 
 % TODO: Depending on how this is described earlier, we might need a little more 
 % here (as to what we mean by "blocked")
 
 The queueing systems are designed in such a way where they can accept two types
 of individuals. 
-These are the individuals that the distributor allocates to them and 
+These are the individuals that are allocated by the distributor and 
 other individuals from other sources. 
 Each queueing system may then choose to block the individuals that arrive from 
 the distributor when the system reaches a certain capacity. 
@@ -28,7 +32,7 @@ The strategy sets for each queueing system is the set
 the total capacities of the two queueing systems. We denote the chosen actions 
 from the strategy set as \(T_A, T_B\) and call these \textit{threshold}s.
 
-Both queueing systems follow a queueing model that has two waiting spaces for 
+Both queueing systems follow a queueing model that has two waiting zones for 
 individuals. 
 The first waiting zone is where the individuals queue right before receiving 
 their service and has a capacity of \( N - C \), where \(N\) is the total 
@@ -43,17 +47,20 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
     \centering
     \begin{tikzpicture}[>=stealth, scale=0.8],
         % the rectangle of Queue 1
-        \draw (0,0) -- ++(2cm,0) -- ++(0,-1.5cm) -- ++(-2cm,0);
+        \draw (0,0) -- ++(3cm,0) -- ++(0,-1.5cm) -- ++(-3cm,0);
         % The label above Queue 1 -> M
         \node[anchor=north] at (1.5cm, 1cm) {\( 
             \overbrace{\qquad \qquad \qquad \qquad}^{M} 
         \)};
+        % The label below Queue 1 -> Waiting zone 2
+        \node[anchor=north] at (1.5cm, -1.7cm) {\small{Waiting zone 2}};
+
         % the vertical lines in Queue 1
-        \foreach \i in {1,...,4, 5.7}
-        \draw (2cm-\i*10pt,0) -- +(0,-1.5cm);
+        \foreach \i in {1,...,5, 6.6}
+        \draw (3cm-\i*13pt,0) -- +(0,-1.5cm);
         
-        % the circle in Queue 1
-        \draw (2.75,-0.75cm) circle [radius=0.75cm] node {\(0\)};
+        % % the circle in Queue 1
+        % \draw (2.75,-0.75cm) circle [radius=0.75cm] node {\(0\)};
 
         % the rectangle in Queue 2
         \draw (5,1.25) -- ++(2cm,0) -- ++(0,-1.5cm) -- ++(-2cm,0);
@@ -73,6 +80,8 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
         \node[anchor=north] at (6.6cm, 2.2cm) {\( 
             \overbrace{\qquad \qquad \qquad \qquad}^{N} 
         \)};
+        % The label below Queue 2 -> Waiting zone 1
+        \node[anchor=north] at (6.2cm, -0.5cm) {\small{Waiting zone 1}};
 
         % the circle in Queue 2
         \draw (7.75,0.5) circle [radius=0.75cm] node {\(C\)};
@@ -83,7 +92,7 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
         % Line from lambda_2 to Queue 1
         \draw[<-] (-0.3,-0.75) -- +(-40pt,0) node[left] {\( \lambda_2 \)};
         % First line (horizontal) after Queue 1
-        \draw[-] (3.5,-0.75) -- +(20pt,0);
+        \draw[-] (3,-0.75) -- +(34pt,0);
         % Second line (vertical) after Queue 1
         \draw (4.2, 0.525) -- (4.2, -0.75);
         
@@ -96,17 +105,17 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
     \end{tikzpicture}
     \caption{A diagrammatic representation of the queueing model. 
     The threshold \(T\) only applies to arrivals from the first buffer. 
-    If the second buffer is at that threshold only individuals of the first type 
+    If the second buffer is at that threshold, only individuals of the first type 
     are accepted (at a rate \(\lambda_1\)) and individuals of the second type 
-    (arriving at a rate \(\lambda_2\)) are held blocked in the first buffer.}
+    (arriving at a rate \(\lambda_2\)) are blocked in the first buffer.}
     \label{fig:diagram_of_queueing_system}
 \end{figure}
 
 Note here that both types of individuals can become lost to the system. 
-Individual allocated from the distributor become lost to the system whenever 
+An individual allocated from the distributor becomes lost to the system whenever 
 an arrival occurs and the second waiting zone is at full capacity (\(M\) 
 individuals already waiting).
-Similarly, other individuals get lost whenever they arrive at the first waiting 
+Similarly, individuals get lost whenever they arrive at the first waiting 
 zone and it is at full capacity (\(N - C\) individuals already waiting).
 
 Following this queuing model, the two queueing systems' choice of strategy will 
@@ -118,7 +127,7 @@ of a proportion of individuals will be below the predefined target time.
     P(W < t) \geq \hat{P}
 \end{equation}
 
-where \(W\) is the mean waiting time of all individuals, \(t\) is the time 
+where \(W\) is the waiting time of a potential individual, \(t\) is the time 
 target and \(\hat{P}\) is the percentage of individuals need to be within that 
 target. 
 There are numerous objective functions that can be used to capture this 
@@ -142,7 +151,7 @@ probability and the percentage goal (or maximise its negation).
 \end{equation}
 
 
-The third player, the distributor has their own choices to make and their own 
+The third player, the distributor, has their own choices to make and their own 
 goals to satisfy.
 The strategy set of the third player is the proportion \(0 \leq p_A \leq 1\) of 
 individuals it sends to the first queueing system (the proportion 
@@ -154,7 +163,7 @@ that they send to the two queueing systems.
 Apart from the time being blocked, an additional aspect that may affect the 
 decision of the distributor is the proportion of lost individuals (\(L_i\)).
 Equation \ref{eq:obj_distributor} can be used to capture a mixture 
-between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\).
+between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
 \begin{equation*}\label{eq:obj_distributor}
     (p_A, p_B) \quad s.t. \quad 
     \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
@@ -165,17 +174,19 @@ Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
 
-Using equations (\ref{eq:obj_queueing_systems}) and (\ref{eq:obj_distributor}) 
-gives an imperfect information extensive form game. 
+Using either equation (\ref{eq:obj_distributor}) or 
+(\ref{eq:obj_queueing_systems}) gives an imperfect information extensive form 
+game. 
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players~\cite{Berwanger2008}. In this study the state of the problem that is
 hidden is the threshold that each of the first two players chooses to play.
 In other words, each queueing system chooses to play a strategy without 
 knowing the other system's strategy.
-The distributor then, fully aware of the chosen threshold strategies, distributes 
-individuals among the two systems in order to minimise the time that its 
-individuals will be blocked. Figure \ref{fig:imperfect_info_game} illustrates this. 
+The distributor then, fully aware of the chosen threshold strategies, 
+distributes individuals among the two systems in order to minimise the time 
+that its individuals will be blocked. Figure \ref{fig:imperfect_info_game} 
+illustrates this. 
 
 \begin{figure}[ht]
     \centering
@@ -222,7 +233,7 @@ are required. From equation \ref{eq:obj_queueing_systems} the utilities of the
 players can be formulated as:
 
 \begin{equation} \label{eq:payoff_entry}
-    U_{T_1, T_2}^i = -\left( 
+    U_{T_A, T_B}^i = -\left( 
         \hat{P} - P(W_i < t) 
     \right)^2 \quad \textbf{where } i \in \{A, B\}
 \end{equation}
@@ -247,6 +258,6 @@ utilities:
     \end{pmatrix}
 \end{equation}
 
-Based on the choice of strategy of these two players the distributor will then 
+Based on the choice of strategy of these two players, the distributor will then 
 make their own choice of the proportion of individuals to send to each system.
 

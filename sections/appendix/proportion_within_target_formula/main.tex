@@ -1,4 +1,5 @@
-\section{Mean blocking time} \label{sec:appendix_mean_proportion}
+\section{Mean proportion of individuals within target} 
+\label{sec:appendix_mean_proportion}
     
 In order to consider such measure though one would need to obtain the 
 distribution of time in the system for all individuals. 
@@ -17,7 +18,7 @@ Consider the case when an arrival occurs when the model is at a specific state.
     \label{fig:distribution_of_time_at_specific_state_1_server}
 \end{figure}
 
-Consider the Markov model of figure 
+Consider the Markov model of Figure 
 \ref{fig:distribution_of_time_at_specific_state_1_server} with one server and a 
 threshold of two individuals. 
 Assume that an individual of the first type arrives when the model is at state 
@@ -43,7 +44,7 @@ time it takes to move from having a service to exiting the system.
     S = X_3 + X_2 + & X_1 + X_0 = Erlang(4, \mu)
 \end{align}
 
-Thus, the waiting and service time of an individual in the model of figure 
+Thus, the waiting and service time of an individual in the model of Figure 
 \ref{fig:distribution_of_time_at_specific_state_1_server} can be captured by an 
 erlang distributed random variable. 
 The general CDF of the erlang distribution \(Erlang(k, \mu)\) is given by:
@@ -71,7 +72,7 @@ are \(C=1\), or when an individual arrives and goes straight to service
 \end{figure}
 
 Figure \ref{fig:distribution_of_time_at_specific_state_2_servers} represents the 
-same Markov model as figure 
+same Markov model as Figure 
 \ref{fig:distribution_of_time_at_specific_state_1_server} with the only 
 exception that there are 2 servers here. 
 By applying the same logic, assuming that an individual arrives at state 
@@ -170,7 +171,7 @@ Equations (\ref{eq:general_cdf_hypoexponential}) and
 (\ref{eq:linear_general_cdf_hypoexponential}) refers to the general CDF of the
 hypoexponential distribution where the size of the vector parameters can be of
 any size \cite{Favaro2010}.
-In the Markov chain models described in figures 
+In the Markov chain models described in Figures 
 \ref{fig:distribution_of_time_at_specific_state_1_server} and 
 \ref{fig:distribution_of_time_at_specific_state_2_servers} the parameter vectors 
 of the hypoexponential distribution are of size two, and in fact, for any 
@@ -445,8 +446,8 @@ Thus, the CDF of the random variables \(X_{(u,v)}^{(1)}\) and
 \end{equation}
 
 
-In addition, the set of accepting states for type 1 \(S_A^{(1)}\) and type 2 
-\(S_A^{(2)}\) individuals defined in (\ref{eq:accepting_states_type_1}) and 
+In addition, the set of accepting states for type 1 (\(S_A^{(1)}\)) and type 2 
+(\(S_A^{(2)}\)) individuals defined in (\ref{eq:accepting_states_type_1}) and 
 (\ref{eq:accepting_states_type_2}) are also needed here.
 Note here that, \(S\) denotes the set of all states of the Markov chain model. 
 
@@ -464,15 +465,20 @@ weighted average of the probability below target of all states in the Markov
 model.
 
 \begin{equation}
-    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} P(X_{u,v}^{(1)} < t) 
+    P(X^{(1)} < t) = \frac{\sum_{(u,v) \in S_A^{(1)}} 
+    P(X_{\mathcal{A}_1(u,v)}^{(1)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(1)}} \pi_{u,v}}
 \end{equation}
 
 \begin{equation}
-    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} P(X_{u,v}^{(2)} < t) 
+    P(X^{(2)} < t) = \frac{\sum_{(u,v) \in S_A^{(2)}} 
+    P(X_{\mathcal{A}_2(u,v)}^{(2)} < t) 
     \pi_{u,v} }{\sum_{(u,v) \in S_A^{(2)}} \pi_{u,v}}
 \end{equation}
 
+Note that \(\mathcal{A}_1(u,v)\) and \(\mathcal{A}_2(u,v)\) are defined in 
+section \ref{sec:blocking_time} by equations \ref{eq:arriving_state_class_1} 
+and \ref{eq:arriving_state_class_2}.
 
 \paragraph{Overall proportion within target}
 

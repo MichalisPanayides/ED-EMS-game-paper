@@ -2,26 +2,23 @@
 
 % TODO: If this is one paper remove the queueing model part
 
-An important issue for ambulances in the United Kingdom is that they stay 
-parked outside hospitals for a huge amount of time~\cite{clarey2014ambulance}. 
-This is a problem for the ambulance service, since the longer ambulances are
-blocked in the hospital's parking space the longer the patients in them will
-have to wait to receive their treatment but also the longer future patients 
-will be stuck waiting for an ambulance.
-This paper aims to describe a game theoretic model informed by an underlying 
-queueing model motivated by this scenario.
-
-Emergency departments (EDs) are constantly under a lot of pressure to meet 
-targets and satisfy regulations~\cite{EmergencyDepartmentWinterPressures}.
-There are various news reports that indicate that this is in fact an ongoing 
-issue that affects both the patients and the emergency medical services (EMS).
-Due to this blockage patients may spend a considerable amount of time in the 
-back of an ambulance waiting to be dispatched to the ED.
-Examples of such reports are~\cite{mirror, thenews, bmj} where
-the impact that this issue has on patients is shown. 
-Furthermore, this is also a huge issue for the EMS.
-By blocking the ambulances at the hospital's parking space, valuable time is 
-wasted where ambulances could be attending new patients~\cite{eastanglia}.
+Emergency departments (EDs) are under increasing pressure to meet patient
+waiting time targets and satisfy 
+regulations~\cite{EmergencyDepartmentWinterPressures}.
+It is widely reported (e.g.~\cite{mirror, thenews, bmj}) that ED congestion 
+severely impacts not only patients in the ED but also Emergency Medical 
+Services (EMS).
+A major concern for ambulances is that they are held waiting parked outside the
+ED to offload (dispatch) their patient when the ED is particularly 
+busy~\cite{clarey2014ambulance}. 
+Since the patient waiting time in ED is measured from the time they enter the
+ED itself, there is no incentive, should the patient be stable in the
+ambulance, to offload them from EMS to ED services.
+As a result, ambulance blocking not only impacts on patients waiting for ED
+service, but has a major knock-on effect to delaying the ability of ambulances
+to respond to new EMS calls, thus placing lives at risk~\cite{eastanglia}.
+This paper aims to describe the EMS-ED interface using a game theoretic model
+informed by an underlying queueing model. 
 
 A number of papers have been published that touch upon the use of 
 queueing models together with game theoretic concepts.
@@ -29,13 +26,13 @@ In~\cite{FirmCompetition} the authors study a simultaneous price competition
 between two firms that are modelled as two distinct queueing systems with a 
 fixed capacity and a combined arrival rate.
 They calculate the Nash equilibrium both for identical and heterogeneous firms
-and show that for the former a pure N.E. always exist and for the latter a 
-unique equilibrium exists where only one firm operates.
+and show that for the former a pure Nash equilibrium always exist and for the 
+latter a unique equilibrium exists where only one firm operates.
 The authors have also extended their model in~\cite{FirmCompetition2} by 
 allowing the players (firms) to choose capacities. 
-A main result from this paper was that equilibria, where both firms operate
-together, are not socially optimal while when both firms operate as a monopoly 
-they are.
+A main result from this paper was that when both firms operate independently as
+a monopoly, the equilibria are socially optimal, but this is not the case when
+the firms operate together.
 Another extension of~\cite{FirmCompetition} was introduced 
 in~\cite{FirmCompetitionExtension} where a long-run version of the competition 
 was considered that also had capacity as a decision variable.
@@ -48,6 +45,7 @@ a product instantly and seller 2 is modelled as a make-to-order M/M/1 queue.
 The game that is played requires the two sellers to make a choice on the price 
 of the product and then seller 2 to set a capacity that guarantees a maximum 
 expected delay.
+
 In the above models, the players are attempting to increase their share of 
 individuals choosing to queue.
 In public healthcare type settings~\cite{knight2013selfish}, this is not 
@@ -75,11 +73,12 @@ arrivals from the other ED.
 In this paper this concept is extended by allowing the ambulance service to 
 decide how to distribute its patients among the two EDs.
 
-Another specific part of this research is the construction of a queueing system
-with a tandem buffer and a single service centre.
+Another specific part of our research, as described later in the paper, is the 
+construction of a queueing system with a tandem buffer and a single service
+centre.
 In~\cite{d2015pure} the authors explore threshold joining strategies in a 
 Markov model that has two tandem queues.
-Another great example is the one described in~\cite{burnetas2013customer}
+Another example is the one described in~\cite{burnetas2013customer}
 where they investigated a network of multiple tandem queues where customers 
 decide which queue to attend before joining.
 Similarly, in~\cite{bacsar2002stackelberg} the authors examine a network of 
@@ -103,47 +102,51 @@ The authors showed that optimal prices also maximise social utility and that
 removing two types of customers that don't need both services leads to higher 
 profit and lower demand rate.
 
-The EDs in the United Kingdom have to follow some set of regulations imposed to 
-them by the National Health Service (NHS).
+In the United Kingdom the National Heath Services (NHS) sets some regulations 
+on ED performance.
 One of these regulations is that 95\% of patients that arrive at the ED should 
 be admitted, transferred or discharged within four hours.
 This is where gaming behaviour might be observed between the EDs and the EMS.
 An assumption of this work is that some managerial decision making is involved
 in choosing when to start blocking ambulances.
 This is similar to~\cite{deo2011centralized}.
-This paper touches upon the following new aspects:
+
+The novelty of our research contribution in this paper is to consider:
 \begin{itemize}
     \item The emergence of gaming behaviour between EDs and the EMS.
     \item A queueing model with 2 consecutive waiting spaces where one would 
     serve as a parking space for the ambulances
 \end{itemize}
-The focus of this research is the construction of a 3-player game theoretic 
+Specifically, our focus is on the construction of a 3-player game theoretic 
 model between two queueing systems and a service that distributes individuals
 to them. 
-The resultant model will then be used to explore the emergent dynamics between 
+The resultant model is then used to explore the emergent dynamics between 
 the three players.
-While giving some consideration to equilibrium behaviour similarly to the 
+Whilst giving some consideration to equilibrium behaviour similarly to the 
 work of~\cite{FirmCompetition, FirmCompetition2, deo2011centralized, 
 veltman2005equilibrium}, emergent behaviour is more precisely addressed by 
 considering a number of learning algorithms.
-This study explores two new concepts; getting performance measures for a new
+This study explores two new concepts: getting performance measures for a new
 queueing theoretic model with a tandem buffer and a single service centre and 
 using a learning algorithm to model the emergence of behaviour.
-The model is then applied to the healthcare scenario between two EDs and the 
-EMS while looking into the inefficiencies that emerge and ways to apply some 
-incentive mechanisms to improve them.
+The developed theoretical model is then illustrated through the application to 
+a healthcare system of two EDs and the EMS, exploring the inefficiencies that 
+emerge and ways to apply some incentive mechanisms to improve them.
 The EDs are modelled as two queueing systems each with a tandem buffer and a 
 service centre. 
 The performance measures are then used as the utilities of the game.
-The novelty of the queueing model here is a contribution to not only the game 
+The novelty of the queueing model here is a contribution not only the game 
 theoretic literature but also to the queueing theoretic literature.
 To the authors knowledge, no such model of a tandem queueing model with a pair 
 of parameters for the buffer has been considered.
 % TODO Be sure if this is correct
+Although our research is motivated by the particular EMS-ED example, our 
+developed modelling framework and behavioural insights has application to 
+similar systems across a range of sectors and settings. 
 
 This paper first gives an overview of the game theoretic model, then goes on 
 to describe a novel queueing model, and then follows with a number of theoretic 
-results pertaining to the performance measures of the queuing model. 
+results pertaining to the performance measures of this model. 
 These are used to build the utilities of the game.
 Finally, there is a section that describes how this game theoretic framework
 can be applied at the interface between the EMS and EDs together with some 
