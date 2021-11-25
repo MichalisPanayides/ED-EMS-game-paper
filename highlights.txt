@@ -1,0 +1,3 @@
+- A queueing model with two consecutive waiting spaces where one would serve as a parking space for the ambulances
+- A game theoretic model between the emergency medical services and two emergency departments
+- The emergence of gaming behaviour between emergency departments and the emergency medical services
