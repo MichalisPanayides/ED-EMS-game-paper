@@ -30,3 +30,18 @@ The paper treats an interesting problem, but has some shortcomings:
 
 typo p1 (footnote) is the results of --> is the result of
 
+
+# Editor
+As you can see from the reports below, the referees are very critical with respect to your paper. In these circumstances, it has been decided that your paper should be reconsidered for publication in the EUROPEAN JOURNAL OF OPERATIONAL RESEARCH if you can revise it to meet the enclosed referees' comments. (You may wish to argue that some comments are invalid). Please also ensure that you have cited recent and relevant publications in EJOR and other OR journals.
+
+I would like to emphasise that the reviewers are rather critical about some parts of your paper and I have considered rejecting the paper immediately. Therefore, I expect that you take into serious consideration all criticisms made. In particular, I fully agree with the reviewers that a closer connection with the real-world setting is necessary. Please, don´t take this "Major Revision" decision as a granted publication. My final decision will heavily depend on the revised version of the paper and the following comments from the reviewers.
+
+When resubmitting the revised paper, please upload a separate list of your answers to the referees, separately for each referee. NOTE: Upon submitting your revised manuscript, please upload the source files for your article.
+
+When submitting your revised paper, we ask that you include the following items:
+- Response to Reviewers (mandatory)
+    This should be a separate file labelled "Response to Reviewers" that carefully addresses, point-by-point, the issues raised in the comments appended below. You should also include a suitable rebuttal to any specific request for change that you have not made. Mention the page, paragraph, and line number of any revisions that are made, and highlight these parts of the text in the revised manuscript.
+- Manuscript and Figure Source Files (mandatory)
+    We cannot accommodate PDF manuscript files for production purposes. We also ask that when submitting your revision you follow the journal formatting guidelines. Figures and tables may be embedded within the source file for the submission as long as they are of sufficient visual quality. For any figure that cannot be embedded within the source file (such as *.PSD Photoshop files), the original figure needs to be uploaded separately. Refer to the Guide for Authors for additional information.
+- Highlights (mandatory)
+    Highlights consist of a short collection of bullet points that convey the core findings of the article and should be submitted in a separate file in the online submission system. Please use 'Highlights' in the file name and include 3 to 5 bullet points (maximum 85 characters, including spaces, per bullet point). See the following website for more information
