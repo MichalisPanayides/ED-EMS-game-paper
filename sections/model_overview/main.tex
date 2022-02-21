@@ -3,42 +3,43 @@
 The problem studied is a 3-player normal form game. The players are:
   
 \begin{itemize}
-    \item the decision makers of two queueing systems;
-    \item a service that distributes individuals to these two queueing systems.
+    \item the decision makers of two Emergency Departments (EDs);
+    \item the Emergency Medical Services (EMS) that distribute individuals in ambulances to the EDs.
 \end{itemize}
 
 This is a standard normal form game~\cite{Maschler2013},  
 in that each player in this game has their own objectives which they aim to 
 optimise.
-More specifically, the queueing systems' objective is captured by an upper bound
+More specifically, the EDs' objective is captured by an upper bound
 of the time that a fixed proportion of individuals spend in the system, 
-while the distributor aims to minimise the time that its individuals 
+while the EMS aims to minimise the time that its ambulances 
 are blocked.
-Although we generalise for any such system, relating this back to the
-motivating case study, here the decision makers of the queueing systems
-represent the ED managers and the distributor is the EMS who allocate (send)
-ambulances to one of the EDs (see Section \ref{sec:ems_ed_application}). 
-% TODO: Depending on how this is described earlier, we might need a little more 
-% here (as to what we mean by "blocked")
+This can be generalised for any such system where instead of EDs there are some
+queueing systems and instead of the EMS there is some distributor that allocates individuals to the queueing systems. 
 
-The queueing systems are designed in such a way where they can accept two types
+The queueing systems of the hospitals are designed in such a way where they can
+accept two types
 of individuals. 
-These are the individuals that are allocated by the distributor and 
-other individuals from other sources. 
-Each queueing system may then choose to block the individuals that arrive from 
-the distributor when the system reaches a certain capacity. 
-The strategy sets for each queueing system is the set 
+Type 2 individuals are the ones arriving in ambulances that are allocated by
+the ambulance service and 
+type 1 individuals from other sources (e.g walk-in patients, urgent patients).
+Each hospital may then choose to block the individuals that arrive in
+ambulances when the hospital reaches a certain capacity. 
+The strategy sets for each hospital is the set 
 \( \{T \in \mathbb{N} \;|\; 1 \leq T \leq N\} \) where \(N \in\{N_A, N_B\}\) are 
-the total capacities of the two queueing systems. We denote the chosen actions 
+the total capacities of hospitals \(A\) and \(B\). We denote the chosen actions 
 from the strategy set as \(T_A, T_B\) and call these \textit{threshold}s.
 
-Both queueing systems follow a queueing model that has two waiting zones for 
+Both hospitals follow a queueing model with two waiting zones for 
 individuals. 
-The first waiting zone is where the individuals queue right before receiving 
+The first waiting zone (i.e. the waiting space of the hospital) is where the 
+patients queue right before receiving 
 their service and has a capacity of \( N - C \), where \(N\) is the total 
 capacity of the waiting space and \(C\) is the number of servers. 
-The second waiting zone is where the individuals, that are sent from the 
-distributor, stay until they are allowed to enter the first waiting zone.
+% TODO: Mention what we mean by servers here?
+The second waiting zone (i.e. the parking space for ambulances) is where 
+ambulances, that are sent from the
+EMS, stay until they are allowed to enter the first waiting zone.
 The second waiting zone has a capacity of \(M\) and no servers.
 
 This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
@@ -104,24 +105,25 @@ This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
         \draw[->] (4.2, 0.525) -- (4.8, 0.525);  
     \end{tikzpicture}
     \caption{A diagrammatic representation of the queueing model. 
-    The threshold \(T\) only applies to arrivals from the first buffer. 
-    If the second buffer is at that threshold, only individuals of the first type 
+    The threshold \(T\) only applies to type 2 individuals.
+    If the number of individuals in waiting zone 2 is \(T\), only 
+    individuals of the first type 
     are accepted (at a rate \(\lambda_1\)) and individuals of the second type 
-    (arriving at a rate \(\lambda_2\)) are blocked in the first buffer.}
+    (arriving at a rate \(\lambda_2\)) are blocked in waiting zone 2.}
     \label{fig:diagram_of_queueing_system}
 \end{figure}
 
 Note here that both types of individuals can become lost to the system. 
-An individual allocated from the distributor becomes lost to the system whenever 
-an arrival occurs and the second waiting zone is at full capacity (\(M\) 
-individuals already waiting).
-Similarly, individuals get lost whenever they arrive at the first waiting 
-zone and it is at full capacity (\(N - C\) individuals already waiting).
+An individual allocated from the ambulance service becomes lost to the system 
+whenever 
+an arrival occurs and the waiting zone 2 is at full capacity (\(M\) 
+ambulances already parked).
+Similarly, individuals get lost whenever they arrive at the waiting 
+zone 1 and it is at full capacity (\(N - C\) individuals already waiting).
 
 Following this queuing model, the two queueing systems' choice of strategy will 
 then rely solely on satisfying their own 
-objective, which is to make sure that the waiting time in the first waiting zone 
-of a proportion of individuals will be below the predefined target time.
+objective, which is to satisfy:
 
 \begin{equation}
     P(W < t) \geq \hat{P}
@@ -151,17 +153,21 @@ probability and the percentage goal (or maximise its negation).
 \end{equation}
 
 
-The third player, the distributor, has their own choices to make and their own 
+The third player, the ambulance service, has their own choices to make and 
+their own 
 goals to satisfy.
 The strategy set of the third player is the proportion \(0 \leq p_A \leq 1\) of 
-individuals it sends to the first queueing system (the proportion 
-\(p_B = 1 - p_A\) is sent to the second queueing system).
-In addition, the distributor aims to minimise any potential blockages
-that may occur, given the pair of thresholds chosen by the two queueing systems.
-Thus, its objective is to minimise the blocked time of the individuals (\(B_i\))
-that they send to the two queueing systems.
+individuals to send to hospital A.
+Similarly the proportion of individuals to send to hospital B is given by
+\(p_B = 1 - p_A\).
+In addition, the ambulance service aims to minimise any potential blockages
+that may occur, given the pair of thresholds chosen by the two hospitals.
+Thus, its objective is to minimise the blocked time of the individuals 
+(\(B_A\) and \(B_B\))
+that they send to hospitals \(A\) and \(B\).
 Apart from the time being blocked, an additional aspect that may affect the 
-decision of the distributor is the proportion of lost individuals (\(L_i\)).
+decision of the distributor is the proportion of lost individuals 
+\(L_A\) and \(L_B\).
 Equation \ref{eq:obj_distributor} can be used to capture a mixture 
 between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
 \begin{equation*}\label{eq:obj_distributor}
@@ -180,18 +186,18 @@ game.
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players~\cite{Berwanger2008}. In this study the state of the problem that is
-hidden is the threshold that each of the first two players chooses to play.
-In other words, each queueing system chooses to play a strategy without 
-knowing the other system's strategy.
-The distributor then, fully aware of the chosen threshold strategies, 
+hidden is the threshold that each of the hospitals chooses to play.
+In other words, each hospital chooses to play a strategy without 
+knowing the other hospital's strategy.
+The ambulance service then, fully aware of the chosen threshold strategies, 
 distributes individuals among the two systems in order to minimise the time 
-that its individuals will be blocked. Figure \ref{fig:imperfect_info_game} 
-illustrates this. 
+that its ambulances will be blocked. 
+Figure \ref{fig:imperfect_info_game} illustrates this. 
 
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}[-, node distance = 3cm, scale=0.8]
-        \node[anchor=north](HA){\(Q_A\)};
+        \node[anchor=north](HA){\(H_A\)};
         \node[anchor=north](HA_d1) at (3, 2){.};
         \node[anchor=north](HA_d2) at (3, -2){.};
     
@@ -200,7 +206,7 @@ illustrates this.
         \path (HA_d1) edge [bend left] node {}(HA_d2);
         \path (HA_d1) [dashed] edge node {}(HA_d2);
     
-        \node[anchor=north](HB) at (4.1, 0){\(Q_B\)};
+        \node[anchor=north](HB) at (4.1, 0){\(H_B\)};
         \node[anchor=north](HB_d1) at (6.9, 2){.};
         \node[anchor=north](HB_d2) at (6.9, -2){.};
     
@@ -222,15 +228,15 @@ illustrates this.
 \end{figure}
 
 The first 
-queueing system \(Q_A\) decides on a threshold, then the second system \(Q_B\)
-chooses its own threshold, without knowing the strategy of \(Q_A\), and finally
+queueing system \(H_A\) decides on a threshold, then the second system \(H_B\)
+chooses its own threshold, without knowing the strategy of \(H_A\), and finally
 the distributor makes its choice. Note here that the dotted line represents the
-fact that \(Q_B\) is unaware of the state of the game when making its own 
+fact that \(H_B\) is unaware of the state of the game when making its own 
 decisions. 
 
-In order to define the normal form game the two payoff matrices of the players 
+In order to define the normal form game the two payoff matrices of the hospitals 
 are required. From equation \ref{eq:obj_queueing_systems} the utilities of the
-players can be formulated as:
+hospitals can be formulated as:
 
 \begin{equation} \label{eq:payoff_entry}
     U_{T_A, T_B}^i = -\left( 
@@ -258,6 +264,7 @@ utilities:
     \end{pmatrix}
 \end{equation}
 
-Based on the choice of strategy of these two players, the distributor will then 
+Based on the choice of strategy of these two hospitals, the ambulance service 
+will then 
 make their own choice of the proportion of individuals to send to each system.
 
