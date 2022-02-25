@@ -4,21 +4,27 @@
 % overview section.
 In this section, a more in-depth explanation of the queueing model shown in 
 figure \ref{fig:diagram_of_queueing_system} will be given.
-This is a queueing model that consists of two waiting zones, one for each type
-of individual.
+This is a queueing model that consists of two waiting zones; the parking space
+and the hospital waiting space. 
 
 The model consists of two types of individuals; type 1 and type 2.
-Type 1 individuals arrive instantly at waiting zone 1 and wait to receive their 
+% TODO: Decide whether to define type 1, 2 only in queueing section, only in game section, or both
+Type 2 individuals are non-urgent patients arriving in ambulances (i.e. patients
+in ambulances ).
+and type 1 individuals are individuals arriving from other sources 
+(e.g walk-in patients, urgent patients from either walk-ins or ambulances).
+Type 1 individuals arrive instantly at the hospital's waiting space and wait to
+receive their 
 service. 
-Type 2 individuals arrive at waiting zone 2 and wait there until they are 
-allowed to move to waiting zone 1. 
+Type 2 individuals arrive at the parking space and wait there until they are 
+allowed to move to the hospital.
 They are allowed to proceed only when the number of 
-individuals in waiting zone 1 \textbf{and} in service is less than a 
+individuals in the hospital is less than the
 pre-determined threshold \(T\).
 When the number of individuals is equal to or exceeds this threshold, all 
-second type individuals that arrive will stay 
-\textit{blocked} in waiting zone 2 until the number of people in 
-the next queue and in service falls below \(T\). 
+type 2 individuals that arrive will stay 
+\textit{blocked} in the parking space until the number of patients in 
+the hospital falls below \(T\). 
 This is shown diagrammatically in Figure \ref{fig:diagram_of_queueing_system}.
 The parameters of the described queueing model are:
 
@@ -27,8 +33,7 @@ The parameters of the described queueing model are:
     \(i\in\{1, 2\}\)
     \item \(\mu\): The service rate for individuals receiving service
     \item \(C\): The number of servers
-    \item \(T\): The threshold at which individuals of the second type are 
-    blocked
+    \item \(T\): The threshold at which type 2 individuals are blocked
 \end{itemize}
 
 Under the assumption that all rates (arrival and service) are Markovian the
@@ -36,9 +41,9 @@ queueing system corresponds to a Markov chain~\cite{kemeny1976markov}.
 The states of the Markov chain are denoted by \((u,v)\) where:
 
 \begin{itemize}
-    \item \(u\) is the number of individuals blocked
-    \item \(v\) is the number of individuals either in waiting zone 1 or in the
-    service centre
+    \item \(u\) is the number of individuals blocked in the parking space
+    \item \(v\) is the number of individuals waiting or being served in the
+    hospital
 \end{itemize}
 
 We denote the state space of the Markov chain as  \(S=S(T)\) which can be 
@@ -90,11 +95,12 @@ can be seen in the general Markov chain model shown in Figure
 
 In order to consider this model numerically an adjustment needs to be made. 
 The problem defined above assumes no upper boundary to the number of individuals 
-that can wait for service or for the ones that are blocked in the buffer centre. 
+that can wait in the hospital or for the ones that are blocked in the parking 
+space. 
 Therefore, a different state space \( \tilde S \) is constructed where 
 \( \tilde S \subseteq S \) and there is a maximum allowed number of individuals 
-\(N\) that can be in the system and a maximum allowed number of individuals 
-\(M\) that can be blocked in the buffer centre:
+\(N\) that can be in the hospital and a maximum allowed number of individuals 
+\(M\) that can be blocked in the parking space:
 
 \begin{equation}
     \tilde S = \left\{ (u, v) \in S\;| u \leq M, v\leq N \right\}
@@ -121,23 +127,23 @@ it and \( Q \) is given by:
 Using vector \(\pi\) there are numerous performance measures of the model that 
 can be calculated. 
 The following equations utilise \(\pi\) to get performance measures on the 
-average number of people at certain sets of state:
+average number of patients at certain sets of state:
 
 \begin{itemize}
-    \item Average number of people in the system: 
+    \item Average number of patients in the entire system: 
         \[L = \sum_{i=1}^{|\pi|} \pi_i (u_i + v_i)\]
-    \item Average number of people in the service centre: 
+    \item Average number of patients in the hospital: 
         \[L_H = \sum_{i=1}^{|\pi|} \pi_i v_i\]
-    \item Average number of people in waiting zone 2:
+    \item Average number of patients in the parking space:
         \[L_A = \sum_{i=1}^{|\pi|} \pi_i u_i\] 
 \end{itemize}
 
 Consequently, there are some additional performance measures of interest that
 are not as straightforward to calculate.
 Such performance measures are the mean waiting time in the system (for both 
-type 1 and type 2 individuals), the mean time blocked in waiting zone 2 (only 
-valid for type 2 individuals) and the proportion of individuals that wait in 
-waiting zone 1 within a predefined time target (for both types).
+type 1 and type 2 individuals), the mean time blocked in the parking space (only
+valid for type 2 individuals) and the proportion of individuals in the hospital
+whose waiting time falls within a predefined time target (for both types).
 
 \input{sections/queueing_model/waiting_time/main.tex}
 
