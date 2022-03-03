@@ -1,21 +1,25 @@
 \section{Methodology}\label{sec:methodology}
 
 The problem defined in section \ref{sec:model_overview} describes a normal-form
-game between the decision makers of two queueing systems and a third player that 
+game between the decision makers of two hospitals and a third player, the 
+ambulance service, that 
 decides how to distribute individuals to the systems.
-The strategy space of the two queueing systems is defined as the possible values
+The strategy space of the two hospitals is defined as the possible values
 that the threshold parameter can take \(T_i \in [1, N_i]\).
-Then, the distributor has to decide on the proportion of individuals to send to 
-each queueing system \(p_A \text{ and } p_B\), where \(p_A, p_B \in [0, 1] \)
+Then, the ambulance service has to decide on the proportion of individuals to 
+send to 
+each hospital \(p_A \text{ and } p_B\), where \(p_A, p_B \in [0, 1] \)
 and \(p_A + p_B = 1\).
+In practice this would correspond to a learned behaviour through experience of
+waiting at each hospital.
 Figure \ref{fig:imperfect_info_game} 
 shows a diagrammatic representation of the game to be played and the decisions 
 to be made.
-As described in Section \ref{sec:model_overview}, queueing system \(A\) decides
-on a strategy and at the same time, queueing system \(B\) chooses its own 
-threshold but unaware of the first queueing system's choice.
-Finally, the distributor makes its choice based on the strategies that the 
-queueing systems chose to play. 
+As described in Section \ref{sec:model_overview}, hospital \(A\) decides
+on a strategy and at the same time, hospital \(B\) chooses its own 
+threshold but unaware of the first hospital's choice.
+Finally, the ambulance service makes its choice based on the strategies that the 
+hospitals chose to play. 
 
 The utilities to each player can be represented by 3 matrices; the two payoff 
 matrices of the normal form game and the routing matrix.
@@ -23,13 +27,13 @@ The payoff matrices and their utilities are defined by equations
 (\ref{eq:payoff_entry}) and (\ref{eq:payoff_matrices}).
 
 The routing matrix holds the values \((p_A, p_B)\) which are the proportion 
-of class 2 individuals to send to queueing system \(A\) and \(B\).
+of ambulance patients to send to queueing systems \(A\) and \(B\).
 Each pair \((p_A, p_B)\) can be calculated using equation 
 (\ref{eq:obj_distributor}) and is essentially
-a best response to the actions of the queueing systems.
+a best response to the actions of the hospitals.
 Thus, using equation \ref{eq:obj_distributor} for all possible sets of 
 thresholds we can get the full routing matrix that consists of the proportions
-to send to queueing system A (\(p_A\)) and to queueing system B (\(p_B\)).
+to send to hospital A (\(p_A\)) and to hospital B (\(p_B\)).
 
 \begin{equation}\label{eq:routing_matrix}
     R = 
@@ -59,23 +63,23 @@ Thus, the routing matrix \(R\) can be simplified to:
 \end{equation}
 
 The game can thus be partitioned into a normal form game between the
-two queueing systems and then finding the distributor's best strategy. 
+two hospitals and then finding the ambulance service's best strategy. 
 
 \subsection{Backwards induction}
 
 In order to populate the payoff matrices and the routing matrix the method
 of backwards induction is used.
 Consider Figure \ref{fig:imperfect_info_game} and the flow of the game that was
-described (i.e. \(Q_A, Q_B \rightarrow D\)).
+described (i.e. \(H_A, H_B \rightarrow D\)).
 Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
 matrix \(R\) the entries of the matrices are calculated in a backwards way 
-(\(D \rightarrow Q_A, Q_B\)). 
+(\(D \rightarrow H_A, H_B\)). 
 Thus for every pair of strategies \(T_A, T_B\), the proportion of individuals 
 that are to be transported to each queueing system is calculated first. 
 
 Consider a game where the capacities of the two systems are \(N_A = 4\) and 
 \(N_B = 3\).
-The strategy space of players \(Q_A\) and \(Q_B\) would then be 
+The strategy space of players \(H_A\) and \(H_B\) would then be 
 \(T_A = \{1, 2, 3, 4\}\) and \(T_B = \{1, 2, 3\}\) respectively.
 Now, starting from an arbitrary starting point of \(T_A=1\) and \(T_B=1\), the
 corresponding entry of the routing matrix the routing matrix can be calculated.
@@ -120,7 +124,7 @@ Consider once again the case of \(T_A=1, T_B=1\).
     \right)^2 \label{eq:payoff_entry_1_1}
 \end{align}
 
-These are the utilities of players \(A\) and \(B\) when both players choose a
+These are the utilities of hospitals \(A\) and \(B\) when both players choose a
 strategy of \(T = 1\).
 Here \(R\) is the predefined waiting time target to be met by a percentage of 
 individuals \( \hat{P} \) and \(P(W_i < t)\) is defined in section
@@ -170,10 +174,11 @@ All game theoretic calculations were done in Python using the Nashpy library
 Another approach to measuring emergent behaviour is to consider 
 the emergence itself and not only stable end points. 
 Indeed, some Nash equilibria might not arise naturally. 
-Thus in order to analyse the strategies played by the two EDs, the learning 
+Thus in order to analyse the strategies played by the two hospitals, the 
+learning 
 algorithm asymmetric replicator dynamics is 
 used~\cite{asymmetricreplicatordynamics}.
-The two players are modelled as two separate populations where each 
+The two hospitals are modelled as two separate populations where each 
 individual in the population is assigned a strategy.
 As the game progresses the proportion of each player playing each strategy 
 changes based on their previous interactions.
