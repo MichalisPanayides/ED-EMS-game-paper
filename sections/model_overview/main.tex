@@ -19,6 +19,40 @@ This can be generalised for any such system where instead of EDs there are some
 queueing systems and instead of the EMS there is some distributor that allocates 
 individuals to the queueing systems. 
 
+The parameters of the model correspond to the following parameters of the ED 
+and the EMS:
+
+\begin{itemize}
+    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
+    receives and distributes to EDs
+    \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
+    \(i\in\{A, B\}\)
+    \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
+    \item \( C_i \): The number of available resources (beds) in ED 
+    \(i\in\{A, B\}\)  
+    \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
+    corresponds to the threshold at which they do not accept EMS patients.
+    \item \( N_i \): The total patient capacity of ED \(i\in\{A, B\} \)
+    \item \( M_i \): The total parking capacity of ED \(i\in\{A, B\} \)
+    \item \( R \): The time target for both EDs
+    \item \( \alpha \in [0, 1] \) : \textit{Weighting} of blocking time and 
+    lost individuals (equation \ref{eq:obj_distributor})
+\end{itemize}
+
+The strategies of the two EDs are the range of thresholds that they can choose
+from and their utilities is the proportion of individuals whose time in the 
+system is within a predetermined target time.
+The EMS has to decide how to distribute its patients among the two EDs so that 
+the weighted combination of the ambulance blocking time and the percentage of 
+lost ambulances is minimised. 
+As defined in Section \ref{sec:model_overview}, the interaction between the two EDs 
+is a normal form game that is then used to inform the decision of the EMS.
+Note that the formulated game here assumes that prior to making a choice the 
+EMS knows the strategies that each ED is playing (figure 
+\ref{fig:imperfect_info_game}). This corresponds to reacting to experienced 
+delays.
+
+
 The queueing systems of the hospitals are designed in such a way where they can
 accept two types
 of individuals. 
@@ -48,7 +82,7 @@ The parking space has a capacity of \(M\) and no servers.
 
 This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \begin{tikzpicture}[>=stealth, scale=0.8],
         % the rectangle of Queue 1
@@ -273,3 +307,7 @@ Based on the choice of strategy of these two hospitals, the ambulance service
 will then 
 make their own choice of the proportion of individuals to send to each system.
 
+
+\input{sections/model_overview/methodology/main.tex}
+
+\input{sections/model_overview/numerical_results/main.tex}
