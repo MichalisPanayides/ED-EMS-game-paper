@@ -1,4 +1,4 @@
-\section{Methodology}\label{sec:methodology}
+\subsection{Methodology}\label{sec:methodology}
 
 The problem defined in section \ref{sec:model_overview} describes a normal-form
 game between the decision makers of two hospitals and a third player, the 
@@ -65,7 +65,7 @@ Thus, the routing matrix \(R\) can be simplified to:
 The game can thus be partitioned into a normal form game between the
 two hospitals and then finding the ambulance service's best strategy. 
 
-\subsection{Backwards induction}
+\subsubsection{Backwards induction}
 
 In order to populate the payoff matrices and the routing matrix the method
 of backwards induction is used.
@@ -151,7 +151,7 @@ Similar to the routing matrix, the above procedure can be repeated for all
 possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
 matrices. 
 
-\subsection{Nash equilibrium}\label{sec:methodology_nash_equilibrium}
+\subsubsection{Nash equilibrium}\label{sec:methodology_nash_equilibrium}
 
 Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
 be used to measure some form of emergent behaviour.
@@ -169,7 +169,7 @@ for large games the computational complexity becomes problematic.
 All game theoretic calculations were done in Python using the Nashpy library 
 \cite{thenashpyproject}.
 
-\subsection{Learning algorithms}\label{sec:methodology_learning_algorithms}
+\subsubsection{Learning algorithms}\label{sec:methodology_learning_algorithms}
 
 Another approach to measuring emergent behaviour is to consider 
 the emergence itself and not only stable end points. 
