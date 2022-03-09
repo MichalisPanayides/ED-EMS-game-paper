@@ -1,7 +1,4 @@
 \section{A queueing model for the ED-EMS interface}\label{sec:queueing_model}
-% TODO: If this is to be one paper maybe the first two paragraphs do not need to
-% include so much details or even better omit some of the details in the game
-% overview section.
 In this section, a more in-depth explanation of the queueing model shown in 
 figure \ref{fig:diagram_of_queueing_system} will be given.
 This is a queueing model that consists of two waiting zones; the parking space
@@ -77,10 +74,9 @@ and the hospital waiting space.
 \end{figure}
 
 The model consists of two types of individuals; type 1 and type 2.
-% TODO: Decide whether to define type 1, 2 only in queueing section, only in game section, or both
-Type 2 individuals are non-urgent patients arriving in ambulances (i.e. patients
-in ambulances that would not be at risk if they were blocked at the parking 
-space) and type 1 individuals are individuals arriving from other sources 
+Type 2 individuals are patients arriving in ambulances who can be blocked 
+(usually patients that are deemed not to be critical) 
+and type 1 individuals are individuals arriving from other sources 
 (e.g walk-in patients, urgent patients from either walk-ins or ambulances).
 Type 1 individuals arrive instantly at the hospital's waiting space and wait to
 receive their service. 
@@ -100,7 +96,8 @@ The parameters of the described queueing model are:
     \item \(\lambda_i\): The arrival rate of individuals of type 
     \(i\in\{1, 2\}\)
     \item \(\mu\): The service rate for individuals receiving service
-    \item \(C\): The number of servers
+    \item \(C\): The number of servers (either healthcare professionals
+    or available beds in the ED)
     \item \(T\): The threshold at which type 2 individuals are blocked
 \end{itemize}
 
@@ -212,7 +209,6 @@ Such performance measures are the mean waiting time in the system (for both
 type 1 and type 2 individuals), the mean time blocked in the parking space (only
 valid for type 2 individuals) and the proportion of individuals in the hospital
 whose waiting time falls within a predefined time target (for both types).
-% TODO: Explain why these performance measures are needed? (for the game)
 
 \input{sections/queueing_model/waiting_time/main.tex}
 
