@@ -1,11 +1,11 @@
-\subsection{Numerical results}\label{sec:numerical_results}
+\subsection{Results}\label{sec:numerical_results}
 
 This subsection aims to analyse how the gaming framework can affect the 
 performance measures of the two hospitals and how to escape certain inefficient 
 situations.
 
 The most commonly used method for analysing normal form games is the Nash 
-equilibrium described in section \ref{sec:methodology_nash_equilibrium}.
+equilibrium described in section \ref{sec:methodology}.
 Consider the following game:
 
 \begin{multicols}{3}
@@ -48,8 +48,8 @@ Therefore it might not be the best way to describe human behaviour.
 Since the work of Maynard Smith \cite{smith1986evolutionary}, evolutionary game 
 theory gives the tools for the emergence of stable behaviour.
 One such model that allows for asymmetric payoffs, as is the case above, is 
-replicator dynamics described in Section 
-(\ref{sec:methodology_learning_algorithms}).
+replicator dynamics described in section 
+(\ref{sec:methodology}).
 Stable outcomes of this algorithm will correspond to a subset of Nash
 equilibria but more importantly, will give a model of emergent behaviour. 
 
@@ -106,6 +106,7 @@ is given by:
     PoA_{i}(\tilde{s}) = \frac{B_i(\tilde{s})}{\min_{s \in S_i} B_i(s)}
 \end{equation}
 
+% TODO: Make clear that we are speaking about a flooded model here.
 Consider a game with two smaller (lower \( N_i, M_i \)) and busier (higher 
 \(\lambda_{1_i} \) and \(\lambda_2\)) hospitals with the following set of 
 parameters:
