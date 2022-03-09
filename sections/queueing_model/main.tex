@@ -1,4 +1,4 @@
-\section{A queueing model with 2 consecutive buffer centres}\label{sec:queueing_model}
+\section{A queueing model for the ED-EMS interface}\label{sec:queueing_model}
 % TODO: If this is to be one paper maybe the first two paragraphs do not need to
 % include so much details or even better omit some of the details in the game
 % overview section.
@@ -38,7 +38,7 @@ and the hospital waiting space.
         \draw (7cm-51pt,0.3) -- +(0,-0.4cm);
 
         % The label between the lines for T
-        \node[anchor=north] at (5.15, 0.80 cm) {\small{\( T \)}};
+        \node[anchor=north] at (5.15, 0.81 cm) {\small{\( T \)}};
 
         % The label above Queue 2 -> N
         \node[anchor=north] at (6.6cm, 2.2cm) {\( 
@@ -79,19 +79,18 @@ and the hospital waiting space.
 The model consists of two types of individuals; type 1 and type 2.
 % TODO: Decide whether to define type 1, 2 only in queueing section, only in game section, or both
 Type 2 individuals are non-urgent patients arriving in ambulances (i.e. patients
-in ambulances ).
-and type 1 individuals are individuals arriving from other sources 
+in ambulances that would not be at risk if they were blocked at the parking 
+space) and type 1 individuals are individuals arriving from other sources 
 (e.g walk-in patients, urgent patients from either walk-ins or ambulances).
 Type 1 individuals arrive instantly at the hospital's waiting space and wait to
-receive their 
-service. 
+receive their service. 
 Type 2 individuals arrive at the parking space and wait there until they are 
 allowed to move to the hospital.
 They are allowed to proceed only when the number of 
-individuals in the hospital is less than the
+patients in the hospital is less than the
 pre-determined threshold \(T\).
 When the number of individuals is equal to or exceeds this threshold, all 
-type 2 individuals that arrive will stay 
+type 2 patients that arrive will stay 
 \textit{blocked} in the parking space until the number of patients in 
 the hospital falls below \(T\). 
 This is shown diagrammatically in Figure \ref{fig:diagram_of_queueing_system}.
@@ -163,12 +162,12 @@ can be seen in the general Markov chain model shown in Figure
 
 
 In order to consider this model numerically an adjustment needs to be made. 
-The problem defined above assumes no upper boundary to the number of individuals 
-that can wait in the hospital or for the ones that are blocked in the parking 
-space. 
-Therefore, a different state space \( \tilde S \) is constructed where 
-\( \tilde S \subseteq S \) and there is a maximum allowed number of individuals 
-\(N\) that can be in the hospital and a maximum allowed number of individuals 
+The problem defined above assumes no upper boundary to the number of patients 
+that can wait in the hospital or to the ones that are blocked in the parking 
+space.
+Therefore, a different state space \( \tilde S \) is constructed where
+\( \tilde S \subseteq S \) and there is a maximum allowed number of patients 
+\(N\) that can be in the hospital and a maximum allowed number of ambulances 
 \(M\) that can be blocked in the parking space:
 
 \begin{equation}
@@ -182,8 +181,8 @@ The vector \( \pi \) is commonly used to study stochastic systems and it's main
 purpose is to keep track of the probability of being at any given state of 
 the system. 
 \(\pi_i\) is the steady state probability of being in state \((u_i, v_i) \in 
-\tilde S\) which is the \(i^{\text{th}}\) state of \(\tilde S\) for some ordering of 
-\(\tilde S\).
+\tilde S\) which is the \(i^{\text{th}}\) state of \(\tilde S\) for some 
+ordering of \(\tilde S\).
 The term \textit{steady state} refers to the instance of the vector \( \pi \) 
 where the probabilities of being at any state become stable over time. 
 Thus, by considering the steady state vector \( \pi \) the relationship between 
@@ -195,15 +194,15 @@ it and \( Q \) is given by:
 
 Using vector \(\pi\) there are numerous performance measures of the model that 
 can be calculated. 
-The following equations utilise \(\pi\) to get performance measures on the 
-average number of patients at certain sets of state:
+The following equations utilise \(\pi\) to get performance measures for the 
+average number of patients at the different nodes of the queueing model:
 
 \begin{itemize}
     \item Average number of patients in the entire system: 
         \[L = \sum_{i=1}^{|\pi|} \pi_i (u_i + v_i)\]
     \item Average number of patients in the hospital: 
         \[L_H = \sum_{i=1}^{|\pi|} \pi_i v_i\]
-    \item Average number of patients in the parking space:
+    \item Average number of patients/ambulances in the parking space:
         \[L_A = \sum_{i=1}^{|\pi|} \pi_i u_i\] 
 \end{itemize}
 
@@ -213,6 +212,7 @@ Such performance measures are the mean waiting time in the system (for both
 type 1 and type 2 individuals), the mean time blocked in the parking space (only
 valid for type 2 individuals) and the proportion of individuals in the hospital
 whose waiting time falls within a predefined time target (for both types).
+% TODO: Explain why these performance measures are needed? (for the game)
 
 \input{sections/queueing_model/waiting_time/main.tex}
 
