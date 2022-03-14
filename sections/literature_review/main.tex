@@ -17,9 +17,6 @@ the firms operate together.
 Another extension of~\cite{FirmCompetition} was introduced 
 in~\cite{FirmCompetitionExtension} where a long-run version of the competition 
 was considered that also had capacity as a decision variable.
-In~\cite{knight2017measuring} a normal form game is built that is informed by a 
-two-dimensional Markov chain in order to model interactions between critical
-care units.
 An additional paper that focuses on competition is~\cite{fan2009short} where
 the authors created a competition between two sellers where seller 1 supplies 
 a product instantly and seller 2 is modelled as a make-to-order M/M/1 queue.
@@ -33,21 +30,24 @@ asymmetric replicator dynamics~\cite{fudenberg1998theory}.
 
 In the above models, the players are attempting to increase their share of 
 individuals choosing to queue.
-In public healthcare type settings~\cite{knight2013selfish}, this is not 
+In public healthcare type settings, this is not 
 necessarily the case. 
-Players might not necessarily aim to maximise the so called `market share'.
+Rational usage of public services will not necessarily lead to a socially
+optimal outcome.
 Rather, the overall service needs to be considered as players aim to minimise
 their experienced congestion.
 In~\cite{sadat2015can} a healthcare application was studied where patients 
 could choose between two hospitals, where a utility function is derived that is
 based on patients' perceived quality of life.
-How individual behaviour based on congestion impacts the efficiency of public 
-services is investigated in~\cite{knight2013selfish}.
-The authors place the individuals' choices between different public services 
+In~\cite{knight2013selfish} the authors place the individuals' choices between
+different public services 
 within the formulation of routing games and measure inefficiencies using a 
 concept known as the price of anarchy (PoA)~\cite{koutsoupias1999worst}.
 They show that the price of anarchy increases with worth of service and that is
 low for systems with insufficient capacities.
+In~\cite{knight2017measuring} a normal form game is built that is informed by a 
+two-dimensional Markov chain in order to model interactions between critical
+care units.
 In~\cite{deo2011centralized} the authors study the network effect of ambulance 
 diversion by proposing a non-cooperative game between two EDs that are modelled
 as a queueing network.
@@ -57,10 +57,15 @@ In equilibrium both EDs choose to divert ambulances in order to avoid getting
 arrivals from the other ED.
 In this paper this concept is extended by allowing the ambulance service to 
 decide how to distribute its patients among the two EDs.
+The players of the game are both the hospitals and the customers of the
+hospitals, as opposed to the previous models which are one or the other.
+Thus, the novelty of this paper in a way is combining both these aspects.
 
 Another specific part of our research, as described later in the paper, is the 
 construction of a queueing system with a tandem buffer and a single service
 centre.
+There are several examples from literature that touch upon queueing models
+with tandem queues.
 In~\cite{d2015pure} the authors explore threshold joining strategies in a 
 Markov model that has two tandem queues.
 Another example is the one described in~\cite{burnetas2013customer}

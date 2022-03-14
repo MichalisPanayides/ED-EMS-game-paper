@@ -70,8 +70,11 @@ described (i.e. \(H_A, H_B \rightarrow D\)).
 Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
 matrix \(R\) the entries of the matrices are calculated in a backwards way 
 (\(D \rightarrow H_A, H_B\)). 
-This is done using backwards induction, by first solving the game from the
-ambulance's point of view and then from the hospital's point of view.
+This is done using backwards induction. 
+For each action choice of the hospitals, first solve the game from the
+ambulance's point of view.
+This in effect results in a 2-player normal form game representing the
+hospital's point of view.
 Thus, for every pair of strategies \(T_A, T_B\), the values of \(p_A\) and 
 \(p_B\) that satisfy equation (\ref{eq:obj_distributor}) are found
 numerically using Brent's bisection algorithm~\cite{brent1973algorithms}.
