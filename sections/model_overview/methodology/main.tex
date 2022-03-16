@@ -1,9 +1,9 @@
-\section{Methodology}\label{sec:methodology}
+\subsection{Building the game}\label{sec:methodology}
 
-The problem defined in section \ref{sec:model_overview} describes a normal-form
+The problem defined in this section describes a normal-form
 game between the decision makers of two hospitals and a third player, the 
 ambulance service, that 
-decides how to distribute individuals to the systems.
+decides how to distribute individuals to the two systems.
 The strategy space of the two hospitals is defined as the possible values
 that the threshold parameter can take \(T_i \in [1, N_i]\).
 Then, the ambulance service has to decide on the proportion of individuals to 
@@ -15,7 +15,7 @@ waiting at each hospital.
 Figure \ref{fig:imperfect_info_game} 
 shows a diagrammatic representation of the game to be played and the decisions 
 to be made.
-As described in Section \ref{sec:model_overview}, hospital \(A\) decides
+As described in section \ref{sec:model_overview}, hospital \(A\) decides
 on a strategy and at the same time, hospital \(B\) chooses its own 
 threshold but unaware of the first hospital's choice.
 Finally, the ambulance service makes its choice based on the strategies that the 
@@ -31,7 +31,7 @@ of ambulance patients to send to queueing systems \(A\) and \(B\).
 Each pair \((p_A, p_B)\) can be calculated using equation 
 (\ref{eq:obj_distributor}) and is essentially
 a best response to the actions of the hospitals.
-Thus, using equation \ref{eq:obj_distributor} for all possible sets of 
+Thus, using equation (\ref{eq:obj_distributor}) for all possible sets of 
 thresholds we can get the full routing matrix that consists of the proportions
 to send to hospital A (\(p_A\)) and to hospital B (\(p_B\)).
 
@@ -65,101 +65,31 @@ Thus, the routing matrix \(R\) can be simplified to:
 The game can thus be partitioned into a normal form game between the
 two hospitals and then finding the ambulance service's best strategy. 
 
-\subsection{Backwards induction}
-
-In order to populate the payoff matrices and the routing matrix the method
-of backwards induction is used.
 Consider Figure \ref{fig:imperfect_info_game} and the flow of the game that was
 described (i.e. \(H_A, H_B \rightarrow D\)).
 Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
 matrix \(R\) the entries of the matrices are calculated in a backwards way 
 (\(D \rightarrow H_A, H_B\)). 
-Thus for every pair of strategies \(T_A, T_B\), the proportion of individuals 
-that are to be transported to each queueing system is calculated first. 
-
-Consider a game where the capacities of the two systems are \(N_A = 4\) and 
-\(N_B = 3\).
-The strategy space of players \(H_A\) and \(H_B\) would then be 
-\(T_A = \{1, 2, 3, 4\}\) and \(T_B = \{1, 2, 3\}\) respectively.
-Now, starting from an arbitrary starting point of \(T_A=1\) and \(T_B=1\), the
-corresponding entry of the routing matrix the routing matrix can be calculated.
-Using equation (\ref{eq:obj_distributor}) for \(T_A=1\) and \(T_B=1\):
-\begin{align}
-    & \alpha L_A(p_A;T_A=1;T_B=1) + (1 - \alpha) B_A(p_A;T_A=1;T_B=1) = 
-    \nonumber \\
-    & \alpha L_B(p_B;T_A=1;T_B=1) + (1 - \alpha) B_B(p_B;T_A=1;T_B=1) 
-    \label{eq:obj_distributor_1_1}
-\end{align}
-
-The values of \(p_A\) and \(p_B\) that satisfy equation 
-(\ref{eq:obj_distributor_1_1}) are here found numerically using Brent's 
-bisection algorithm~\cite{brent1973algorithms}.
-The calculated value of \(p_A\) corresponds to the entry on the first row and 
-first column of the routing matrix:
-
-\begin{equation}\label{eq:routing_matrix_1_1}
-    R = 
-    \begin{pmatrix}
-        p_{1,1}^A & - & - \\
-        - & - & - \\
-        - & - & - \\
-        - & - & - \\
-    \end{pmatrix}
-\end{equation}
-
-In fact all remaining values of the routing matrix can be calculated by
-solving \(N \times M\) similar equations using Brent's bisection algorithm.
-Therefore, having calculated the entire routing matrix the payoff matrices can
-be calculated.
-Consider once again the case of \(T_A=1, T_B=1\). 
-
-
-\begin{align}
-    U_{1, 1}^A = 1 -\left( 
-        \hat{P} - P(W_A(T_A=1, T_B=1) < t) 
-    \right)^2 \nonumber
-    \\
-    U_{1, 1}^B = 1 -\left( 
-        \hat{P} - P(W_B(T_A=1, T_B=1) < t) 
-    \right)^2 \label{eq:payoff_entry_1_1}
-\end{align}
-
-These are the utilities of hospitals \(A\) and \(B\) when both players choose a
-strategy of \(T = 1\).
-Here \(R\) is the predefined waiting time target to be met by a percentage of 
-individuals \( \hat{P} \) and \(P(W_i < t)\) is defined in section
-\ref{sec:proportion_within_target}.
-
-\begin{equation}\label{eq:payoff_matrices_1_1}
-    A = 
-    \begin{pmatrix}
-        U_{1, 1}^A & - & - \\
-        - & - & - \\
-        - & - & - \\
-        - & - & - \\
-    \end{pmatrix}, \quad
-    B = 
-    \begin{pmatrix}
-        U_{1, 1}^B & - & - \\
-        - & - & - \\
-        - & - & - \\
-        - & - & - \\
-    \end{pmatrix}
-\end{equation}
-
-Similar to the routing matrix, the above procedure can be repeated for all 
-possible values of \(T_A\) and \(T_B\) to populate all entries of the payoff 
-matrices. 
-
-\subsection{Nash equilibrium}\label{sec:methodology_nash_equilibrium}
+This is done using backwards induction. 
+For each action choice of the hospitals, first solve the game from the
+ambulance's point of view.
+This in effect results in a 2-player normal form game representing the
+hospital's point of view.
+Thus, for every pair of strategies \(T_A, T_B\), the values of \(p_A\) and 
+\(p_B\) that satisfy equation (\ref{eq:obj_distributor}) are found
+numerically using Brent's bisection algorithm~\cite{brent1973algorithms}.
+Each pair \((p_A, p_B)\) corresponds to the best response of the ambulance
+service to the two hospitals' played strategies.
+Finally, using the routing matrix, equation (\ref{eq:payoff_entry}) can also be
+used to populate the payoff matrices of the hospitals since we now know the 
+arrival rate of each hospital.
 
 Having calculated the payoff matrices \(A\) and \(B\), several algorithms can 
-be used to measure some form of emergent behaviour.
+be used to measure some form of the emergent behaviour.
 One possibility would be to compute the Nash equilibrium
 which is the point of the game were both players have no 
 incentive to deviate from their played strategies \cite{kreps1989nash}.
 In other words their chosen strategies are a best response to each other.
-
 Computation of Nash equilibria can be done in a relatively efficient way using 
 the Lemke Howson algorithm~\cite{LemkeHowson}.
 Lemke-Howson uses best response polytopes to get one of the Nash equilibrium of
@@ -168,8 +98,6 @@ Other algorithms exists that will compute all Nash equilibria but
 for large games the computational complexity becomes problematic.
 All game theoretic calculations were done in Python using the Nashpy library 
 \cite{thenashpyproject}.
-
-\subsection{Learning algorithms}\label{sec:methodology_learning_algorithms}
 
 Another approach to measuring emergent behaviour is to consider 
 the emergence itself and not only stable end points. 

@@ -1,4 +1,4 @@
-\section{Overview of game theoretic model} \label{sec:model_overview}
+\section{Strategic manipulation of the ED-EMS interface} \label{sec:model_overview}
 
 The problem studied is a 3-player normal form game. The players are:
   
@@ -16,16 +16,47 @@ of the time that a fixed proportion of individuals spend in the system,
 while the EMS aims to minimise the time that its ambulances 
 are blocked.
 This can be generalised for any such system where instead of EDs there are some
-queueing systems and instead of the EMS there is some distributor that allocates 
-individuals to the queueing systems. 
+queueing systems and instead of the EMS there is some distributor that allocates
+individuals to the queueing systems.
+
+The parameters of the model correspond to the following parameters of the ED 
+and the EMS:
+
+\begin{itemize}
+    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
+    receives and distributes to EDs
+    % TODO: Use consistent notation of non-urgent/non-emergency patients
+    \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
+    \(i\in\{A, B\}\)
+    \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
+    \item \( C_i \): The number of available resources (healthcare 
+    professionals) in the ED \(i\in\{A, B\}\)
+    % TODO: Make sure that servers are defined the same way throughout
+    \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
+    corresponds to the threshold at which they do not accept EMS patients.
+    \item \( N_i \): The total patient capacity of the ED \(i\in\{A, B\} \)
+    \item \( M_i \): The total parking capacity of the ED \(i\in\{A, B\} \)
+    \item \( t \): The time target for both EDs
+    \item \( \alpha \in [0, 1] \) : Weighted average of blocking time and 
+    lost individuals (equation \ref{eq:obj_distributor})
+\end{itemize}
+
+The strategies of the two EDs are the range of thresholds that they can choose
+from and their utilities is the proportion of individuals whose time in the 
+system is within a predetermined target time.
+The EMS has to decide how to distribute its patients among the two EDs so that 
+the weighted combination of the ambulance blocking time and the percentage of 
+lost ambulances is minimised. 
+As defined in section \ref{sec:model_overview}, the interaction between the two
+EDs is a normal form game that is then used to inform the decision of the EMS.
+Note that the formulated game here assumes that prior to making a choice the 
+EMS knows the strategies that each ED is playing (figure 
+\ref{fig:imperfect_info_game}). 
+This corresponds to reacting to experienced delays.
+
 
 The queueing systems of the hospitals are designed in such a way where they can
-accept two types
-of individuals. 
-Type 2 individuals are defined as non-urgent patients arriving in ambulances 
-that are allocated by the ambulance service and 
-type 1 individuals are individuals arriving from other sources 
-(e.g walk-in patients, urgent patients from either walk-ins or ambulances).
+accept two types of individuals (section \ref{sec:queueing_model}). 
 Each hospital may then choose to block type 2 individuals 
 when the hospital reaches a certain capacity. 
 The strategy sets for each hospital is the set 
@@ -33,89 +64,23 @@ The strategy sets for each hospital is the set
 the total capacities of hospitals \(A\) and \(B\). We denote the chosen actions 
 from the strategy set as \(T_A, T_B\) and call these \textit{threshold}s.
 
-Both hospitals follow a queueing model with two waiting zones for 
+Both hospitals follow a queueing model with two waiting spaces for 
 individuals. 
-The first waiting zone (i.e. the waiting space of the hospital) is where the 
+The first waiting space (i.e. the waiting space of the hospital) is where the 
 patients queue right before receiving 
 their service and has a queue capacity of \( N - C \), where \(N\) is the total 
 capacity of the hospital and \(C\) is the number of healthcare 
 professionals able to see them.
 % TODO: Should this be healthcare professionals or available beds?
-The second waiting zone (i.e. the parking space for ambulances) is where 
+The second waiting space (i.e. the parking space for ambulances) is where 
 ambulances, that are sent from the
 ambulance service, stay until their patients are allowed to enter the hospital.
 The parking space has a capacity of \(M\) and no servers.
 
-This is shown diagrammatically in Figure ~\ref{fig:diagram_of_queueing_system}.
+This is shown diagrammatically in Figure~\ref{fig:diagram_of_queueing_system}.
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[>=stealth, scale=0.8],
-        % the rectangle of Queue 1
-        \draw (0,0) -- ++(3cm,0) -- ++(0,-1.5cm) -- ++(-3cm,0);
-        % The label above Queue 1 -> M
-        \node[anchor=north] at (1.5cm, 1cm) {\( 
-            \overbrace{\qquad \qquad \qquad \qquad}^{M} 
-        \)};
-        % The label below Queue 1 -> Parking space
-        \node[anchor=north] at (1.5cm, -1.7cm) {\small{Parking space}};
-
-        % the vertical lines in Queue 1
-        \foreach \i in {1,...,5, 6.6}
-        \draw (3cm-\i*13pt,0) -- +(0,-1.5cm);
-        
-        % % the circle in Queue 1
-        % \draw (2.75,-0.75cm) circle [radius=0.75cm] node {\(0\)};
-
-        % the rectangle in Queue 2
-        \draw (5,1.25) -- ++(2cm,0) -- ++(0,-1.5cm) -- ++(-2cm,0);
-        % the vertical lines in Queue 2
-        \foreach \i in {1,...,4, 5.7}
-        \draw (7cm-\i*10pt,1.25) -- +(0,-1.5cm);
-        % The two vertical lines at the start of Queue 2 
-        \draw (7cm-54pt,1.2) -- +(0,-0.5cm);
-        \draw (7cm-54pt,0.3) -- +(0,-0.5cm);        
-        \draw (7cm-51pt,1.1) -- +(0,-0.4cm);
-        \draw (7cm-51pt,0.3) -- +(0,-0.4cm);
-
-        % The label between the lines for T
-        \node[anchor=north] at (5.15, 0.80 cm) {\small{\( T \)}};
-
-        % The label above Queue 2 -> N
-        \node[anchor=north] at (6.6cm, 2.2cm) {\( 
-            \overbrace{\qquad \qquad \qquad \qquad}^{N} 
-        \)};
-        % The label below Queue 2 -> Hospital
-        \node[anchor=north] at (6.2cm, -0.5cm) {\small{Hospital}};
-
-        % the circle in Queue 2
-        \draw (7.75,0.5) circle [radius=0.75cm] node {\(C\)};
-
-        % Arrow line from Queue 2 outside
-        \draw[->] (8.5,0.525) -- +(20pt,0);
-        
-        % Line from lambda_2 to Queue 1
-        \draw[<-] (-0.3,-0.75) -- +(-40pt,0) node[left] {\( \lambda_2 \)};
-        % First line (horizontal) after Queue 1
-        \draw[-] (3,-0.75) -- +(34pt,0);
-        % Second line (vertical) after Queue 1
-        \draw (4.2, 0.525) -- (4.2, -0.75);
-        
-        % First line (horizontal) from lambda_1
-        \draw (4.2, 1.8) -- +(-169.5pt,0) node[left] {\( \lambda_1 \)};
-        % Second line (vertical) from lambda_1
-        \draw (4.2, 1.8) -- (4.2, 0.525);
-        % Arrow line to Queue 2
-        \draw[->] (4.2, 0.525) -- (4.8, 0.525);  
-    \end{tikzpicture}
-    \caption{A diagrammatic representation of the queueing model. 
-    The threshold \(T\) only applies to type 2 individuals.
-    If the number of individuals in the hospital is \(T\), only 
-    individuals of type 1 
-    are accepted (at a rate \(\lambda_1\)) and individuals of type 2
-    (arriving at a rate \(\lambda_2\)) are blocked in the parking space.}
-    \label{fig:diagram_of_queueing_system}
-\end{figure}
+% TODO: Add figure here of the game as described by issue [#32]
+% (https://github.com/11michalis11/ED-EMS-game-paper/issues/32)
 
 Note here that both types of individuals can become lost to the system. 
 An individual allocated from the ambulance service becomes lost to the system 
@@ -153,10 +118,10 @@ of individuals as close to the percentage aim.
 In other words, to find the threshold that minimises the difference between the 
 probability and the percentage goal (or maximise its negation).
 
+% TODO: Maybe only this equation is needed here. Remove the previous two?
 \begin{equation}\label{eq:obj_queueing_systems}
     \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2
 \end{equation}
-
 
 The third player, the ambulance service, has their own choices to make and 
 their own 
@@ -175,11 +140,11 @@ decision of the distributor is the proportion of lost individuals
 \(L_A\) and \(L_B\).
 Equation \ref{eq:obj_distributor} can be used to capture a mixture 
 between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
-\begin{equation*}\label{eq:obj_distributor}
+\begin{equation}\label{eq:obj_distributor}
     (p_A, p_B) \quad s.t. \quad 
     \alpha L_A(p_A) + (1 - \alpha) B_A(p_A) = 
     \alpha L_B(p_B) + (1 - \alpha) B_B(p_B)
-\end{equation*}
+\end{equation}
 
 Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
@@ -232,10 +197,10 @@ Figure \ref{fig:imperfect_info_game} illustrates this.
     \label{fig:imperfect_info_game}
 \end{figure}
 
-The first 
-queueing system \(H_A\) decides on a threshold, then the second system \(H_B\)
+Hospital \(H_A\) decides on a threshold, then the hospital \(H_B\)
 chooses its own threshold, without knowing the strategy of \(H_A\), and finally
-the distributor makes its choice. Note here that the dotted line represents the
+the ambulance service makes its choice. 
+Note here that the dotted line represents the
 fact that \(H_B\) is unaware of the state of the game when making its own 
 decisions. 
 
@@ -244,7 +209,7 @@ are required. From equation \ref{eq:obj_queueing_systems} the utilities of the
 hospitals can be formulated as:
 
 \begin{equation} \label{eq:payoff_entry}
-    U_{T_A, T_B}^i = -\left( 
+    U_{T_A, T_B}^i = 1 - \left( 
         \hat{P} - P(W_i < t) 
     \right)^2 \quad \textbf{where } i \in \{A, B\}
 \end{equation}
@@ -268,8 +233,13 @@ utilities:
         U_{N_A,1}^B & U_{N_A,2}^B & \dots & U_{N_A,N_B}^B \\
     \end{pmatrix}
 \end{equation}
+% TODO: Define here the normal form game properly
 
 Based on the choice of strategy of these two hospitals, the ambulance service 
 will then 
 make their own choice of the proportion of individuals to send to each system.
 
+
+\input{sections/model_overview/methodology/main.tex}
+
+\input{sections/model_overview/numerical_results/main.tex}

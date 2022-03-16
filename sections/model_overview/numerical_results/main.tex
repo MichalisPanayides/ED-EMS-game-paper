@@ -1,80 +1,11 @@
-\section{EMS - ED application}\label{sec:ems_ed_application}
-
-\subsection{Application}\label{sec:application}
-
-The system defined in section \ref{sec:model_overview} can be applied 
-to a healthcare scenario with two such queueing systems.
-The two queueing systems can be thought of as two Emergency Departments (ED) 
-and the Emergency Medical Services (EMS) as a distributor that distributes 
-patients to them.
-
-There are numerous news articles that focus on the problems that arise when 
-ambulances stay blocked outside of the hospital for a long amount of 
-time~\cite{dailyrecords, staffordshirelive}.
-Some news reports also comment on the long idle time of ambulances when 
-they are not in use~\cite{herefordtimes} and there are several reports of 
-examples where this became an issue for new patients~\cite{southwalesargus}.
-A particular article looked into this problem from the point of view of an 
-ambulance paramedic:
-
-\begin{quotation}
-    % <!--alex ignore he-she her-him-->
-    ``He knows if a patient arrives more urgently in need of help, his will be 
-    pushed back''~\cite{bbcwales}
-
-    ``We used to bring poorly patients in, and we were out on the road again in
-    15 minutes.''~\cite{bbcwales}
-\end{quotation}
-
-The patients that are distributed by the EMS arrive at the hospital via an 
-ambulance and are then either offloaded at the ED or stay blocked outside in 
-the ambulance.
-Whether or not the ambulance and the patient stay blocked is determined by 
-the threshold that the given ED chooses to play.
-High threshold indicates that the ED accepts patients even if it is relatively 
-full, while low threshold means that the ED blocks ambulances more frequently.
-
-The parameters of the model correspond to the following parameters of the ED 
-and the EMS:
-
-\begin{itemize}
-    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
-    receives and distributes to EDs
-    \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
-    \(i\in\{A, B\}\)
-    \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
-    \item \( C_i \): The number of available resources (beds) in ED 
-    \(i\in\{A, B\}\)  
-    \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
-    corresponds to the threshold at which they do not accept EMS patients.
-    \item \( N_i \): The total patient capacity of ED \(i\in\{A, B\} \)
-    \item \( M_i \): The total parking capacity of ED \(i\in\{A, B\} \)
-    \item \( R \): The time target for both EDs
-    \item \( \alpha \in [0, 1] \) : \textit{Weighting} of blocking time and 
-    lost individuals (equation \ref{eq:obj_distributor})
-\end{itemize}
-
-The strategies of the two EDs are the range of thresholds that they can choose
-from and their utilities is the proportion of individuals whose time in the 
-system is within a predetermined target time.
-The EMS has to decide how to distribute its patients among the two EDs so that 
-the weighted combination of the ambulance blocking time and the percentage of 
-lost ambulances is minimised. 
-As defined in Section \ref{sec:model_overview}, the interaction between the two EDs 
-is a normal form game that is then used to inform the decision of the EMS.
-Note that the formulated game here assumes that prior to making a choice the 
-EMS knows the strategies that each ED is playing (figure 
-\ref{fig:imperfect_info_game}). This corresponds to reacting to experienced 
-delays.
-
-\subsection{Numerical results}\label{sec:numerical_results}
+\subsection{Results}\label{sec:numerical_results}
 
 This subsection aims to analyse how the gaming framework can affect the 
 performance measures of the two hospitals and how to escape certain inefficient 
 situations.
 
 The most commonly used method for analysing normal form games is the Nash 
-equilibrium described in section \ref{sec:methodology_nash_equilibrium}.
+equilibrium described in section \ref{sec:methodology}.
 Consider the following game:
 
 \begin{multicols}{3}
@@ -117,8 +48,8 @@ Therefore it might not be the best way to describe human behaviour.
 Since the work of Maynard Smith \cite{smith1986evolutionary}, evolutionary game 
 theory gives the tools for the emergence of stable behaviour.
 One such model that allows for asymmetric payoffs, as is the case above, is 
-replicator dynamics described in Section 
-(\ref{sec:methodology_learning_algorithms}).
+replicator dynamics described in section 
+(\ref{sec:methodology}).
 Stable outcomes of this algorithm will correspond to a subset of Nash
 equilibria but more importantly, will give a model of emergent behaviour. 
 
@@ -175,6 +106,7 @@ is given by:
     PoA_{i}(\tilde{s}) = \frac{B_i(\tilde{s})}{\min_{s \in S_i} B_i(s)}
 \end{equation}
 
+% TODO: Make clear that we are speaking about a flooded model here.
 Consider a game with two smaller (lower \( N_i, M_i \)) and busier (higher 
 \(\lambda_{1_i} \) and \(\lambda_2\)) hospitals with the following set of 
 parameters:
