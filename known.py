@@ -16,6 +16,7 @@ words = {
     "captionpos",
     "CDF",
     "CDFs",
+    "center",
     "ciw's",
     "Ciw's",
     "Ciw",
