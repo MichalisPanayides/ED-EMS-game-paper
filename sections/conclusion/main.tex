@@ -1,26 +1,35 @@
 \section{Conclusion}
 
-The motivation behind this study has been that emergency departments are 
-under a lot of pressure to satisfy some regulations. 
-This paper shows how this can negatively impact the pathway of both the 
+The motivation behind this study has been that emergency departments are
+under a lot of pressure to satisfy some regulations.
+This paper shows how this can negatively impact the pathway of both the
 ambulance patients and the ambulance service itself.
-Due to some managerial decision making that takes place at the ED, ambulances 
+Due to some managerial decision making that takes place at the ED, ambulances
 stay blocked outside of the ED at the hospital's parking zone in an attempt
 to satisfy these regulations.
+The main contributions of this paper are:
+\begin{itemize}
+    \item A queueing model with 2 consecutive waiting spaces where one would
+    serve as a parking space for the ambulances
+    \item Analytic performance measure formulas for the queueing model
+    \item A 3-player game theoretic model between the EMS and two EDs
+    \item Numerical experiments showing emergent behaviour of gaming between
+    EDs and the EMS.
+\end{itemize}
 
-This study explores a generic 3-player game theoretic model between the 
-decision makers of two queueing systems and a service that distributes 
+This study explores a generic 3-player game theoretic model between the
+decision makers of two queueing systems and a service that distributes
 individuals to these two systems (section \ref{sec:model_overview}).
-It also describes the construction of the underlying queueing theoretic model 
-that has a tandem buffer and a single service centre (section 
+It also describes the construction of the underlying queueing theoretic model
+that has a tandem buffer and a single service centre (section
 \ref{sec:queueing_model}).
-Furthermore, the formulas for the performance measures of the queueing model 
-are also derived (sections \ref{sec:waiting_time}, \ref{sec:blocking_time}, 
-\ref{sec:proportion_within_target}). 
+Furthermore, the formulas for the performance measures of the queueing model
+are also derived (sections \ref{sec:waiting_time}, \ref{sec:blocking_time},
+\ref{sec:proportion_within_target}).
 This novel queuing model is the first contribution of the paper.
 The game theoretic model is then applied to a healthcare scenario by looking at
 the interface between the EDs and the EMS.
-The inefficiencies that emerge from the perspective of the EMS were explored 
+The inefficiencies that emerge from the perspective of the EMS were explored
 along with ways to apply some incentive mechanisms to improve them.
 The key findings from this paper that were observed when playing the game
 between two EDs and the EMS are:
@@ -28,31 +37,33 @@ between two EDs and the EMS are:
     \item Inefficiencies can be learned and emerge naturally
     \item Targeted incentivisation of behaviours can help escape inefficiencies
 \end{itemize}
-% TODO: Make sure this is consistent with `intro' and `lit review' sections
-The former relates to the results of asymmetric replicator dynamics that showed 
-that inefficient scenarios can arise by playing the game while the latter 
-implies that the learned inefficiencies can be escaped by carefully applying 
+The former relates to the results of asymmetric replicator dynamics that showed
+that inefficient scenarios can arise by playing the game while the latter
+implies that the learned inefficiencies can be escaped by carefully applying
 certain incentives to the players.
 This applied game theoretic model is the second main contribution of this paper.
 
-The model presented here assumes the presence of two players that can receive 
-individuals. 
-However, in a realistic healthcare scenario an ambulance may have to decide 
+The model presented here assumes the presence of two players that can receive
+individuals.
+However, in a realistic healthcare scenario an ambulance may have to decide
 among multiple EDs.
 An immediate extension of this work would be to consider a multiplayer system
 that could represent a group of hospitals in a concentrated area.
-Additionally, the game theoretic model that was created uses a discrete 
-strategy space for the EDs (something that is also present in various related 
+Additionally, the game theoretic model that was created uses a discrete
+strategy space for the EDs (something that is also present in various related
 literature~\cite{deo2011centralized, knight2017measuring}).
-The single threshold parameter that is used for the ED's decision may not be 
+The single threshold parameter that is used for the ED's decision may not be
 the best way to describe the model.
-In reality ED managers could have far more complex parameters for their 
+In reality ED managers could have far more complex parameters for their
 decision making process.
-Finally this work assumes that the EMS and EDs act in a selfish and rational
+Moreover this work assumes that the EMS and EDs act in a selfish and rational
 way by only aiming to satisfy their own objectives.
-In fact, modelling behaviour in a healthcare setting is a much more complex 
+In fact, modelling behaviour in a healthcare setting is a much more complex
 task where some cooperation may often be observed.
-Another extension would be to explore the behaviour of the ED staff via an 
-agent-based model. 
-This in turn can be used to model ED staff as agents each with their own 
+Another extension would be to explore the behaviour of the ED staff via an
+agent-based model.
+This in turn can be used to model ED staff as agents each with their own
 behavioural traits.
+Finally, future work can touch upon the derivation of a closed form formula for
+the steady state probability vector of the queueing model
+(section \ref{sec:queueing_model}) to allow for faster computations of \(\pi\).
