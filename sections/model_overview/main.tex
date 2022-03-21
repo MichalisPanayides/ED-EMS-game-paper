@@ -47,13 +47,15 @@ system is within a predetermined target time.
 The EMS has to decide how to distribute its patients among the two EDs so that 
 the weighted combination of the ambulance blocking time and the percentage of 
 lost ambulances is minimised. 
-As defined in section \ref{sec:model_overview}, the interaction between the two
+This can be illustrated by figure \ref{fig:diagram_of_game_theoretic_model}.
+The interaction between the two
 EDs is a normal form game that is then used to inform the decision of the EMS.
 Note that the formulated game here assumes that prior to making a choice the 
 EMS knows the strategies that each ED is playing (figure 
 \ref{fig:imperfect_info_game}). 
 This corresponds to reacting to experienced delays.
 
+\input{imgs/game_theoretic_model_diagram/main.tex}
 
 The queueing systems of the hospitals are designed in such a way where they can
 accept two types of individuals (section \ref{sec:queueing_model}). 
@@ -76,11 +78,7 @@ The second waiting space (i.e. the parking space for ambulances) is where
 ambulances, that are sent from the
 ambulance service, stay until their patients are allowed to enter the hospital.
 The parking space has a capacity of \(M\) and no servers.
-
 This is shown diagrammatically in Figure~\ref{fig:diagram_of_queueing_system}.
-
-% TODO: Add figure here of the game as described by issue [#32]
-% (https://github.com/11michalis11/ED-EMS-game-paper/issues/32)
 
 Note here that both types of individuals can become lost to the system. 
 An individual allocated from the ambulance service becomes lost to the system 
