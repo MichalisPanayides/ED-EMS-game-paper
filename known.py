@@ -73,5 +73,6 @@ words = {
     "stochasticity",
     "terminalstyle",
     "th",
+    "unobservable",
     "Zx",
 }
