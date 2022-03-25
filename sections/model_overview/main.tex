@@ -23,15 +23,13 @@ The parameters of the model correspond to the following parameters of the ED
 and the EMS:
 
 \begin{itemize}
-    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
-    receives and distributes to EDs
-    % TODO: Use consistent notation of non-urgent/non-emergency patients
+    \item \( \lambda_2 \): The rate of patients (who can be blocked) that the 
+    EMS receives and distributes to EDs
     \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
     \(i\in\{A, B\}\)
     \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
     \item \( C_i \): The number of available resources (healthcare 
     professionals) in the ED \(i\in\{A, B\}\)
-    % TODO: Make sure that servers are defined the same way throughout
     \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
     corresponds to the threshold at which they do not accept EMS patients.
     \item \( N_i \): The total patient capacity of the ED \(i\in\{A, B\} \)
@@ -73,7 +71,6 @@ patients queue right before receiving
 their service and has a queue capacity of \( N - C \), where \(N\) is the total 
 capacity of the hospital and \(C\) is the number of healthcare 
 professionals able to see them.
-% TODO: Should this be healthcare professionals or available beds?
 The second waiting space (i.e. the parking space for ambulances) is where 
 ambulances, that are sent from the
 ambulance service, stay until their patients are allowed to enter the hospital.
