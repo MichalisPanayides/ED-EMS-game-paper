@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import ambulance_game as abg
 
+
+def output_to_file(str_list, filename="demo.csv"):
+    with open(filename, "a") as f:
+        f.write(str_list + "\n")
+
+
 lambda_1 = 2
 mu = 3
 num_of_servers = 3
@@ -122,9 +128,9 @@ for index, (ax, all_markov_times, all_bounded_sim_times) in enumerate(
     )
 
     legend_elements = [
-        Line2D([0], [0], color="red", lw=2, label="Markov Chain"),
-        Patch(facecolor="tab:blue", label="Simulation (Unbounded)", alpha=0.6),
-        Patch(facecolor="tab:orange", label="Simulation (Bounded)", alpha=0.6),
+        Line2D([0], [0], color="red", lw=2, label="Finite state Markov chain"),
+        Patch(facecolor="tab:blue", label="Simulation", alpha=0.6),
+        Patch(facecolor="tab:orange", label="Truncated simulation", alpha=0.6),
     ]
     ax.legend(handles=legend_elements, loc="best")
     ax.set_title(f"$N$ = $M$ = {all_capacity_values[index]}")
@@ -133,3 +139,11 @@ for index, (ax, all_markov_times, all_bounded_sim_times) in enumerate(
 
 plt.suptitle("Truncation effect on proportion within target")
 plt.savefig("demo.pdf", transparent=True)
+
+output_to_file(str(all_sim_unbound_props), "sim_unbound_props.csv")
+output_to_file(str(all_sim_bound_props_low), "sim_bound_props_low.csv")
+output_to_file(str(all_sim_bound_props_mid), "sim_bound_props_mid.csv")
+output_to_file(str(all_sim_bound_props_high), "sim_bound_props_high.csv")
+output_to_file(str(all_markov_props_low), "markov_props_low.csv")
+output_to_file(str(all_markov_props_mid), "markov_props_mid.csv")
+output_to_file(str(all_markov_props_high), "markov_props_high.csv")

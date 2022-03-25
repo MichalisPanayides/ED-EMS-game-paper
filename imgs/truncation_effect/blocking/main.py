@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import ambulance_game as abg
 
+
+def output_to_file(str_list, filename="demo.csv"):
+    with open(filename, "a") as f:
+        f.write(str_list + "\n")
+
+
 lambda_1 = 2
 mu = 3
 num_of_servers = 3
@@ -127,9 +133,9 @@ for index, (ax, all_markov_times, all_bounded_sim_times) in enumerate(
     )
 
     legend_elements = [
-        Line2D([0], [0], color="red", lw=2, label="Markov Chain"),
-        Patch(facecolor="tab:blue", label="Simulation (Unbounded)", alpha=0.6),
-        Patch(facecolor="tab:orange", label="Simulation (Bounded)", alpha=0.6),
+        Line2D([0], [0], color="red", lw=2, label="Finite state Markov chain"),
+        Patch(facecolor="tab:blue", label="Simulation", alpha=0.6),
+        Patch(facecolor="tab:orange", label="Truncated simulation", alpha=0.6),
     ]
     ax.legend(handles=legend_elements, loc="upper left")
     ax.set_title(f"$N$ = $M$ = {all_capacity_values[index]}")
@@ -138,3 +144,18 @@ for index, (ax, all_markov_times, all_bounded_sim_times) in enumerate(
 
 plt.suptitle("Truncation effect on blocking time")
 plt.savefig("demo.pdf", transparent=True)
+
+
+output_to_file(str(all_sim_unbound_blocking_times), "sim_unbound_blocking_times.csv")
+output_to_file(
+    str(all_sim_bound_blocking_times_low), "sim_bound_blocking_times_low.csv"
+)
+output_to_file(
+    str(all_sim_bound_blocking_times_mid), "sim_bound_blocking_times_mid.csv"
+)
+output_to_file(
+    str(all_sim_bound_blocking_times_high), "sim_bound_blocking_times_high.csv"
+)
+output_to_file(str(all_markov_blocking_times_low), "markov_blocking_times_low.csv")
+output_to_file(str(all_markov_blocking_times_mid), "markov_blocking_times_mid.csv")
+output_to_file(str(all_markov_blocking_times_high), "markov_blocking_times_high.csv")
