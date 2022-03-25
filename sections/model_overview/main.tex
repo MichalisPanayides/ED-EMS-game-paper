@@ -202,15 +202,19 @@ Note here that the dotted line represents the
 fact that \(H_B\) is unaware of the state of the game when making its own 
 decisions. 
 
-In order to define the normal form game the two payoff matrices of the hospitals 
-are required. From equation \ref{eq:obj_queueing_systems} the utilities of the
-hospitals can be formulated as:
-
-\begin{equation} \label{eq:payoff_entry}
-    U_{T_A, T_B}^i = 1 - \left( 
-        \hat{P} - P(W_i < t) 
-    \right)^2 \quad \textbf{where } i \in \{A, B\}
-\end{equation}
+From equation \ref{eq:obj_queueing_systems} the utilities of the
+hospitals can be formulated.
+The 2-player normal form game between the two hospitals is defined by:
+\begin{itemize}
+    \item \textbf{Players}: Hospitals \(H_A\) and \(H_B\)
+    \item \textbf{Strategy spaces}: \(T_A = \{1, 2, \dots, N_A\}, 
+    T_B = \{1, 2, \dots, N_B\}\)
+    \item \textbf{Utilities}:    
+    \begin{equation} \label{eq:payoff_entry}
+        U_{T_A, T_B}^i = 1 - \left( \hat{P} - P(W_i < t) \right)^2 \quad
+        \textbf{where } i \in \{A, B\}
+    \end{equation}
+\end{itemize}
 
 Consequently, the payoff matrices of the game can be populated by these 
 utilities:
@@ -231,11 +235,10 @@ utilities:
         U_{N_A,1}^B & U_{N_A,2}^B & \dots & U_{N_A,N_B}^B \\
     \end{pmatrix}
 \end{equation}
-% TODO: Define here the normal form game properly
 
 Based on the choice of strategy of these two hospitals, the ambulance service 
-will then 
-make their own choice of the proportion of individuals to send to each system.
+will then make their own choice of the proportion of individuals to send to
+each system.
 
 
 \input{sections/model_overview/methodology/main.tex}
