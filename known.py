@@ -14,6 +14,7 @@ words = {
     "breaklines",
     "calc",
     "captionpos",
+    "ccc",
     "CDF",
     "CDFs",
     "center",
