@@ -74,5 +74,6 @@ words = {
     "terminalstyle",
     "th",
     "unobservable",
+    "untruncated",
     "Zx",
 }
