@@ -1,0 +1,172 @@
+\documentclass{article}
+
+\title{Response to reviewers}
+\author{}
+
+\begin{document}
+    \maketitle
+
+    I would like to thank all the reviewers for their help and comments and for
+    the time they took to review the manuscript.
+    Their suggestions were extremely helpful and we believe this has resulted
+    in an improved manuscript.
+    Below is a point by point response and summary of changes made.
+
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 1 - Comment 2: \textit{Combine Sections 2 and 5
+        together to demonstrate the underlying queueing models and the
+        EMS - ED interface counterpart.
+        The current arrangement is not easy to follow for finding the right
+        explanations for each part of the assumptions adopted in the
+        article.}
+
+        \item Reviewer 3 - Comment 1: \textit{Sections 1 and 2 are
+        difficult to read.
+        It would be better to focus on the main contribution and its
+        motivation in Section 1, and to put the literature review in a
+        separate Section.}
+    \end{itemize}
+    The paper has been completely restructured.
+    Sections 2 and 5 have been combined and the game theoretic model is now
+    presented along with the results in one section.
+    In addition, section 1 contains only the introduction while the
+    literature review has moved to section 2.
+    Finally, the queueing model section now comes before the game theoretic
+    section.
+    The current structure is: Introduction; Literature Review; A queueing
+    model for the ED-EMS interface; Strategic manipulation of the ED-EMS
+    interface; Results.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 2: \textit{Since the application in mind
+        is the EMS-ED interface, it would be better to write the paper
+        immediately from this perspective, instead of first abstracting it
+        and then applying it to that problem.}
+        \item Reviewer 3 - Comment 8: \textit{Figs 7-11: Row player and
+        Column Player are unclear: hospital 1 and hospital 2 would be a
+        better choice I presume.}
+    \end{itemize}
+    The paper is presented with the application of the model as the focus.
+    All sections are now presented from the perspective of the EMS-ED
+    interface.
+    In the game theoretic section instead of row/column player we now use
+    hospital A and hospital B.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 1 - Comment 4: \textit{To highlight the contributions
+        of this work, it is necessary to compare the novelty of this work
+        with previous results in the literature.}
+    \end{itemize}
+    In the new literature review section we now directly compare the results
+    from previous work with the results from this work to highlight the
+    contributions of this work.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 6: \textit{Figure 3: about solving the
+        Markov chain: the Markov chain is truncated to solve it. Therefore,
+        probably N and M are not too small. What about the numerical
+        complexity? Because if you just solve it, you have to invert the
+        matrix? Is there some structure in the Markov chain that can be
+        exploited if N and M would be large?}
+        \item Reviewer 3 - Comment 7: \textit{Figures 4-6: why do you
+        compare your calculated values with simulation?
+        Is it to evaluate the truncations?
+        Or are you not sure about the formulas?}
+    \end{itemize}
+    This observation was really helpful and lead to us conducting more numerical
+    experiments to clarify the point of truncating the state space.
+    As the values of \(N\) and \(M\) increase, the truncated Markov chain
+    becomes more complex to solve.
+    We have touched upon building a closed-form formula for the steady state
+    probabilities but that is still a work in progress and not something we are
+    able to include in this manuscript.
+    Figures 4-6 are there to demonstrate the accuracy of our constructed
+    model against its discrete event simulation equivalent and these have been
+    expanded on.
+    An additional paragraph is added that talks about truncating the model
+    and the old figures have been replaced with ones that compare the
+    results from the truncated Markov model with the results from the
+    untruncated simulation model. We feel that these extra numeric results
+    do clarify the paper and are thankful for the reviewer comments.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 3: \textit{In section 2, a diagram
+        of the full system (including the two queues and the EMS) would
+        increase readability.}
+    \end{itemize}
+    A full system diagram is now added in the game theoretic model section.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 9: \textit{Page 22 scenario at bottom of
+        the page: this scenario does not seem like a realistic scenario:
+        the mean number of patients offered per time unit is larger than
+        that can be treated, meaning that many patients would be rejected
+        by the hospital. Please comment on the reality of the selected
+        scenarios}
+    \end{itemize}
+    The queueing systems in the particular example are meant to be extremely
+    busy systems. In the new manuscript it is more clearly stated.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 5: \textit{A key modelling assumption is
+        that a fraction \(p_A\) of patients is distributed to hospital A.
+        Some comments on how realistic this is should be added. Do
+        distributers have a choice? Don't they just have to choose the
+        nearest hospital? Do they really do it randomly, don' t they take
+        into account queues at the hospitals (e.g. join the shortest
+        ambulance queue)? what about urgency of patients? I would expect
+        patients that come in are prioritized since they are probably more
+        urgent.}
+    \end{itemize}
+    An additional paragraph has been added that touches upon the possibility of
+    more complex queueing models where the hospital distance or patient's
+    priority type are considered.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 3 - Comment 4: \textit{The authors claim their model
+        has applications in a range of sectors and settings, but have given
+        no examples.}
+    \end{itemize}
+    Examples of other applications have been added in the conclusion section
+    of the manuscript.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 1 - Comment 3: \textit{In the game-theoretic
+        formulation and analysis part, it is better to present the
+        essential components of a normal-form representation, including the
+        players in the game, the strategies available to each player and the
+        payoff received by each player for each combination of strategies
+        that could be chosen by the players, etc.}
+    \end{itemize}
+    In the new manuscript the normal form game is explicitly defined in the
+    game theoretic section. The players, strategies and payoffs are clearly
+    defined. 
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 1 - Comment 1: \textit{Rewrite the Highlights (for
+        review) of the paper, and really capture the sense of work.}
+    \end{itemize}
+    Highlights have been rewritten to be more explicit in terms of the work
+    that was done.
+
+    \line(1, 0){0.92\textwidth}
+    \begin{itemize}
+        \item Reviewer 1 - Comment 5: \textit{There are some mistakes/typos
+        with English grammar and writing in the article.}
+    \end{itemize}
+    We have thoroughly checked the grammar and spelling of the manuscript. 
+
+
+\end{document}
+
