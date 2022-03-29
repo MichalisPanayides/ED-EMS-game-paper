@@ -23,15 +23,13 @@ The parameters of the model correspond to the following parameters of the ED
 and the EMS:
 
 \begin{itemize}
-    \item \( \lambda_2 \): The rate of non-emergency patients that the EMS 
-    receives and distributes to EDs
-    % TODO: Use consistent notation of non-urgent/non-emergency patients
+    \item \( \lambda_2 \): The rate of patients (who can be blocked) that the 
+    EMS receives and distributes to EDs
     \item \( \lambda_{1_i} \): The arrival rate of other patients to ED 
     \(i\in\{A, B\}\)
     \item \( \mu_i \): The service rate of patients at ED \(i\in\{A, B\}\)
     \item \( C_i \): The number of available resources (healthcare 
     professionals) in the ED \(i\in\{A, B\}\)
-    % TODO: Make sure that servers are defined the same way throughout
     \item \( T_i \): The action that ED \(i\in\{A, B\} \) chooses to play which 
     corresponds to the threshold at which they do not accept EMS patients.
     \item \( N_i \): The total patient capacity of the ED \(i\in\{A, B\} \)
@@ -73,7 +71,6 @@ patients queue right before receiving
 their service and has a queue capacity of \( N - C \), where \(N\) is the total 
 capacity of the hospital and \(C\) is the number of healthcare 
 professionals able to see them.
-% TODO: Should this be healthcare professionals or available beds?
 The second waiting space (i.e. the parking space for ambulances) is where 
 ambulances, that are sent from the
 ambulance service, stay until their patients are allowed to enter the hospital.
@@ -89,37 +86,21 @@ Similarly, type 1 individuals get lost whenever they arrive at the waiting
 space of the hospital and it is at full capacity (\(N - C\) individuals already
 waiting).
 
-Following this queuing model, the two queueing systems' choice of strategy will 
-then rely solely on satisfying their own 
-objective, which is to satisfy:
+Following this queueing model, the two queueing systems' choice of strategy will 
+then rely solely on satisfying their own objective.
+The objective function is defined as:
 
-\begin{equation}
-    P(W < t) \geq \hat{P}
+\begin{equation}\label{eq:obj_queueing_systems}
+    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2 \qquad 
+    i \in {A, B}
 \end{equation}
 
 where \(W\) is the waiting time of a potential individual, \(t\) is the time 
 target and \(\hat{P}\) is the percentage of individuals need to be within that 
 target. 
-There are numerous objective functions that can be used to capture this 
-behaviour. 
-For example one approach is to use the threshold that maximises the probability 
-that 
-the mean waiting is more than the target time, and completely ignore the 
-percentage goal \(\hat{P}\).
-
-\begin{equation}
-    \arg \max_{T_i} \quad P(W_i < t)
-\end{equation}
-
-A more sophisticated objective function would be to get the proportion 
-of individuals as close to the percentage aim. 
-In other words, to find the threshold that minimises the difference between the 
-probability and the percentage goal (or maximise its negation).
-
-% TODO: Maybe only this equation is needed here. Remove the previous two?
-\begin{equation}\label{eq:obj_queueing_systems}
-    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2
-\end{equation}
+In other words, their aim is to find the threshold that minimises the 
+difference between the probability \(P(W_i < t)\) and the percentage goal 
+(or maximise its negation).
 
 The third player, the ambulance service, has their own choices to make and 
 their own 
