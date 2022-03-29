@@ -581,7 +581,7 @@ def plot_asymmetric_replicator_dynamics_with_penalty(
     plt.plot(all_xs)
     plt.xlabel("Timepoints")
     plt.ylabel("Probability")
-    plt.title("Row player")
+    plt.title("Hospital A")
     plt.legend([f"$s_{i + 1}$" for i in range(len(all_xs[0]))])
     if penalty is not None:
         plt.plot(
@@ -597,7 +597,7 @@ def plot_asymmetric_replicator_dynamics_with_penalty(
     plt.plot(all_ys)
     plt.xlabel("Timepoints")
     plt.ylabel("Probability")
-    plt.title("Column player")
+    plt.title("Hospital B")
     plt.legend([f"$s_{i + 1}$" for i in range(len(all_ys[0]))])
     if penalty is not None:
         plt.plot(
@@ -610,12 +610,12 @@ def plot_asymmetric_replicator_dynamics_with_penalty(
         plt.annotate("Incentives", (len(all_ys) / 2, 1.1), ha="center")
 
     plt.subplot(2, 2, 3)
-    plt.title("Row player - PoA")
+    plt.title("Hospital A - PoA")
     plt.plot(poa_span, performance_value_poa_A, color="black", linewidth=6)
     plt.ylim(top=poa_plot_max, bottom=poa_plot_min)
 
     plt.subplot(2, 2, 4)
-    plt.title("Column player - PoA")
+    plt.title("Hospital B - PoA")
     plt.plot(poa_span, performance_value_poa_B, color="black", linewidth=6)
     plt.ylim(top=poa_plot_max, bottom=poa_plot_min)
 
@@ -791,7 +791,7 @@ def plot_asymmetric_replicator_dynamics_with_dual_parameters(
     plt.plot(all_xs)
     plt.xlabel("Timepoints")
     plt.ylabel("Probability")
-    plt.title("Row player")
+    plt.title("Hospital A")
     plt.legend([f"$s_{{{i + 1}}}$" for i in range(len(all_xs[0]))])
     plt.plot(
         [len(all_xs) / divide, len(all_xs) / divide],
@@ -806,7 +806,7 @@ def plot_asymmetric_replicator_dynamics_with_dual_parameters(
     plt.plot(all_ys)
     plt.xlabel("Timepoints")
     plt.ylabel("Probability")
-    plt.title("Column player")
+    plt.title("Hospital B")
     plt.legend([f"$s_{{{i + 1}}}$" for i in range(len(all_ys[0]))])
     plt.plot(
         [len(all_ys) / divide, len(all_ys) / divide],
@@ -819,11 +819,11 @@ def plot_asymmetric_replicator_dynamics_with_dual_parameters(
 
     poa_span = np.hstack((poa_span_1, poa_span_2))
     plt.subplot(2, 2, 3)
-    plt.title("Row player - PoA")
+    plt.title("Hospital A - PoA")
     plt.plot(poa_span, performace_measures_A, color="black", linewidth=6)
     plt.ylim(top=poa_plot_max, bottom=poa_plot_min)
 
     plt.subplot(2, 2, 4)
-    plt.title("Column player - PoA")
+    plt.title("Hospital B - PoA")
     plt.plot(poa_span, performace_measures_B, color="black", linewidth=6)
     plt.ylim(top=poa_plot_max, bottom=poa_plot_min)
