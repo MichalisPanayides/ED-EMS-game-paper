@@ -86,37 +86,21 @@ Similarly, type 1 individuals get lost whenever they arrive at the waiting
 space of the hospital and it is at full capacity (\(N - C\) individuals already
 waiting).
 
-Following this queuing model, the two queueing systems' choice of strategy will 
-then rely solely on satisfying their own 
-objective, which is to satisfy:
+Following this queueing model, the two queueing systems' choice of strategy will 
+then rely solely on satisfying their own objective.
+The objective function is defined as:
 
-\begin{equation}
-    P(W < t) \geq \hat{P}
+\begin{equation}\label{eq:obj_queueing_systems}
+    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2 \qquad 
+    i \in {A, B}
 \end{equation}
 
 where \(W\) is the waiting time of a potential individual, \(t\) is the time 
 target and \(\hat{P}\) is the percentage of individuals need to be within that 
 target. 
-There are numerous objective functions that can be used to capture this 
-behaviour. 
-For example one approach is to use the threshold that maximises the probability 
-that 
-the mean waiting is more than the target time, and completely ignore the 
-percentage goal \(\hat{P}\).
-
-\begin{equation}
-    \arg \max_{T_i} \quad P(W_i < t)
-\end{equation}
-
-A more sophisticated objective function would be to get the proportion 
-of individuals as close to the percentage aim. 
-In other words, to find the threshold that minimises the difference between the 
-probability and the percentage goal (or maximise its negation).
-
-% TODO: Maybe only this equation is needed here. Remove the previous two?
-\begin{equation}\label{eq:obj_queueing_systems}
-    \arg \max_{T_i} \quad -\left( \hat{P} - P(W_i < t) \right)^2
-\end{equation}
+In other words, their aim is to find the threshold that minimises the 
+difference between the probability \(P(W_i < t)\) and the percentage goal 
+(or maximise its negation).
 
 The third player, the ambulance service, has their own choices to make and 
 their own 
