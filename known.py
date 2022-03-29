@@ -14,6 +14,7 @@ words = {
     "breaklines",
     "calc",
     "captionpos",
+    "ccc",
     "CDF",
     "CDFs",
     "center",
@@ -74,5 +75,6 @@ words = {
     "terminalstyle",
     "th",
     "unobservable",
+    "untruncated",
     "Zx",
 }
