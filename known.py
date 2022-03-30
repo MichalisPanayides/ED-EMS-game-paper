@@ -3,6 +3,7 @@
 words = {
     "Abacws",
     "abg",
+    "affine",
     "alsoletter",
     "apalike",
     "automata",
