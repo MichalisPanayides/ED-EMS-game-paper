@@ -128,17 +128,17 @@ between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
 Here, \(\alpha\) represents the ``importance'' of each objective,
 where high \(\alpha\) indicates a higher weight on the proportion of lost 
 individuals and smaller \(\alpha\) a higher weight on the time blocked. 
-Note here that the choice of \(p_A\) and \(p_B\) rely solely on equation
+The choice of \(p_A\) and \(p_B\) rely solely on equation
 \ref{eq:obj_distributor}.
-An extension that can be applied here is the use of unobservable queues.
-The ambulance service does not necessarily know at which state hospitals A and
-B are at, and thus may need to make decisions based on other
-information~\cite{unobservablequeue}.
-While this is not an unrealistic scenario it is outside of the scope of this
-paper.
-There are several other factors that can affect the routing of the patients 
-that are also outside the scope, for example the distance of each hospital or
-even the priority level of each patient.
+Note that the current system is modelled using unobservable queues which is not
+necessarily an unrealistic approach~\cite{unobservablequeue}.
+Another approach would be to allow the ambulance service to observe the state
+of each hospital before deciding which one to join for a given individual.
+There are several other factors that can affect the routing of the
+patients that are outside the scope of this paper.
+For example the distance from each hospital or even the priority level of each
+patient may be a significant factor that affects the ambulance service's
+decision.
 
 Using either equation (\ref{eq:obj_distributor}) or 
 (\ref{eq:obj_queueing_systems}) gives an imperfect information extensive form 

@@ -226,8 +226,10 @@ It can be observed that matrix \(\tilde{A}\) is a scaled version of matrix
 \(\tilde{B}\) of matrix \(B\) only on the column that is most frequently played
 (matrix \(A\): row \(5\), matrix \(B\): column \(6\), see Figure 
 \ref{fig:ard_penalty}).
-Note that for the presentation of data, a scaling has been applied to obtain
-the values of the payoff matrices.
+Note that for the presentation of data, an affine transformation has been
+applied to obtain the values of the payoff matrices
+(\(A_ij = 10000(a_{ij} - 0.999) \text{ and } B_{ij} = 10000(b_{ij} - 0.999)\)
+where \(a_{ij}\) and \(b_{ij}\) are the raw utilities).
 The results are not affected by this scaling.
 
 \tiny
@@ -279,8 +281,9 @@ The results are not affected by this scaling.
         6.7334 & 6.4906 \\
         9.0298 & 9.0244 & 9.0187 & 9.0078 & 8.9827 &
         8.9082 & 8.5145 \\
-        \color{blue}6.9996 & \color{blue}6.9994 & \color{blue}6.9992 & \color{blue}6.9987  & \color{blue}6.9972 &
-        \color{blue}6.9893 & \color{blue}6.8571 \\
+        \color{blue}6.9996 & \color{blue}6.9994 & \color{blue}6.9992 &
+        \color{blue}6.9987 & \color{blue}6.9972 & \color{blue}6.9893 &
+        \color{blue}6.8571 \\
         8.7740 & 8.8006 & 8.8249 & 8.8660 & 8.9438 &
         9.1295 & 9.7157 \\
     \end{bmatrix}
