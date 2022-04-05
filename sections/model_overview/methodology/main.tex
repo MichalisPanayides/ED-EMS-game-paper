@@ -21,7 +21,7 @@ threshold but unaware of the first hospital's choice.
 Finally, the ambulance service makes its choice based on the strategies that the 
 hospitals chose to play. 
 
-The utilities to each player can be represented by 3 matrices; the two payoff 
+The utilities to each player can be represented by 3 matrices: the two payoff 
 matrices of the normal form game and the routing matrix.
 The payoff matrices and their utilities are defined by equations 
 (\ref{eq:payoff_entry}) and (\ref{eq:payoff_matrices}).
@@ -32,7 +32,9 @@ Each pair \((p_A, p_B)\) can be calculated using equation
 (\ref{eq:obj_distributor}) and is essentially
 a best response to the actions of the hospitals.
 Thus, using equation (\ref{eq:obj_distributor}) for all possible sets of 
-thresholds we can get the full routing matrix that consists of the proportions
+thresholds, we can get the full routing matrix \(R\) (equation
+\ref{eq:routing_matrix})
+that consists of the proportions
 to send to hospital A (\(p_A\)) and to hospital B (\(p_B\)).
 
 \begin{equation}\label{eq:routing_matrix}
@@ -65,8 +67,8 @@ Thus, the routing matrix \(R\) can be simplified to:
 The game can thus be partitioned into a normal form game between the
 two hospitals and then finding the ambulance service's best strategy. 
 
-Consider Figure \ref{fig:imperfect_info_game} and the flow of the game that was
-described (i.e. \(H_A, H_B \rightarrow D\)).
+Now consider Figure \ref{fig:imperfect_info_game} and the flow of the game that
+was described (i.e. \(H_A, H_B \rightarrow D\)).
 Due to the fact that the payoff matrices \(A\) and \(B\) depend on the routing 
 matrix \(R\) the entries of the matrices are calculated in a backwards way 
 (\(D \rightarrow H_A, H_B\)). 

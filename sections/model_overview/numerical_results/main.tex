@@ -77,8 +77,8 @@ hospital 1 takes longer and goes through numerous strategies to get there.
 
 In order to analyse how efficient the strategies played at every iteration are, 
 the concept of the price of anarchy is used.
-Price of anarchy is a measure that is used to quantify the efficiency of a
-behaviour \cite{roughgarden2005selfish}.
+Price of anarchy (PoA) is a measure that is used to quantify the efficiency of
+a behaviour \cite{roughgarden2005selfish}.
 In other words the price of anarchy is the worst-case equilibria measure and it 
 is defined as:
 
@@ -153,14 +153,14 @@ learning algorithm until it reaches an evolutionary stable pair of strategies.
 \end{figure}
 
 The learning algorithm reaches a stable pair of 
-strategies where \(T_A = 5\) and \(T_B = 6\). After a number of iterations the
-price of anarchy for both players stabilises and barely increases until the 
-final iteration. 
+strategies where \(T_A = 5\) and \(T_B = 6\). 
+Thereafter, the
+price of anarchy for both players stabilises and barely increases. 
 
 \textbf{Increasing \(\lambda_2\):}
 Figure \ref{fig:ard_lambda_2} shows a similar run of the
-algorithm but when the strategies begin to stabilise an increase in the
-arrival rate of ambulances occurs (i.e \( \lambda_2 = 24 \)).
+algorithm but when the strategies begin to stabilise, an increase in the
+arrival rate of ambulances occurs (i.e. \( \lambda_2 = 24 \)).
 
 
 \begin{figure}[H]
@@ -179,7 +179,7 @@ By increasing \(\lambda_2\) there is no change as to how players behave
 There is a decline in the price of anarchy of the blocking time which at first 
 glance indicates that upon flooding the system it becomes the loss in efficiency
 due to rational individual behaviour decreases. 
-This is non-sensical though.
+This is non-sensical however.
 What it really shows is that the steep increase in \( \lambda_2 \) leaves 
 the system unable to cope regardless of the decisions made.
 
@@ -210,12 +210,13 @@ Although this is a good way to escape such inefficiencies, it might not always
 be cost efficient.
 
 \textbf{Incentivising players:}
-From Figures \ref{fig:ard_lambda_2} and \ref{fig:ard_num_of_servers} it can be
-seen that we can change some parameters of the model to make it more efficient.
+From Figures \ref{fig:ard_lambda_2} and \ref{fig:ard_num_of_servers} it is
+observed that we can change some parameters of the model to make it more
+efficient.
 The approach used on Figure \ref{fig:ard_penalty} is slightly different than 
 the previous cases.
 Once the played strategies in asymmetric replicator dynamics strategies 
-converge the payoff matrices of the two are scaled in such a way so that the 
+converge, the payoff matrices of the two are scaled in such a way so that the 
 utilities of the selected strategy are penalised. This corresponds to a precise
 policy change where more societally beneficial behaviours are incentivised.
 

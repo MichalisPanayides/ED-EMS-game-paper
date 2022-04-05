@@ -22,18 +22,8 @@ ambulances stay blocked outside of the hospital for a long amount of
 time~\cite{dailyrecords, staffordshirelive}.
 Some news reports comment on the long idle time of ambulances when
 they are not in use~\cite{herefordtimes} and there are several reports of 
-examples where this became an issue for new patients~\cite{southwalesargus}.
-A particular article looked into this problem from the point of view of an 
-ambulance paramedic:
-
-\begin{quotation}
-    % <!--alex ignore he-she her-him-->
-    ``He knows if a patient arrives more urgently in need of help, his will be 
-    pushed back''~\cite{bbcwales}
-
-    ``We used to bring poorly patients in, and we were out on the road again in
-    15 minutes.''~\cite{bbcwales}
-\end{quotation}
+examples where this became an issue for new patients~\cite{southwalesargus}
+and paramedics~\cite{bbcwales}.
 
 % ED + EMS application
 This paper aims to describe the EMS-ED interface using a game theoretic model
@@ -48,10 +38,11 @@ ambulance and are then either offloaded at the ED or stay blocked outside in
 the ambulance.
 Whether or not the ambulance and its patient stay blocked is determined by 
 the threshold that the given ED chooses to play.
-High threshold indicates that the ED accepts ambulance patients even if it is 
-relatively full, while low threshold means that the ED blocks ambulances more 
+A high threshold indicates that the ED accepts ambulance patients even if it is 
+relatively full, while a low threshold means that the ED blocks ambulances more 
 frequently.
-In the United Kingdom the National Heath Services (NHS) sets some regulations 
+
+In the United Kingdom, the National Heath Services (NHS) sets some regulations 
 on ED performance.
 One of these regulations is that 95\% of patients that arrive at the ED should 
 be admitted, transferred or discharged within four hours.
@@ -63,10 +54,10 @@ This is similar to~\cite{deo2011centralized}.
 % Major contributions
 The major contributions of this paper are:
 \begin{itemize}
-    \item A queueing model with 2 consecutive waiting spaces where one would 
-    serve as a parking space for the ambulances
-    \item Analytic performance measure formulas for the queueing model
-    \item A 3-player game theoretic model between the EMS and two EDs
+    \item A queueing model with two consecutive waiting spaces where one would 
+    serve as a parking space for the ambulances.
+    \item Analytic performance measure formulas for the queueing model.
+    \item A 3-player game theoretic model between the EMS and two EDs.
     \item Numerical experiments showing emergent behaviour of gaming between
     EDs and the EMS.
 \end{itemize}
@@ -76,7 +67,7 @@ to them.
 The resultant model is then used to explore the emergent dynamics between 
 the three players.
 This study explores two new concepts: getting performance measures for a new
-queueing theoretic model with a parking space and a service centre and
+queueing theoretic model with a parking space and a service centre, and
 using a learning algorithm to model the emergence of behaviour.
 The developed theoretical model is illustrated through the application to 
 a healthcare system of two EDs and the EMS, exploring the inefficiencies that 
@@ -87,7 +78,7 @@ The performance measures are then used as the utilities of the game.
 The novelty of the queueing model here is a contribution not only the game 
 theoretic literature but also to the queueing theoretic literature.
 To the authors knowledge, no such model of a tandem queueing model with a pair 
-of parameters for the buffer has been considered.
+of parameters for the buffer has been previously considered.
 
 % Sign posting
 This paper consists of two main sections.
