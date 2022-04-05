@@ -7,17 +7,17 @@ The complexity of such task is caused by the fact that different individuals
 arrive at different states of the Markov model. 
 Consider the case when an arrival occurs when the model is at a specific state.
 
-\paragraph{Time distribution at specific state (1 server):}
 
 \begin{figure}[H]
     \centering
     \scalebox{0.75}{
         \input{imgs/example_1242/main.tex}
-    }
-    \caption{Example Markov model \(C=1, T=2, N=4, M=2\)}
-    \label{fig:distribution_of_time_at_specific_state_1_server}
-\end{figure}
-
+        }
+        \caption{Example Markov model \(C=1, T=2, N=4, M=2\)}
+        \label{fig:distribution_of_time_at_specific_state_1_server}
+    \end{figure}
+    
+\underline{\textit{Time distribution at specific state (1 server):}}
 Consider the Markov model of Figure 
 \ref{fig:distribution_of_time_at_specific_state_1_server} with one server and a 
 threshold of two individuals. 
@@ -62,7 +62,7 @@ are \(C=1\), or when an individual arrives and goes straight to service
 (i.e. when there is no other individual waiting and there is an empty server).
 
 
-\paragraph{Time distribution at a state (multiple servers):}
+\underline{\textit{Time distribution at a state (multiple servers):}}
 
 \begin{figure}[H]
     \centering
@@ -166,7 +166,7 @@ matrix analysis, and is given by the following formula:
 \end{equation}
 
 
-\paragraph{Specific CDF of hypoexponential distribution}
+\underline{\textit{Specific CDF of hypoexponential distribution:}}
 Equations (\ref{eq:general_cdf_hypoexponential}) and 
 (\ref{eq:linear_general_cdf_hypoexponential}) refers to the general CDF of the
 hypoexponential distribution where the size of the vector parameters can be of
@@ -221,8 +221,9 @@ be proved.
 
 
 
-\paragraph{Proof of equation (\ref{eq:hypoexponential_expression_to_proof})}
- 
+\underline{
+    \textit{Proof of equation (\ref{eq:hypoexponential_expression_to_proof}):}
+}
 This section aims to show that there exists a simplified version of equation 
 (\ref{eq:general_cdf_hypoexponential}) that is specific to the proposed Markov 
 model.
@@ -346,8 +347,7 @@ Thus the proof is split into two parts, for \(k=1\) and \(k=2\).
     \end{enumerate}
 \end{itemize}
 
-\paragraph{Proportion within target for both types of individuals}
-
+\underline{\textit{Proportion within target for both types of individuals:}}
 Given the two CDFs of the Erlang and Hypoexponential distributions a new 
 function has to be defined to decide which one to use among the two.
 Based on the state of the model, there can be three scenarios when an individual
@@ -480,8 +480,7 @@ Note that \(\mathcal{A}_1(u,v)\) and \(\mathcal{A}_2(u,v)\) are defined in
 section \ref{sec:blocking_time} by equations \ref{eq:arriving_state_class_1} 
 and \ref{eq:arriving_state_class_2}.
 
-\paragraph{Overall proportion within target}
-
+\underline{\textit{Overall proportion within target:}}
 The overall proportion of individuals for both types of individuals is given by 
 the equivalent formula of equation (\ref{eq:overall_waiting_time}).
 The following formula uses the probability of lost individuals from both types
