@@ -28,7 +28,7 @@
                 let \GCsmallx = 8.3;
                 let \GCsmally = -9.5;
                 let \GCbigx = 4.1;
-                let \GCbigy = -11.8;
+                let \GCbigy = -12.2;
             }
 
             % Rectangle for S1
@@ -63,15 +63,15 @@
             (\GCbigx + 4, \GCbigy);
             \draw [ultra thin] (\GCsmallx, \GCsmally - 0.4) -- node {} (7, \GCbigy);
             \draw [ultra thin] (\GCsmallx + 0.4, \GCsmally - 0.4) -- node {} 
-            (\GCbigx + 4, \GCbigy - 4);
+            (\GCbigx + 4, \GCbigy - 3.8);
             
             % Big Square of general case
             \draw [ultra thick] (\GCbigx, \GCbigy) -- node {} (\GCbigx + 4, \GCbigy);
             \draw [ultra thick] (\GCbigx + 4, \GCbigy) -- node {} 
-            (\GCbigx + 4, \GCbigy - 4);
-            \draw [ultra thick] (\GCbigx + 4, \GCbigy - 4) -- node {General Case} 
-            (\GCbigx, \GCbigy - 4);
-            \draw [ultra thick] (\GCbigx, \GCbigy - 4) -- node {} (\GCbigx, \GCbigy);
+            (\GCbigx + 4, \GCbigy - 3.8);
+            \draw [ultra thick] (\GCbigx + 4, \GCbigy - 3.8) -- node {General Case} 
+            (\GCbigx, \GCbigy - 3.8);
+            \draw [ultra thick] (\GCbigx, \GCbigy - 3.8) -- node {} (\GCbigx, \GCbigy);
 
             % First Line
             \node[state, minimum size=1.5cm] (zero) {(0,0)};
