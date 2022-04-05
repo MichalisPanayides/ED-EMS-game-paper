@@ -40,7 +40,7 @@ and the EMS:
 \end{itemize}
 
 The strategies of the two EDs are the range of thresholds that they can choose
-from and their utilities is the proportion of individuals whose time in the 
+from and their utilities are the proportions of individuals whose time in the 
 system is within a predetermined target time.
 The EMS has to decide how to distribute its patients among the two EDs so that 
 the weighted combination of the ambulance blocking time and the percentage of 
@@ -73,7 +73,7 @@ capacity of the hospital and \(C\) is the number of healthcare
 professionals able to see them.
 The second waiting space (i.e. the parking space for ambulances) is where 
 ambulances, that are sent from the
-ambulance service, stay until their patients are allowed to enter the hospital.
+EMS distributor, stay until their patients are allowed to enter the hospital.
 The parking space has a capacity of \(M\) and no servers.
 This is shown diagrammatically in Figure~\ref{fig:diagram_of_queueing_system}.
 
@@ -126,8 +126,8 @@ between the two objectives \(L_i\) and \(B_i\) where \(i \in \{A, B\}\):
 \end{equation}
 
 Here, \(\alpha\) represents the ``importance'' of each objective,
-where high \(\alpha\) indicates a higher weight on the proportion of lost 
-individuals and smaller \(\alpha\) a higher weight on the time blocked. 
+where a high \(\alpha\) indicates a higher weight on the proportion of lost 
+individuals and a smaller \(\alpha\) a higher weight on the time blocked. 
 The choice of \(p_A\) and \(p_B\) rely solely on equation
 \ref{eq:obj_distributor}.
 Note that the current system is modelled using unobservable queues which is not
@@ -146,7 +146,7 @@ game.
 An imperfect information game is defined as an extensive form game where some 
 of the information about the game state is hidden for at least one of the 
 players~\cite{Berwanger2008}. In this study the state of the problem that is
-hidden is the threshold that each of the hospitals chooses to play.
+hidden is the threshold that each hospital ED chooses to play.
 In other words, each hospital chooses to play a strategy without 
 knowing the other hospital's strategy.
 The ambulance service then, fully aware of the chosen threshold strategies, 
