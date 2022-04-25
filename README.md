@@ -10,16 +10,12 @@ theoretic model.
 Contents
 -----------------------------------------------------------------------
 1. Introduction
-2. Overview of game theoretic model
-3. A queueing models with 2 consecutive buffer centres
+2. Literature Review
+3. A queueing model for the ED-EMS interface
    1. Waiting time
    2. Blocking time
-   3. Proportion of individuals within target
-4. Methodology
-   1. Backwards Induction
-   2. Nash Equilibrium
-   3. Learning Algorithms
-5. EMS - ED application
-   1. Application
-   2. Numerical Analysis
-6. Conclusion
+   3. Proportion of individuals within time
+4. Strategic manipulation of the ED-EMS interface
+   1. Building the game
+   2. Results
+5. Conclusion

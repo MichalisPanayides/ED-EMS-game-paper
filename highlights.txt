@@ -1,3 +1,4 @@
-- A queueing model with two consecutive waiting spaces where one would serve as a parking space for the ambulances
-- A game theoretic model between the emergency medical services and two emergency departments
-- The emergence of gaming behaviour between emergency departments and the emergency medical services
+- A queueing model with two consecutive waiting spaces where one would serve as a parking space for the ambulances.
+- Analytic performance measure formulas for the queueing model.
+- A three player game theoretic model between the Emergency Medical Services (EMS) and two Emergency Departments (EDs).
+- Numerical experiments showing emergent behaviour of gaming between EDs and the EMS.

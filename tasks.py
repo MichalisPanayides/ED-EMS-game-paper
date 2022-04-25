@@ -70,12 +70,20 @@ def proselint(c):
                 updated_errors.append(error)
         return updated_errors
 
+    def clean_text(text):
+        """
+        Remove latex commands from text
+        """
+        cleaned_text = text.replace("\centering", "")
+        return cleaned_text
+
     all_tex_files = list(pathlib.Path().glob("**/*.tex"))
     exit_codes = [0]
     for path in all_tex_files:
         with open(path, "r") as f:
             text = f.read()
-            errors = plnt.tools.lint(text)
+            cleaned_text = clean_text(text)
+            errors = plnt.tools.lint(cleaned_text)
         errors = remove_expected_errors(errors)
         if errors:
             print(f"In {path} the following errors were found: ")

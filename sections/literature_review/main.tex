@@ -1,0 +1,96 @@
+\section{Literature review}
+
+% Literature review
+A number of papers have been published that touch upon the use of 
+queueing models together with game theoretic concepts.
+In~\cite{FirmCompetition} the authors study a simultaneous price competition 
+between two firms that are modelled as two distinct queueing systems with a 
+fixed capacity and a combined arrival rate.
+They calculate the Nash equilibrium both for identical and heterogeneous firms
+and show that for the former a pure Nash equilibrium always exist and for the 
+latter a unique equilibrium exists where only one firm operates.
+The authors have also extended their model in~\cite{FirmCompetition2} by 
+allowing the players (firms) to choose capacities. 
+A main result from this paper was that when both firms operate independently as
+a monopoly, the equilibria are socially optimal, but this is not the case when
+the firms operate together.
+Another extension of~\cite{FirmCompetition} was introduced 
+in~\cite{FirmCompetitionExtension} where a long-run version of the competition 
+was considered that also had capacity as a decision variable.
+An additional paper that focuses on competition is~\cite{fan2009short} where
+the authors created a competition between two sellers where seller 1 supplies 
+a product instantly and seller 2 is modelled as a make-to-order M/M/1 queue.
+The game that is played requires the two sellers to make a choice on the price 
+of the product and then seller 2 to set a capacity that guarantees a maximum 
+expected delay.
+In our work, while giving some consideration to equilibrium behaviour,
+similar to the work of~\cite{FirmCompetition, FirmCompetition2}, emergent
+behaviour is more precisely addressed by considering learning algorithms like
+asymmetric replicator dynamics~\cite{fudenberg1998theory}.
+
+In the above models, the players are attempting to increase their share of 
+individuals choosing to queue.
+In public healthcare type settings, this is not 
+necessarily the case. 
+Rational usage of public services will not necessarily lead to a socially
+optimal outcome.
+Rather, the overall service needs to be considered as players aim to minimise
+their experienced congestion.
+In~\cite{sadat2015can} a healthcare application was studied where patients 
+could choose between two hospitals, where a utility function is derived that is
+based on patients' perceived quality of life.
+In~\cite{knight2013selfish} the authors place the individuals' choices between
+different public services 
+within the formulation of routing games and measure inefficiencies using a 
+concept known as the price of anarchy (PoA)~\cite{koutsoupias1999worst}.
+They show that the price of anarchy increases with worth of service and that is
+low for systems with insufficient capacities.
+In~\cite{knight2017measuring} a normal form game is built that is informed by a 
+two-dimensional Markov chain in order to model interactions between critical
+care units.
+In~\cite{deo2011centralized} the authors study the network effect of ambulance 
+diversion by proposing a non-cooperative game between two EDs that are modelled
+as a queueing network.
+Each ED's objective is to minimise its own waiting time and chooses a diversion
+threshold based on the patients it has.
+In equilibrium both EDs choose to divert ambulances in order to avoid getting
+arrivals from the other ED.
+In this paper this concept is extended by allowing the ambulance service to 
+decide how to distribute its patients among the two EDs.
+The players of the game are both the hospitals and the customers of the
+hospitals, as opposed to the previous models which are one or the other.
+Thus, the novelty of our work is combining both these aspects.
+
+Another specific part of our research, as described later in the paper, is the 
+construction of a queueing system with a tandem buffer and a single service
+centre.
+There are several examples from literature that touch upon queueing models
+with tandem queues.
+In~\cite{d2015pure} the authors explore threshold joining strategies in a 
+Markov model that has two tandem queues.
+Another example is the one described in~\cite{burnetas2013customer}
+where they investigated a network of multiple tandem queues where customers 
+decide which queue to attend before joining.
+Similarly, in~\cite{bacsar2002stackelberg} the authors examine a network of 
+\(N\) tandem M/M/1 queues and with multi-type customers. 
+The customers in this paper react to a price \(p\) by picking demand rates that 
+maximise utility.
+In~\cite{veltman2005equilibrium} a profit maximisation problem is studied that
+has two servers; an M/M/1 queue and a parking service providing complementary 
+service while the customer is in the first service. 
+The providers gain a reward when customers complete both services and no reward 
+when they finish one of them.
+One of the main conclusions of this study is that by increasing the general 
+demand both providers lower their prices to compensate for the increase in wait.
+The problem was later extended by~\cite{sun2009equilibrium} where they 
+considered arrivals of batches that can share the parking service.
+Finally,~\cite{afeche2007decentralized} examines a tandem network of two M/M/1 
+queues that are ran by two different profit-maximising service providers.
+The network receives three types of customers; those requiring both services, 
+customers requiring the first service and customers requiring the second service.
+The authors showed that optimal prices also maximise social utility and that
+removing two types of customers that don't need both services leads to higher 
+profit and lower demand rate.
+In our work, the concepts described in~\cite{d2015pure, burnetas2013customer,
+bacsar2002stackelberg} are extended by introducing a threshold parameter that 
+determines when individuals can progress from one queue to the other.
