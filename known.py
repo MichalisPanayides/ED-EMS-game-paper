@@ -74,6 +74,7 @@ words = {
     "Senghennydd",
     "sensical",
     "societally",
+    "Stackelberg",
     "stochasticity",
     "terminalstyle",
     "th",
